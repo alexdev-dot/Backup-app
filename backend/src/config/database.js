@@ -15,8 +15,13 @@ export const supabase = createClient(supabaseUrl, supabaseKey, {
 
 export const testConnection = async () => {
   const { error } = await supabase.from('users').select('id').limit(1);
-  if (error) throw new Error(`[DB] Supabase connection failed: ${error.message}`);
-  console.log('[DB] Supabase connection ready');
+  if (error) {
+    console.warn('[DB] Warning:', error.message);
+    console.warn('[DB] Tables may not exist yet. Please run the schema SQL in your Supabase SQL Editor.');
+    console.warn('[DB] Schema file: backend/schema.sql');
+  } else {
+    console.log('[DB] Supabase connection ready');
+  }
 };
 
 export default supabase;
