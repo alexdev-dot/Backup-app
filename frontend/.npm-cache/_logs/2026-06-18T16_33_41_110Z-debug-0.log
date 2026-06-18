@@ -1,0 +1,1287 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.3
+2 info using node@v22.20.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\.npmrc
+5 silly config load:file:C:\Users\Admin\.npmrc
+6 silly config load:file:C:\Users\Admin\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm install
+8 verbose argv "install" "--registry" "https://registry.npmjs.org/" "--no-audit" "--no-fund" "--loglevel" "warn"
+9 verbose logfile logs-max:10 dir:C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\.npm-cache\_logs\2026-06-18T16_33_41_110Z-
+10 verbose logfile C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\.npm-cache\_logs\2026-06-18T16_33_41_110Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 silly idealTree buildDeps
+14 silly reify mark retired [
+14 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\any-promise'
+14 silly reify ]
+15 silly reify mark retired [
+15 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\anymatch'
+15 silly reify ]
+16 silly reify mark retired [
+16 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\arg'
+16 silly reify ]
+17 silly reify mark retired [
+17 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\autoprefixer'
+17 silly reify ]
+18 silly reify mark retired [
+18 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\binary-extensions'
+18 silly reify ]
+19 silly reify mark retired [
+19 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\baseline-browser-mapping'
+19 silly reify ]
+20 silly reify mark retired [
+20 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\braces'
+20 silly reify ]
+21 silly reify mark retired [
+21 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\browserslist'
+21 silly reify ]
+22 silly reify mark retired [
+22 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\camelcase-css'
+22 silly reify ]
+23 silly reify mark retired [
+23 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\caniuse-lite'
+23 silly reify ]
+24 silly reify mark retired [
+24 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\commander'
+24 silly reify ]
+25 silly reify mark retired [
+25 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\chokidar'
+25 silly reify ]
+26 silly reify mark retired [
+26 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\convert-source-map'
+26 silly reify ]
+27 silly reify mark retired [
+27 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\cookie'
+27 silly reify ]
+28 silly reify mark retired [
+28 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\cssesc'
+28 silly reify ]
+29 silly reify mark retired [
+29 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\csstype'
+29 silly reify ]
+30 silly reify mark retired [
+30 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\debug'
+30 silly reify ]
+31 silly reify mark retired [
+31 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\didyoumean'
+31 silly reify ]
+32 silly reify mark retired [
+32 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\dlv'
+32 silly reify ]
+33 silly reify mark retired [
+33 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\electron-to-chromium'
+33 silly reify ]
+34 silly reify mark retired [
+34 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\es-errors'
+34 silly reify ]
+35 silly reify mark retired [
+35 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\esbuild'
+35 silly reify ]
+36 silly reify mark retired [
+36 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\escalade'
+36 silly reify ]
+37 silly reify mark retired [
+37 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\fast-glob'
+37 silly reify ]
+38 silly reify mark retired [
+38 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\fastq'
+38 silly reify ]
+39 silly reify mark retired [
+39 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\fill-range'
+39 silly reify ]
+40 silly reify mark retired [
+40 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\fraction.js'
+40 silly reify ]
+41 silly reify mark retired [
+41 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\fsevents'
+41 silly reify ]
+42 silly reify mark retired [
+42 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\gensync'
+42 silly reify ]
+43 silly reify mark retired [
+43 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\function-bind'
+43 silly reify ]
+44 silly reify mark retired [
+44 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\glob-parent'
+44 silly reify ]
+45 silly reify mark retired [
+45 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\hasown'
+45 silly reify ]
+46 silly reify mark retired [
+46 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\is-core-module'
+46 silly reify ]
+47 silly reify mark retired [
+47 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\is-extglob'
+47 silly reify ]
+48 silly reify mark retired [
+48 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\is-glob'
+48 silly reify ]
+49 silly reify mark retired [
+49 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\is-binary-path'
+49 silly reify ]
+50 silly reify mark retired [
+50 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\is-number'
+50 silly reify ]
+51 silly reify mark retired [
+51 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\jiti'
+51 silly reify ]
+52 silly reify mark retired [
+52 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\js-tokens'
+52 silly reify ]
+53 silly reify mark retired [
+53 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\jsesc'
+53 silly reify ]
+54 silly reify mark retired [
+54 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\json5'
+54 silly reify ]
+55 silly reify mark retired [
+55 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\lines-and-columns'
+55 silly reify ]
+56 silly reify mark retired [
+56 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\lilconfig'
+56 silly reify ]
+57 silly reify mark retired [
+57 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\lru-cache'
+57 silly reify ]
+58 silly reify mark retired [
+58 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\lucide-react'
+58 silly reify ]
+59 silly reify mark retired [
+59 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\merge2'
+59 silly reify ]
+60 silly reify mark retired [
+60 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\micromatch'
+60 silly reify ]
+61 silly reify mark retired [
+61 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\ms'
+61 silly reify ]
+62 silly reify mark retired [
+62 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\mz'
+62 silly reify ]
+63 silly reify mark retired [
+63 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\nanoid'
+63 silly reify ]
+64 silly reify mark retired [
+64 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\node-releases'
+64 silly reify ]
+65 silly reify mark retired [
+65 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\normalize-path'
+65 silly reify ]
+66 silly reify mark retired [
+66 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\object-assign'
+66 silly reify ]
+67 silly reify mark retired [
+67 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\object-hash'
+67 silly reify ]
+68 silly reify mark retired [
+68 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\path-parse'
+68 silly reify ]
+69 silly reify mark retired [
+69 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\picocolors'
+69 silly reify ]
+70 silly reify mark retired [
+70 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\pify'
+70 silly reify ]
+71 silly reify mark retired [
+71 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\picomatch'
+71 silly reify ]
+72 silly reify mark retired [
+72 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\pirates'
+72 silly reify ]
+73 silly reify mark retired [
+73 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\postcss'
+73 silly reify ]
+74 silly reify mark retired [
+74 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\postcss-import'
+74 silly reify ]
+75 silly reify mark retired [
+75 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\postcss-js'
+75 silly reify ]
+76 silly reify mark retired [
+76 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\postcss-nested'
+76 silly reify ]
+77 silly reify mark retired [
+77 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\postcss-load-config'
+77 silly reify ]
+78 silly reify mark retired [
+78 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\postcss-value-parser'
+78 silly reify ]
+79 silly reify mark retired [
+79 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\queue-microtask'
+79 silly reify ]
+80 silly reify mark retired [
+80 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\postcss-selector-parser'
+80 silly reify ]
+81 silly reify mark retired [
+81 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\react'
+81 silly reify ]
+82 silly reify mark retired [
+82 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\react-dom'
+82 silly reify ]
+83 silly reify mark retired [
+83 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\react-refresh'
+83 silly reify ]
+84 silly reify mark retired [
+84 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\react-router'
+84 silly reify ]
+85 silly reify mark retired [
+85 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\react-router-dom'
+85 silly reify ]
+86 silly reify mark retired [
+86 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\read-cache'
+86 silly reify ]
+87 silly reify mark retired [
+87 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\readdirp'
+87 silly reify ]
+88 silly reify mark retired [
+88 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\resolve'
+88 silly reify ]
+89 silly reify mark retired [
+89 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\reusify'
+89 silly reify ]
+90 silly reify mark retired [
+90 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\run-parallel'
+90 silly reify ]
+91 silly reify mark retired [
+91 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\rollup'
+91 silly reify ]
+92 silly reify mark retired [
+92 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\scheduler'
+92 silly reify ]
+93 silly reify mark retired [
+93 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\semver'
+93 silly reify ]
+94 silly reify mark retired [
+94 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\set-cookie-parser'
+94 silly reify ]
+95 silly reify mark retired [
+95 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\source-map-js'
+95 silly reify ]
+96 silly reify mark retired [
+96 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\sucrase'
+96 silly reify ]
+97 silly reify mark retired [
+97 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\tailwindcss'
+97 silly reify ]
+98 silly reify mark retired [
+98 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\supports-preserve-symlinks-flag'
+98 silly reify ]
+99 silly reify mark retired [
+99 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\thenify-all'
+99 silly reify ]
+100 silly reify mark retired [
+100 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\thenify'
+100 silly reify ]
+101 silly reify mark retired [
+101 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\tinyglobby'
+101 silly reify ]
+102 silly reify mark retired [
+102 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\ts-interface-checker'
+102 silly reify ]
+103 silly reify mark retired [
+103 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\to-regex-range'
+103 silly reify ]
+104 silly reify mark retired [
+104 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\typescript'
+104 silly reify ]
+105 silly reify mark retired [
+105 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\update-browserslist-db'
+105 silly reify ]
+106 silly reify mark retired [
+106 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\util-deprecate'
+106 silly reify ]
+107 silly reify mark retired [
+107 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\vite'
+107 silly reify ]
+108 silly reify mark retired [
+108 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\yallist'
+108 silly reify ]
+109 silly reify mark retired [
+109 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@alloc\\quick-lru'
+109 silly reify ]
+110 silly reify mark retired [
+110 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\code-frame'
+110 silly reify ]
+111 silly reify mark retired [
+111 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\core'
+111 silly reify ]
+112 silly reify mark retired [
+112 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\compat-data'
+112 silly reify ]
+113 silly reify mark retired [
+113 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-compilation-targets'
+113 silly reify ]
+114 silly reify mark retired [
+114 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\generator'
+114 silly reify ]
+115 silly reify mark retired [
+115 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-globals'
+115 silly reify ]
+116 silly reify mark retired [
+116 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-module-imports'
+116 silly reify ]
+117 silly reify mark retired [
+117 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-module-transforms'
+117 silly reify ]
+118 silly reify mark retired [
+118 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-plugin-utils'
+118 silly reify ]
+119 silly reify mark retired [
+119 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-string-parser'
+119 silly reify ]
+120 silly reify mark retired [
+120 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-validator-identifier'
+120 silly reify ]
+121 silly reify mark retired [
+121 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-validator-option'
+121 silly reify ]
+122 silly reify mark retired [
+122 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helpers'
+122 silly reify ]
+123 silly reify mark retired [
+123 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\parser'
+123 silly reify ]
+124 silly reify mark retired [
+124 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\plugin-transform-react-jsx-self'
+124 silly reify ]
+125 silly reify mark retired [
+125 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\plugin-transform-react-jsx-source'
+125 silly reify ]
+126 silly reify mark retired [
+126 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\template'
+126 silly reify ]
+127 silly reify mark retired [
+127 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\traverse'
+127 silly reify ]
+128 silly reify mark retired [
+128 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\types'
+128 silly reify ]
+129 silly reify mark retired [
+129 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\android-arm'
+129 silly reify ]
+130 silly reify mark retired [
+130 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\android-arm64'
+130 silly reify ]
+131 silly reify mark retired [
+131 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\darwin-arm64'
+131 silly reify ]
+132 silly reify mark retired [
+132 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\aix-ppc64'
+132 silly reify ]
+133 silly reify mark retired [
+133 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\android-x64'
+133 silly reify ]
+134 silly reify mark retired [
+134 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\darwin-x64'
+134 silly reify ]
+135 silly reify mark retired [
+135 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\freebsd-arm64'
+135 silly reify ]
+136 silly reify mark retired [
+136 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\freebsd-x64'
+136 silly reify ]
+137 silly reify mark retired [
+137 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-arm'
+137 silly reify ]
+138 silly reify mark retired [
+138 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-arm64'
+138 silly reify ]
+139 silly reify mark retired [
+139 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-ia32'
+139 silly reify ]
+140 silly reify mark retired [
+140 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-loong64'
+140 silly reify ]
+141 silly reify mark retired [
+141 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-mips64el'
+141 silly reify ]
+142 silly reify mark retired [
+142 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-ppc64'
+142 silly reify ]
+143 silly reify mark retired [
+143 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-s390x'
+143 silly reify ]
+144 silly reify mark retired [
+144 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-riscv64'
+144 silly reify ]
+145 silly reify mark retired [
+145 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-x64'
+145 silly reify ]
+146 silly reify mark retired [
+146 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\netbsd-arm64'
+146 silly reify ]
+147 silly reify mark retired [
+147 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\netbsd-x64'
+147 silly reify ]
+148 silly reify mark retired [
+148 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\openbsd-arm64'
+148 silly reify ]
+149 silly reify mark retired [
+149 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\openharmony-arm64'
+149 silly reify ]
+150 silly reify mark retired [
+150 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\openbsd-x64'
+150 silly reify ]
+151 silly reify mark retired [
+151 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\sunos-x64'
+151 silly reify ]
+152 silly reify mark retired [
+152 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\win32-ia32'
+152 silly reify ]
+153 silly reify mark retired [
+153 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\win32-arm64'
+153 silly reify ]
+154 silly reify mark retired [
+154 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\win32-x64'
+154 silly reify ]
+155 silly reify mark retired [
+155 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\gen-mapping'
+155 silly reify ]
+156 silly reify mark retired [
+156 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\remapping'
+156 silly reify ]
+157 silly reify mark retired [
+157 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\resolve-uri'
+157 silly reify ]
+158 silly reify mark retired [
+158 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\sourcemap-codec'
+158 silly reify ]
+159 silly reify mark retired [
+159 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\trace-mapping'
+159 silly reify ]
+160 silly reify mark retired [
+160 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@nodelib\\fs.scandir'
+160 silly reify ]
+161 silly reify mark retired [
+161 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@nodelib\\fs.stat'
+161 silly reify ]
+162 silly reify mark retired [
+162 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@nodelib\\fs.walk'
+162 silly reify ]
+163 silly reify mark retired [
+163 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rolldown\\pluginutils'
+163 silly reify ]
+164 silly reify mark retired [
+164 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-darwin-arm64'
+164 silly reify ]
+165 silly reify mark retired [
+165 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-android-arm-eabi'
+165 silly reify ]
+166 silly reify mark retired [
+166 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-android-arm64'
+166 silly reify ]
+167 silly reify mark retired [
+167 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-darwin-x64'
+167 silly reify ]
+168 silly reify mark retired [
+168 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-freebsd-arm64'
+168 silly reify ]
+169 silly reify mark retired [
+169 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-freebsd-x64'
+169 silly reify ]
+170 silly reify mark retired [
+170 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-arm-gnueabihf'
+170 silly reify ]
+171 silly reify mark retired [
+171 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-arm-musleabihf'
+171 silly reify ]
+172 silly reify mark retired [
+172 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-arm64-gnu'
+172 silly reify ]
+173 silly reify mark retired [
+173 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-arm64-musl'
+173 silly reify ]
+174 silly reify mark retired [
+174 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-loong64-gnu'
+174 silly reify ]
+175 silly reify mark retired [
+175 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-loong64-musl'
+175 silly reify ]
+176 silly reify mark retired [
+176 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-ppc64-gnu'
+176 silly reify ]
+177 silly reify mark retired [
+177 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-ppc64-musl'
+177 silly reify ]
+178 silly reify mark retired [
+178 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-riscv64-gnu'
+178 silly reify ]
+179 silly reify mark retired [
+179 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-riscv64-musl'
+179 silly reify ]
+180 silly reify mark retired [
+180 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-s390x-gnu'
+180 silly reify ]
+181 silly reify mark retired [
+181 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-x64-gnu'
+181 silly reify ]
+182 silly reify mark retired [
+182 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-x64-musl'
+182 silly reify ]
+183 silly reify mark retired [
+183 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-openbsd-x64'
+183 silly reify ]
+184 silly reify mark retired [
+184 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-openharmony-arm64'
+184 silly reify ]
+185 silly reify mark retired [
+185 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-win32-arm64-msvc'
+185 silly reify ]
+186 silly reify mark retired [
+186 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-win32-ia32-msvc'
+186 silly reify ]
+187 silly reify mark retired [
+187 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-win32-x64-gnu'
+187 silly reify ]
+188 silly reify mark retired [
+188 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-win32-x64-msvc'
+188 silly reify ]
+189 silly reify mark retired [
+189 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\babel__core'
+189 silly reify ]
+190 silly reify mark retired [
+190 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\babel__generator'
+190 silly reify ]
+191 silly reify mark retired [
+191 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\babel__template'
+191 silly reify ]
+192 silly reify mark retired [
+192 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\babel__traverse'
+192 silly reify ]
+193 silly reify mark retired [
+193 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\react'
+193 silly reify ]
+194 silly reify mark retired [
+194 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\estree'
+194 silly reify ]
+195 silly reify mark retired [
+195 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\react-dom'
+195 silly reify ]
+196 silly reify mark retired [
+196 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@vitejs\\plugin-react'
+196 silly reify ]
+197 silly reify moves {
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\any-promise': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.any-promise-EY1d4Ngp',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\anymatch': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.anymatch-M6qEHATM',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\arg': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.arg-HuYUf5si',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\autoprefixer': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.autoprefixer-lNkuCWOt',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\binary-extensions': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.binary-extensions-OvmSQswz',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\baseline-browser-mapping': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.baseline-browser-mapping-5hNvIBf7',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\braces': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.braces-5gF5y9Bq',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\browserslist': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.browserslist-2WR34NIp',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\camelcase-css': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.camelcase-css-tTNxmODt',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\caniuse-lite': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.caniuse-lite-H3xmclS3',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\commander': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.commander-2TZJLa3T',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\chokidar': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.chokidar-Kv0owoqO',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\convert-source-map': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.convert-source-map-ADlcgl3K',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\cookie': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.cookie-Y4FEIB3A',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\cssesc': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.cssesc-yUwtYdHE',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\csstype': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.csstype-b1kXWNzN',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\debug': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.debug-mjJRAhjI',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\didyoumean': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.didyoumean-afnJ1csJ',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\dlv': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.dlv-Gtz9jO89',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\electron-to-chromium': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.electron-to-chromium-klSyG50D',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\es-errors': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.es-errors-gATi6yRp',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\esbuild': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.esbuild-tSSQ1HR6',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\escalade': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.escalade-upmri86q',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\fast-glob': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.fast-glob-QhYkw1y0',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\fastq': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.fastq-2AAxLLOn',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\fill-range': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.fill-range-ZdiOoVZV',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\fraction.js': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.fraction.js-7O4FXFZR',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\fsevents': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.fsevents-ix5sTd3P',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\gensync': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.gensync-OrQePU0E',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\function-bind': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.function-bind-zlkQtg27',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\glob-parent': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.glob-parent-Xqtm4OjX',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\hasown': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.hasown-8xHZuxM9',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\is-core-module': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.is-core-module-P6LpWiNI',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\is-extglob': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.is-extglob-viTcmMDi',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\is-glob': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.is-glob-Wr4LHLFq',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\is-binary-path': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.is-binary-path-NtLWES5E',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\is-number': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.is-number-eA2EhPFJ',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\jiti': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.jiti-aQvMRnKs',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\js-tokens': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.js-tokens-vXwuYpKh',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\jsesc': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.jsesc-76fhTd7Q',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\json5': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.json5-03rEd5ej',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\lines-and-columns': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.lines-and-columns-eZYhSBJd',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\lilconfig': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.lilconfig-HBJr18ck',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\lru-cache': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.lru-cache-vukQlwPw',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\lucide-react': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.lucide-react-56b4N0V6',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\merge2': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.merge2-Gis6Fbkp',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\micromatch': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.micromatch-1IracC9Y',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\ms': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.ms-l3rFPBGj',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\mz': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.mz-FvP894Bb',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\nanoid': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.nanoid-kuihzJJW',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\node-releases': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.node-releases-fe6g6toc',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\normalize-path': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.normalize-path-dudWdHKW',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\object-assign': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.object-assign-WnCfT49O',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\object-hash': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.object-hash-vBeaD2ot',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\path-parse': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.path-parse-ab6BI79M',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\picocolors': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.picocolors-n8iJdC0a',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\pify': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.pify-lpbDnnba',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\picomatch': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.picomatch-N4na8Haq',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\pirates': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.pirates-VmddlN6s',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\postcss': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.postcss-RUVOHJfv',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\postcss-import': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.postcss-import-fYv6cZRI',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\postcss-js': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.postcss-js-xpMCzqwD',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\postcss-nested': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.postcss-nested-BQyx2p9b',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\postcss-load-config': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.postcss-load-config-b91Zs81E',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\postcss-value-parser': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.postcss-value-parser-etRvu8Wk',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\queue-microtask': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.queue-microtask-TAmQOz5u',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\postcss-selector-parser': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.postcss-selector-parser-4gyljyOk',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\react': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.react-uZi3muv2',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\react-dom': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.react-dom-dAOa4qGi',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\react-refresh': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.react-refresh-XJhhkz7V',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\react-router': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.react-router-kMspDhkP',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\react-router-dom': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.react-router-dom-1olxHF8s',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\read-cache': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.read-cache-DMqyZQHK',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\readdirp': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.readdirp-5iocnDlx',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\resolve': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.resolve-I1vkh5T1',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\reusify': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.reusify-I8p76Vxj',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\run-parallel': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.run-parallel-P2imBuqT',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\rollup': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.rollup-B7L2qVpb',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\scheduler': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.scheduler-EZ1s7cEL',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\semver': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.semver-DvRvbkYX',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\set-cookie-parser': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.set-cookie-parser-8R1FVcFH',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\source-map-js': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.source-map-js-0M3GfEiQ',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\sucrase': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.sucrase-bi3maarg',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\tailwindcss': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.tailwindcss-QFK6gy5u',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\supports-preserve-symlinks-flag': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.supports-preserve-symlinks-flag-f6qN0JEn',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\thenify-all': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.thenify-all-bbR7Q8Tq',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\thenify': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.thenify-fiLn4wlC',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\tinyglobby': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.tinyglobby-nqgtkPiW',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\ts-interface-checker': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.ts-interface-checker-j6VppetF',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\to-regex-range': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.to-regex-range-pAE7Od7R',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\typescript': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.typescript-leXohdGJ',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\update-browserslist-db': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.update-browserslist-db-SiEYSu1T',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\util-deprecate': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.util-deprecate-DHiQkwyK',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\vite': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.vite-278fEBZg',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\yallist': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\.yallist-6YF4nfLY',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@alloc\\quick-lru': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@alloc\\.quick-lru-jvMX2GPG',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\code-frame': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.code-frame-ZyQfqvya',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\core': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.core-0fI7ZX2K',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\compat-data': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.compat-data-TXoxu1m9',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-compilation-targets': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.helper-compilation-targets-iA1yqmzG',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\generator': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.generator-dLlUAzS6',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-globals': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.helper-globals-xW3HvgRN',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-module-imports': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.helper-module-imports-DpykhEeh',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-module-transforms': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.helper-module-transforms-tu2vyWZr',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-plugin-utils': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.helper-plugin-utils-oGXM3hnI',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-string-parser': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.helper-string-parser-cyelMfCb',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-validator-identifier': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.helper-validator-identifier-EAXozCVn',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helper-validator-option': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.helper-validator-option-wiywPlfc',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\helpers': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.helpers-5gHI09DC',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\parser': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.parser-RtZU809E',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\plugin-transform-react-jsx-self': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.plugin-transform-react-jsx-self-5C460xyx',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\plugin-transform-react-jsx-source': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.plugin-transform-react-jsx-source-naf2RZiX',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\template': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.template-WY8PM2GR',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\traverse': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.traverse-aXXxOwwL',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\types': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@babel\\.types-S5Kk0VeH',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\android-arm': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.android-arm-EaV0E1YY',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\android-arm64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.android-arm64-a4ivjyW4',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\darwin-arm64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.darwin-arm64-rsw5pNE7',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\aix-ppc64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.aix-ppc64-3xnDTBSG',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\android-x64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.android-x64-C0LVQll4',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\darwin-x64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.darwin-x64-sxsiia9d',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\freebsd-arm64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.freebsd-arm64-Z3mcqP9h',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\freebsd-x64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.freebsd-x64-S3Edaopc',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-arm': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.linux-arm-lF3cJGNp',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-arm64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.linux-arm64-CDZl8acr',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-ia32': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.linux-ia32-Uwl9Rg3e',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-loong64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.linux-loong64-0aeepEr7',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-mips64el': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.linux-mips64el-mDSb5pAl',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-ppc64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.linux-ppc64-xncoVGXe',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-s390x': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.linux-s390x-s6imbgir',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-riscv64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.linux-riscv64-byxqRuSz',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-x64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.linux-x64-984o3CtA',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\netbsd-arm64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.netbsd-arm64-UP8hNctG',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\netbsd-x64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.netbsd-x64-wmZsrwez',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\openbsd-arm64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.openbsd-arm64-2R33uGI5',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\openharmony-arm64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.openharmony-arm64-jRlLCZSJ',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\openbsd-x64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.openbsd-x64-1zStYxvC',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\sunos-x64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.sunos-x64-2Kz1Eo6v',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\win32-ia32': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.win32-ia32-alOFtYJE',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\win32-arm64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.win32-arm64-yHZX9OiM',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\win32-x64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\.win32-x64-nsUFx11o',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\gen-mapping': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\.gen-mapping-x8ZHms3G',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\remapping': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\.remapping-1bzLGbwx',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\resolve-uri': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\.resolve-uri-h3xHFf7D',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\sourcemap-codec': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\.sourcemap-codec-1hq0WRlc',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\trace-mapping': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@jridgewell\\.trace-mapping-4UdXNTFH',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@nodelib\\fs.scandir': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@nodelib\\.fs.scandir-NsqRQRNj',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@nodelib\\fs.stat': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@nodelib\\.fs.stat-X6BdcHIp',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@nodelib\\fs.walk': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@nodelib\\.fs.walk-jd7IRtfM',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rolldown\\pluginutils': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rolldown\\.pluginutils-tKXzZr2a',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-darwin-arm64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-darwin-arm64-LKZgu9P4',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-android-arm-eabi': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-android-arm-eabi-sE9BtvsW',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-android-arm64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-android-arm64-2HbVjQl4',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-darwin-x64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-darwin-x64-xfgshrsz',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-freebsd-arm64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-freebsd-arm64-7vlUClzC',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-freebsd-x64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-freebsd-x64-ihL4oMSV',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-arm-gnueabihf': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-linux-arm-gnueabihf-ej1SwcXC',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-arm-musleabihf': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-linux-arm-musleabihf-T5X9zKqb',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-arm64-gnu': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-linux-arm64-gnu-ZDZbLdNR',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-arm64-musl': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-linux-arm64-musl-ZRPkr3Bj',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-loong64-gnu': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-linux-loong64-gnu-PRuhedZk',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-loong64-musl': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-linux-loong64-musl-88zOJTgs',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-ppc64-gnu': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-linux-ppc64-gnu-yrb5eEgY',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-ppc64-musl': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-linux-ppc64-musl-U766mYOZ',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-riscv64-gnu': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-linux-riscv64-gnu-CbAzxPXe',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-riscv64-musl': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-linux-riscv64-musl-BkqUCY2z',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-s390x-gnu': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-linux-s390x-gnu-WheTdNGh',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-x64-gnu': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-linux-x64-gnu-muxJ12h7',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-x64-musl': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-linux-x64-musl-6j5tk8Jk',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-openbsd-x64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-openbsd-x64-WzOsIRkw',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-openharmony-arm64': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-openharmony-arm64-XwFUzoHs',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-win32-arm64-msvc': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-win32-arm64-msvc-djdrEo4u',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-win32-ia32-msvc': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-win32-ia32-msvc-D0wAGTcv',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-win32-x64-gnu': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-win32-x64-gnu-Vwo7fUGv',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-win32-x64-msvc': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\.rollup-win32-x64-msvc-rA58vbDY',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\babel__core': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\.babel__core-ZNDeUcyf',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\babel__generator': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\.babel__generator-faIP9olp',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\babel__template': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\.babel__template-s0P4AqZW',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\babel__traverse': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\.babel__traverse-TuW5rwEb',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\react': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\.react-scilooJ0',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\estree': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\.estree-D63l4pyp',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\react-dom': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@types\\.react-dom-yJRqWkHT',
+197 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@vitejs\\plugin-react': 'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@vitejs\\.plugin-react-F3RMjHP4'
+197 silly reify }
+198 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-win32-ia32-msvc
+199 silly reify mark deleted [
+199 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-win32-ia32-msvc'
+199 silly reify ]
+200 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-win32-arm64-msvc
+201 silly reify mark deleted [
+201 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-win32-arm64-msvc'
+201 silly reify ]
+202 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-openharmony-arm64
+203 silly reify mark deleted [
+203 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-openharmony-arm64'
+203 silly reify ]
+204 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-openbsd-x64
+205 silly reify mark deleted [
+205 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-openbsd-x64'
+205 silly reify ]
+206 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-linux-x64-musl
+207 silly reify mark deleted [
+207 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-x64-musl'
+207 silly reify ]
+208 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-linux-x64-gnu
+209 silly reify mark deleted [
+209 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-x64-gnu'
+209 silly reify ]
+210 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-linux-s390x-gnu
+211 silly reify mark deleted [
+211 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-s390x-gnu'
+211 silly reify ]
+212 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-linux-riscv64-musl
+213 silly reify mark deleted [
+213 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-riscv64-musl'
+213 silly reify ]
+214 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-linux-riscv64-gnu
+215 silly reify mark deleted [
+215 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-riscv64-gnu'
+215 silly reify ]
+216 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-linux-ppc64-musl
+217 silly reify mark deleted [
+217 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-ppc64-musl'
+217 silly reify ]
+218 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-linux-ppc64-gnu
+219 silly reify mark deleted [
+219 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-ppc64-gnu'
+219 silly reify ]
+220 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-linux-loong64-musl
+221 silly reify mark deleted [
+221 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-loong64-musl'
+221 silly reify ]
+222 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-linux-loong64-gnu
+223 silly reify mark deleted [
+223 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-loong64-gnu'
+223 silly reify ]
+224 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-linux-arm64-musl
+225 silly reify mark deleted [
+225 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-arm64-musl'
+225 silly reify ]
+226 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-linux-arm64-gnu
+227 silly reify mark deleted [
+227 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-arm64-gnu'
+227 silly reify ]
+228 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-linux-arm-musleabihf
+229 silly reify mark deleted [
+229 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-arm-musleabihf'
+229 silly reify ]
+230 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-linux-arm-gnueabihf
+231 silly reify mark deleted [
+231 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-linux-arm-gnueabihf'
+231 silly reify ]
+232 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-freebsd-x64
+233 silly reify mark deleted [
+233 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-freebsd-x64'
+233 silly reify ]
+234 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-freebsd-arm64
+235 silly reify mark deleted [
+235 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-freebsd-arm64'
+235 silly reify ]
+236 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-darwin-x64
+237 silly reify mark deleted [
+237 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-darwin-x64'
+237 silly reify ]
+238 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-android-arm64
+239 silly reify mark deleted [
+239 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-android-arm64'
+239 silly reify ]
+240 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-android-arm-eabi
+241 silly reify mark deleted [
+241 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-android-arm-eabi'
+241 silly reify ]
+242 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-darwin-arm64
+243 silly reify mark deleted [
+243 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-darwin-arm64'
+243 silly reify ]
+244 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\win32-arm64
+245 silly reify mark deleted [
+245 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\win32-arm64'
+245 silly reify ]
+246 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\win32-ia32
+247 silly reify mark deleted [
+247 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\win32-ia32'
+247 silly reify ]
+248 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\sunos-x64
+249 silly reify mark deleted [
+249 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\sunos-x64'
+249 silly reify ]
+250 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\openbsd-x64
+251 silly reify mark deleted [
+251 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\openbsd-x64'
+251 silly reify ]
+252 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\openharmony-arm64
+253 silly reify mark deleted [
+253 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\openharmony-arm64'
+253 silly reify ]
+254 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\openbsd-arm64
+255 silly reify mark deleted [
+255 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\openbsd-arm64'
+255 silly reify ]
+256 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\netbsd-x64
+257 silly reify mark deleted [
+257 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\netbsd-x64'
+257 silly reify ]
+258 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\netbsd-arm64
+259 silly reify mark deleted [
+259 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\netbsd-arm64'
+259 silly reify ]
+260 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\linux-x64
+261 silly reify mark deleted [
+261 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-x64'
+261 silly reify ]
+262 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\linux-riscv64
+263 silly reify mark deleted [
+263 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-riscv64'
+263 silly reify ]
+264 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\linux-s390x
+265 silly reify mark deleted [
+265 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-s390x'
+265 silly reify ]
+266 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\linux-ppc64
+267 silly reify mark deleted [
+267 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-ppc64'
+267 silly reify ]
+268 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\linux-mips64el
+269 silly reify mark deleted [
+269 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-mips64el'
+269 silly reify ]
+270 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\linux-loong64
+271 silly reify mark deleted [
+271 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-loong64'
+271 silly reify ]
+272 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\linux-ia32
+273 silly reify mark deleted [
+273 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-ia32'
+273 silly reify ]
+274 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\linux-arm64
+275 silly reify mark deleted [
+275 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-arm64'
+275 silly reify ]
+276 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\linux-arm
+277 silly reify mark deleted [
+277 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\linux-arm'
+277 silly reify ]
+278 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\freebsd-x64
+279 silly reify mark deleted [
+279 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\freebsd-x64'
+279 silly reify ]
+280 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\freebsd-arm64
+281 silly reify mark deleted [
+281 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\freebsd-arm64'
+281 silly reify ]
+282 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\darwin-x64
+283 silly reify mark deleted [
+283 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\darwin-x64'
+283 silly reify ]
+284 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\android-x64
+285 silly reify mark deleted [
+285 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\android-x64'
+285 silly reify ]
+286 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\aix-ppc64
+287 silly reify mark deleted [
+287 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\aix-ppc64'
+287 silly reify ]
+288 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\darwin-arm64
+289 silly reify mark deleted [
+289 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\darwin-arm64'
+289 silly reify ]
+290 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\android-arm64
+291 silly reify mark deleted [
+291 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\android-arm64'
+291 silly reify ]
+292 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@esbuild\android-arm
+293 silly reify mark deleted [
+293 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@esbuild\\android-arm'
+293 silly reify ]
+294 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\fsevents
+295 silly reify mark deleted [
+295 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\fsevents'
+295 silly reify ]
+296 http cache @vitejs/plugin-react@http://package-firewall.replit.local/npm/@vitejs/plugin-react/-/plugin-react-4.7.0.tgz 1ms (cache hit)
+297 http cache @types/estree@http://package-firewall.replit.local/npm/@types/estree/-/estree-1.0.9.tgz 1ms (cache hit)
+298 http cache @types/react@http://package-firewall.replit.local/npm/@types/react/-/react-19.2.17.tgz 0ms (cache hit)
+299 http cache @types/react-dom@http://package-firewall.replit.local/npm/@types/react-dom/-/react-dom-19.2.3.tgz 0ms (cache hit)
+300 http cache @rollup/rollup-win32-x64-msvc@http://package-firewall.replit.local/npm/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.62.0.tgz 0ms (cache hit)
+301 http cache @types/babel__traverse@http://package-firewall.replit.local/npm/@types/babel__traverse/-/babel__traverse-7.28.0.tgz 1ms (cache hit)
+302 http cache @rollup/rollup-win32-x64-gnu@http://package-firewall.replit.local/npm/@rollup/rollup-win32-x64-gnu/-/rollup-win32-x64-gnu-4.62.0.tgz 0ms (cache hit)
+303 http cache @types/babel__generator@http://package-firewall.replit.local/npm/@types/babel__generator/-/babel__generator-7.27.0.tgz 0ms (cache hit)
+304 http cache @types/babel__core@http://package-firewall.replit.local/npm/@types/babel__core/-/babel__core-7.20.5.tgz 1ms (cache hit)
+305 http cache @types/babel__template@http://package-firewall.replit.local/npm/@types/babel__template/-/babel__template-7.4.4.tgz 1ms (cache hit)
+306 http cache @jridgewell/trace-mapping@http://package-firewall.replit.local/npm/@jridgewell/trace-mapping/-/trace-mapping-0.3.31.tgz 0ms (cache hit)
+307 http cache @rolldown/pluginutils@http://package-firewall.replit.local/npm/@rolldown/pluginutils/-/pluginutils-1.0.0-beta.27.tgz 0ms (cache hit)
+308 http cache @nodelib/fs.stat@http://package-firewall.replit.local/npm/@nodelib/fs.stat/-/fs.stat-2.0.5.tgz 0ms (cache hit)
+309 http cache @jridgewell/sourcemap-codec@http://package-firewall.replit.local/npm/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.5.tgz 0ms (cache hit)
+310 http cache @nodelib/fs.walk@http://package-firewall.replit.local/npm/@nodelib/fs.walk/-/fs.walk-1.2.8.tgz 0ms (cache hit)
+311 http cache @nodelib/fs.scandir@http://package-firewall.replit.local/npm/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz 0ms (cache hit)
+312 http cache @jridgewell/resolve-uri@http://package-firewall.replit.local/npm/@jridgewell/resolve-uri/-/resolve-uri-3.1.2.tgz 0ms (cache hit)
+313 http cache @jridgewell/remapping@http://package-firewall.replit.local/npm/@jridgewell/remapping/-/remapping-2.3.5.tgz 0ms (cache hit)
+314 http cache @jridgewell/gen-mapping@http://package-firewall.replit.local/npm/@jridgewell/gen-mapping/-/gen-mapping-0.3.13.tgz 0ms (cache hit)
+315 http cache @esbuild/win32-x64@http://package-firewall.replit.local/npm/@esbuild/win32-x64/-/win32-x64-0.25.12.tgz 0ms (cache hit)
+316 http cache @babel/types@http://package-firewall.replit.local/npm/@babel/types/-/types-7.29.7.tgz 0ms (cache hit)
+317 http cache @babel/plugin-transform-react-jsx-source@http://package-firewall.replit.local/npm/@babel/plugin-transform-react-jsx-source/-/plugin-transform-react-jsx-source-7.29.7.tgz 0ms (cache hit)
+318 http cache @babel/traverse@http://package-firewall.replit.local/npm/@babel/traverse/-/traverse-7.29.7.tgz 0ms (cache hit)
+319 http cache @babel/template@http://package-firewall.replit.local/npm/@babel/template/-/template-7.29.7.tgz 0ms (cache hit)
+320 http cache @babel/parser@http://package-firewall.replit.local/npm/@babel/parser/-/parser-7.29.7.tgz 0ms (cache hit)
+321 http cache @babel/plugin-transform-react-jsx-self@http://package-firewall.replit.local/npm/@babel/plugin-transform-react-jsx-self/-/plugin-transform-react-jsx-self-7.29.7.tgz 0ms (cache hit)
+322 http cache @babel/helpers@http://package-firewall.replit.local/npm/@babel/helpers/-/helpers-7.29.7.tgz 0ms (cache hit)
+323 http cache @babel/helper-validator-option@http://package-firewall.replit.local/npm/@babel/helper-validator-option/-/helper-validator-option-7.29.7.tgz 0ms (cache hit)
+324 http cache @babel/helper-string-parser@http://package-firewall.replit.local/npm/@babel/helper-string-parser/-/helper-string-parser-7.29.7.tgz 0ms (cache hit)
+325 http cache @babel/helper-validator-identifier@http://package-firewall.replit.local/npm/@babel/helper-validator-identifier/-/helper-validator-identifier-7.29.7.tgz 0ms (cache hit)
+326 http cache @babel/helper-plugin-utils@http://package-firewall.replit.local/npm/@babel/helper-plugin-utils/-/helper-plugin-utils-7.29.7.tgz 0ms (cache hit)
+327 http cache @babel/helper-module-transforms@http://package-firewall.replit.local/npm/@babel/helper-module-transforms/-/helper-module-transforms-7.29.7.tgz 0ms (cache hit)
+328 http cache @babel/helper-module-imports@http://package-firewall.replit.local/npm/@babel/helper-module-imports/-/helper-module-imports-7.29.7.tgz 0ms (cache hit)
+329 http cache @babel/helper-compilation-targets@http://package-firewall.replit.local/npm/@babel/helper-compilation-targets/-/helper-compilation-targets-7.29.7.tgz 0ms (cache hit)
+330 http cache @alloc/quick-lru@http://package-firewall.replit.local/npm/@alloc/quick-lru/-/quick-lru-5.2.0.tgz 0ms (cache hit)
+331 http cache @babel/generator@http://package-firewall.replit.local/npm/@babel/generator/-/generator-7.29.7.tgz 0ms (cache hit)
+332 http cache @babel/helper-globals@http://package-firewall.replit.local/npm/@babel/helper-globals/-/helper-globals-7.29.7.tgz 0ms (cache hit)
+333 http cache @babel/compat-data@http://package-firewall.replit.local/npm/@babel/compat-data/-/compat-data-7.29.7.tgz 0ms (cache hit)
+334 http cache @babel/core@http://package-firewall.replit.local/npm/@babel/core/-/core-7.29.7.tgz 0ms (cache hit)
+335 http cache @babel/code-frame@http://package-firewall.replit.local/npm/@babel/code-frame/-/code-frame-7.29.7.tgz 0ms (cache hit)
+336 http cache yallist@http://package-firewall.replit.local/npm/yallist/-/yallist-3.1.1.tgz 0ms (cache hit)
+337 http cache vite@http://package-firewall.replit.local/npm/vite/-/vite-6.4.3.tgz 0ms (cache hit)
+338 http cache util-deprecate@http://package-firewall.replit.local/npm/util-deprecate/-/util-deprecate-1.0.2.tgz 0ms (cache hit)
+339 http cache typescript@http://package-firewall.replit.local/npm/typescript/-/typescript-5.6.3.tgz 0ms (cache hit)
+340 http cache update-browserslist-db@http://package-firewall.replit.local/npm/update-browserslist-db/-/update-browserslist-db-1.2.3.tgz 0ms (cache hit)
+341 http cache ts-interface-checker@http://package-firewall.replit.local/npm/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz 0ms (cache hit)
+342 http cache to-regex-range@http://package-firewall.replit.local/npm/to-regex-range/-/to-regex-range-5.0.1.tgz 0ms (cache hit)
+343 http cache thenify@http://package-firewall.replit.local/npm/thenify/-/thenify-3.3.1.tgz 0ms (cache hit)
+344 http cache supports-preserve-symlinks-flag@http://package-firewall.replit.local/npm/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz 0ms (cache hit)
+345 http cache tinyglobby@http://package-firewall.replit.local/npm/tinyglobby/-/tinyglobby-0.2.17.tgz 0ms (cache hit)
+346 http cache thenify-all@http://package-firewall.replit.local/npm/thenify-all/-/thenify-all-1.6.0.tgz 0ms (cache hit)
+347 http cache sucrase@http://package-firewall.replit.local/npm/sucrase/-/sucrase-3.35.1.tgz 0ms (cache hit)
+348 http cache source-map-js@http://package-firewall.replit.local/npm/source-map-js/-/source-map-js-1.2.1.tgz 0ms (cache hit)
+349 http cache tailwindcss@http://package-firewall.replit.local/npm/tailwindcss/-/tailwindcss-3.4.19.tgz 0ms (cache hit)
+350 http cache semver@http://package-firewall.replit.local/npm/semver/-/semver-6.3.1.tgz 0ms (cache hit)
+351 http cache set-cookie-parser@http://package-firewall.replit.local/npm/set-cookie-parser/-/set-cookie-parser-2.7.2.tgz 0ms (cache hit)
+352 http cache scheduler@http://package-firewall.replit.local/npm/scheduler/-/scheduler-0.27.0.tgz 0ms (cache hit)
+353 http cache run-parallel@http://package-firewall.replit.local/npm/run-parallel/-/run-parallel-1.2.0.tgz 0ms (cache hit)
+354 http cache rollup@http://package-firewall.replit.local/npm/rollup/-/rollup-4.62.0.tgz 0ms (cache hit)
+355 http cache reusify@http://package-firewall.replit.local/npm/reusify/-/reusify-1.1.0.tgz 0ms (cache hit)
+356 http cache readdirp@http://package-firewall.replit.local/npm/readdirp/-/readdirp-3.6.0.tgz 0ms (cache hit)
+357 http cache resolve@http://package-firewall.replit.local/npm/resolve/-/resolve-1.22.12.tgz 0ms (cache hit)
+358 http cache react-router-dom@http://package-firewall.replit.local/npm/react-router-dom/-/react-router-dom-7.18.0.tgz 0ms (cache hit)
+359 http cache read-cache@http://package-firewall.replit.local/npm/read-cache/-/read-cache-1.0.0.tgz 0ms (cache hit)
+360 http cache react-router@http://package-firewall.replit.local/npm/react-router/-/react-router-7.18.0.tgz 0ms (cache hit)
+361 http cache react-refresh@http://package-firewall.replit.local/npm/react-refresh/-/react-refresh-0.17.0.tgz 0ms (cache hit)
+362 http cache postcss-selector-parser@http://package-firewall.replit.local/npm/postcss-selector-parser/-/postcss-selector-parser-6.1.4.tgz 0ms (cache hit)
+363 http cache react@http://package-firewall.replit.local/npm/react/-/react-19.2.7.tgz 0ms (cache hit)
+364 http cache react-dom@http://package-firewall.replit.local/npm/react-dom/-/react-dom-19.2.7.tgz 0ms (cache hit)
+365 http cache postcss-value-parser@http://package-firewall.replit.local/npm/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz 0ms (cache hit)
+366 http cache queue-microtask@http://package-firewall.replit.local/npm/queue-microtask/-/queue-microtask-1.2.3.tgz 0ms (cache hit)
+367 http cache postcss-load-config@http://package-firewall.replit.local/npm/postcss-load-config/-/postcss-load-config-6.0.1.tgz 0ms (cache hit)
+368 http cache postcss-js@http://package-firewall.replit.local/npm/postcss-js/-/postcss-js-4.1.0.tgz 0ms (cache hit)
+369 http cache postcss@http://package-firewall.replit.local/npm/postcss/-/postcss-8.5.15.tgz 0ms (cache hit)
+370 http cache postcss-import@http://package-firewall.replit.local/npm/postcss-import/-/postcss-import-15.1.0.tgz 0ms (cache hit)
+371 http cache pirates@http://package-firewall.replit.local/npm/pirates/-/pirates-4.0.7.tgz 0ms (cache hit)
+372 http cache picomatch@http://package-firewall.replit.local/npm/picomatch/-/picomatch-2.3.2.tgz 0ms (cache hit)
+373 http cache postcss-nested@http://package-firewall.replit.local/npm/postcss-nested/-/postcss-nested-6.2.0.tgz 0ms (cache hit)
+374 http cache picocolors@http://package-firewall.replit.local/npm/picocolors/-/picocolors-1.1.1.tgz 0ms (cache hit)
+375 http cache pify@http://package-firewall.replit.local/npm/pify/-/pify-2.3.0.tgz 0ms (cache hit)
+376 http cache object-hash@http://package-firewall.replit.local/npm/object-hash/-/object-hash-3.0.0.tgz 0ms (cache hit)
+377 http cache object-assign@http://package-firewall.replit.local/npm/object-assign/-/object-assign-4.1.1.tgz 0ms (cache hit)
+378 http cache path-parse@http://package-firewall.replit.local/npm/path-parse/-/path-parse-1.0.7.tgz 0ms (cache hit)
+379 http cache node-releases@http://package-firewall.replit.local/npm/node-releases/-/node-releases-2.0.48.tgz 0ms (cache hit)
+380 http cache normalize-path@http://package-firewall.replit.local/npm/normalize-path/-/normalize-path-3.0.0.tgz 0ms (cache hit)
+381 http cache nanoid@http://package-firewall.replit.local/npm/nanoid/-/nanoid-3.3.12.tgz 0ms (cache hit)
+382 http cache mz@http://package-firewall.replit.local/npm/mz/-/mz-2.7.0.tgz 0ms (cache hit)
+383 http cache ms@http://package-firewall.replit.local/npm/ms/-/ms-2.1.3.tgz 0ms (cache hit)
+384 http cache merge2@http://package-firewall.replit.local/npm/merge2/-/merge2-1.4.1.tgz 0ms (cache hit)
+385 http cache lru-cache@http://package-firewall.replit.local/npm/lru-cache/-/lru-cache-5.1.1.tgz 0ms (cache hit)
+386 http cache micromatch@http://package-firewall.replit.local/npm/micromatch/-/micromatch-4.0.8.tgz 0ms (cache hit)
+387 http cache lucide-react@http://package-firewall.replit.local/npm/lucide-react/-/lucide-react-0.474.0.tgz 0ms (cache hit)
+388 http cache lines-and-columns@http://package-firewall.replit.local/npm/lines-and-columns/-/lines-and-columns-1.2.4.tgz 0ms (cache hit)
+389 http cache lilconfig@http://package-firewall.replit.local/npm/lilconfig/-/lilconfig-3.1.3.tgz 0ms (cache hit)
+390 http cache jsesc@http://package-firewall.replit.local/npm/jsesc/-/jsesc-3.1.0.tgz 0ms (cache hit)
+391 http cache json5@http://package-firewall.replit.local/npm/json5/-/json5-2.2.3.tgz 0ms (cache hit)
+392 http cache jiti@http://package-firewall.replit.local/npm/jiti/-/jiti-1.21.7.tgz 0ms (cache hit)
+393 http cache js-tokens@http://package-firewall.replit.local/npm/js-tokens/-/js-tokens-4.0.0.tgz 0ms (cache hit)
+394 http cache is-number@http://package-firewall.replit.local/npm/is-number/-/is-number-7.0.0.tgz 0ms (cache hit)
+395 http cache is-binary-path@http://package-firewall.replit.local/npm/is-binary-path/-/is-binary-path-2.1.0.tgz 0ms (cache hit)
+396 http cache is-glob@http://package-firewall.replit.local/npm/is-glob/-/is-glob-4.0.3.tgz 0ms (cache hit)
+397 http cache is-extglob@http://package-firewall.replit.local/npm/is-extglob/-/is-extglob-2.1.1.tgz 0ms (cache hit)
+398 http cache function-bind@http://package-firewall.replit.local/npm/function-bind/-/function-bind-1.1.2.tgz 0ms (cache hit)
+399 http cache hasown@http://package-firewall.replit.local/npm/hasown/-/hasown-2.0.4.tgz 0ms (cache hit)
+400 http cache is-core-module@http://package-firewall.replit.local/npm/is-core-module/-/is-core-module-2.16.2.tgz 0ms (cache hit)
+401 http cache glob-parent@http://package-firewall.replit.local/npm/glob-parent/-/glob-parent-6.0.2.tgz 0ms (cache hit)
+402 http cache gensync@http://package-firewall.replit.local/npm/gensync/-/gensync-1.0.0-beta.2.tgz 0ms (cache hit)
+403 http cache fill-range@http://package-firewall.replit.local/npm/fill-range/-/fill-range-7.1.1.tgz 0ms (cache hit)
+404 http cache fraction.js@http://package-firewall.replit.local/npm/fraction.js/-/fraction.js-5.3.4.tgz 0ms (cache hit)
+405 http cache fastq@http://package-firewall.replit.local/npm/fastq/-/fastq-1.20.1.tgz 0ms (cache hit)
+406 http cache escalade@http://package-firewall.replit.local/npm/escalade/-/escalade-3.2.0.tgz 0ms (cache hit)
+407 http cache electron-to-chromium@http://package-firewall.replit.local/npm/electron-to-chromium/-/electron-to-chromium-1.5.375.tgz 0ms (cache hit)
+408 http cache fast-glob@http://package-firewall.replit.local/npm/fast-glob/-/fast-glob-3.3.3.tgz 0ms (cache hit)
+409 http cache es-errors@http://package-firewall.replit.local/npm/es-errors/-/es-errors-1.3.0.tgz 0ms (cache hit)
+410 http cache esbuild@http://package-firewall.replit.local/npm/esbuild/-/esbuild-0.25.12.tgz 0ms (cache hit)
+411 http cache dlv@http://package-firewall.replit.local/npm/dlv/-/dlv-1.1.3.tgz 0ms (cache hit)
+412 http cache didyoumean@http://package-firewall.replit.local/npm/didyoumean/-/didyoumean-1.2.2.tgz 0ms (cache hit)
+413 http cache cssesc@http://package-firewall.replit.local/npm/cssesc/-/cssesc-3.0.0.tgz 0ms (cache hit)
+414 http cache csstype@http://package-firewall.replit.local/npm/csstype/-/csstype-3.2.3.tgz 0ms (cache hit)
+415 http cache debug@http://package-firewall.replit.local/npm/debug/-/debug-4.4.3.tgz 0ms (cache hit)
+416 http cache cookie@http://package-firewall.replit.local/npm/cookie/-/cookie-1.1.1.tgz 0ms (cache hit)
+417 http cache convert-source-map@http://package-firewall.replit.local/npm/convert-source-map/-/convert-source-map-2.0.0.tgz 0ms (cache hit)
+418 http cache commander@http://package-firewall.replit.local/npm/commander/-/commander-4.1.1.tgz 0ms (cache hit)
+419 http cache braces@http://package-firewall.replit.local/npm/braces/-/braces-3.0.3.tgz 0ms (cache hit)
+420 http cache chokidar@http://package-firewall.replit.local/npm/chokidar/-/chokidar-3.6.0.tgz 0ms (cache hit)
+421 http cache caniuse-lite@http://package-firewall.replit.local/npm/caniuse-lite/-/caniuse-lite-1.0.30001799.tgz 0ms (cache hit)
+422 http cache camelcase-css@http://package-firewall.replit.local/npm/camelcase-css/-/camelcase-css-2.0.1.tgz 0ms (cache hit)
+423 http cache browserslist@http://package-firewall.replit.local/npm/browserslist/-/browserslist-4.28.2.tgz 0ms (cache hit)
+424 http cache binary-extensions@http://package-firewall.replit.local/npm/binary-extensions/-/binary-extensions-2.3.0.tgz 0ms (cache hit)
+425 http cache arg@http://package-firewall.replit.local/npm/arg/-/arg-5.0.2.tgz 0ms (cache hit)
+426 http cache baseline-browser-mapping@http://package-firewall.replit.local/npm/baseline-browser-mapping/-/baseline-browser-mapping-2.10.38.tgz 0ms (cache hit)
+427 http cache picomatch@http://package-firewall.replit.local/npm/picomatch/-/picomatch-4.0.4.tgz 0ms (cache hit)
+428 http cache fdir@http://package-firewall.replit.local/npm/fdir/-/fdir-6.5.0.tgz 0ms (cache hit)
+429 http cache autoprefixer@http://package-firewall.replit.local/npm/autoprefixer/-/autoprefixer-10.5.0.tgz 0ms (cache hit)
+430 http cache anymatch@http://package-firewall.replit.local/npm/anymatch/-/anymatch-3.1.3.tgz 0ms (cache hit)
+431 http cache picomatch@http://package-firewall.replit.local/npm/picomatch/-/picomatch-4.0.4.tgz 0ms (cache hit)
+432 http cache any-promise@http://package-firewall.replit.local/npm/any-promise/-/any-promise-1.3.0.tgz 0ms (cache hit)
+433 http cache fdir@http://package-firewall.replit.local/npm/fdir/-/fdir-6.5.0.tgz 0ms (cache hit)
+434 http cache glob-parent@http://package-firewall.replit.local/npm/glob-parent/-/glob-parent-5.1.2.tgz 0ms (cache hit)
+435 silly tarball no local data for @vitejs/plugin-react@http://package-firewall.replit.local/npm/@vitejs/plugin-react/-/plugin-react-4.7.0.tgz. Extracting by manifest.
+436 silly tarball no local data for @types/estree@http://package-firewall.replit.local/npm/@types/estree/-/estree-1.0.9.tgz. Extracting by manifest.
+437 silly tarball no local data for @types/react@http://package-firewall.replit.local/npm/@types/react/-/react-19.2.17.tgz. Extracting by manifest.
+438 silly tarball no local data for @types/react-dom@http://package-firewall.replit.local/npm/@types/react-dom/-/react-dom-19.2.3.tgz. Extracting by manifest.
+439 silly tarball no local data for @rollup/rollup-win32-x64-msvc@http://package-firewall.replit.local/npm/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.62.0.tgz. Extracting by manifest.
+440 silly tarball no local data for @types/babel__traverse@http://package-firewall.replit.local/npm/@types/babel__traverse/-/babel__traverse-7.28.0.tgz. Extracting by manifest.
+441 silly tarball no local data for @rollup/rollup-win32-x64-gnu@http://package-firewall.replit.local/npm/@rollup/rollup-win32-x64-gnu/-/rollup-win32-x64-gnu-4.62.0.tgz. Extracting by manifest.
+442 http cache glob-parent@http://package-firewall.replit.local/npm/glob-parent/-/glob-parent-5.1.2.tgz 0ms (cache hit)
+443 silly tarball no local data for @types/babel__generator@http://package-firewall.replit.local/npm/@types/babel__generator/-/babel__generator-7.27.0.tgz. Extracting by manifest.
+444 silly tarball no local data for @types/babel__core@http://package-firewall.replit.local/npm/@types/babel__core/-/babel__core-7.20.5.tgz. Extracting by manifest.
+445 silly tarball no local data for @types/babel__template@http://package-firewall.replit.local/npm/@types/babel__template/-/babel__template-7.4.4.tgz. Extracting by manifest.
+446 silly tarball no local data for @jridgewell/trace-mapping@http://package-firewall.replit.local/npm/@jridgewell/trace-mapping/-/trace-mapping-0.3.31.tgz. Extracting by manifest.
+447 silly tarball no local data for @rolldown/pluginutils@http://package-firewall.replit.local/npm/@rolldown/pluginutils/-/pluginutils-1.0.0-beta.27.tgz. Extracting by manifest.
+448 silly tarball no local data for @nodelib/fs.stat@http://package-firewall.replit.local/npm/@nodelib/fs.stat/-/fs.stat-2.0.5.tgz. Extracting by manifest.
+449 silly tarball no local data for @jridgewell/sourcemap-codec@http://package-firewall.replit.local/npm/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.5.tgz. Extracting by manifest.
+450 silly tarball no local data for @nodelib/fs.walk@http://package-firewall.replit.local/npm/@nodelib/fs.walk/-/fs.walk-1.2.8.tgz. Extracting by manifest.
+451 silly tarball no local data for @nodelib/fs.scandir@http://package-firewall.replit.local/npm/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz. Extracting by manifest.
+452 silly tarball no local data for @jridgewell/resolve-uri@http://package-firewall.replit.local/npm/@jridgewell/resolve-uri/-/resolve-uri-3.1.2.tgz. Extracting by manifest.
+453 silly tarball no local data for @jridgewell/remapping@http://package-firewall.replit.local/npm/@jridgewell/remapping/-/remapping-2.3.5.tgz. Extracting by manifest.
+454 silly tarball no local data for @jridgewell/gen-mapping@http://package-firewall.replit.local/npm/@jridgewell/gen-mapping/-/gen-mapping-0.3.13.tgz. Extracting by manifest.
+455 silly tarball no local data for @esbuild/win32-x64@http://package-firewall.replit.local/npm/@esbuild/win32-x64/-/win32-x64-0.25.12.tgz. Extracting by manifest.
+456 silly tarball no local data for @babel/types@http://package-firewall.replit.local/npm/@babel/types/-/types-7.29.7.tgz. Extracting by manifest.
+457 silly tarball no local data for @babel/plugin-transform-react-jsx-source@http://package-firewall.replit.local/npm/@babel/plugin-transform-react-jsx-source/-/plugin-transform-react-jsx-source-7.29.7.tgz. Extracting by manifest.
+458 silly tarball no local data for @babel/traverse@http://package-firewall.replit.local/npm/@babel/traverse/-/traverse-7.29.7.tgz. Extracting by manifest.
+459 silly tarball no local data for @babel/template@http://package-firewall.replit.local/npm/@babel/template/-/template-7.29.7.tgz. Extracting by manifest.
+460 silly tarball no local data for @babel/parser@http://package-firewall.replit.local/npm/@babel/parser/-/parser-7.29.7.tgz. Extracting by manifest.
+461 silly tarball no local data for @babel/plugin-transform-react-jsx-self@http://package-firewall.replit.local/npm/@babel/plugin-transform-react-jsx-self/-/plugin-transform-react-jsx-self-7.29.7.tgz. Extracting by manifest.
+462 silly tarball no local data for @babel/helpers@http://package-firewall.replit.local/npm/@babel/helpers/-/helpers-7.29.7.tgz. Extracting by manifest.
+463 silly tarball no local data for @babel/helper-validator-option@http://package-firewall.replit.local/npm/@babel/helper-validator-option/-/helper-validator-option-7.29.7.tgz. Extracting by manifest.
+464 silly tarball no local data for @babel/helper-string-parser@http://package-firewall.replit.local/npm/@babel/helper-string-parser/-/helper-string-parser-7.29.7.tgz. Extracting by manifest.
+465 silly tarball no local data for @babel/helper-validator-identifier@http://package-firewall.replit.local/npm/@babel/helper-validator-identifier/-/helper-validator-identifier-7.29.7.tgz. Extracting by manifest.
+466 silly tarball no local data for @babel/helper-plugin-utils@http://package-firewall.replit.local/npm/@babel/helper-plugin-utils/-/helper-plugin-utils-7.29.7.tgz. Extracting by manifest.
+467 silly tarball no local data for @babel/helper-module-transforms@http://package-firewall.replit.local/npm/@babel/helper-module-transforms/-/helper-module-transforms-7.29.7.tgz. Extracting by manifest.
+468 silly tarball no local data for @babel/helper-module-imports@http://package-firewall.replit.local/npm/@babel/helper-module-imports/-/helper-module-imports-7.29.7.tgz. Extracting by manifest.
+469 silly tarball no local data for @babel/helper-compilation-targets@http://package-firewall.replit.local/npm/@babel/helper-compilation-targets/-/helper-compilation-targets-7.29.7.tgz. Extracting by manifest.
+470 silly tarball no local data for @alloc/quick-lru@http://package-firewall.replit.local/npm/@alloc/quick-lru/-/quick-lru-5.2.0.tgz. Extracting by manifest.
+471 silly tarball no local data for @babel/generator@http://package-firewall.replit.local/npm/@babel/generator/-/generator-7.29.7.tgz. Extracting by manifest.
+472 silly tarball no local data for @babel/helper-globals@http://package-firewall.replit.local/npm/@babel/helper-globals/-/helper-globals-7.29.7.tgz. Extracting by manifest.
+473 silly tarball no local data for @babel/compat-data@http://package-firewall.replit.local/npm/@babel/compat-data/-/compat-data-7.29.7.tgz. Extracting by manifest.
+474 silly tarball no local data for @babel/core@http://package-firewall.replit.local/npm/@babel/core/-/core-7.29.7.tgz. Extracting by manifest.
+475 silly tarball no local data for @babel/code-frame@http://package-firewall.replit.local/npm/@babel/code-frame/-/code-frame-7.29.7.tgz. Extracting by manifest.
+476 silly tarball no local data for yallist@http://package-firewall.replit.local/npm/yallist/-/yallist-3.1.1.tgz. Extracting by manifest.
+477 silly tarball no local data for vite@http://package-firewall.replit.local/npm/vite/-/vite-6.4.3.tgz. Extracting by manifest.
+478 silly tarball no local data for util-deprecate@http://package-firewall.replit.local/npm/util-deprecate/-/util-deprecate-1.0.2.tgz. Extracting by manifest.
+479 silly tarball no local data for typescript@http://package-firewall.replit.local/npm/typescript/-/typescript-5.6.3.tgz. Extracting by manifest.
+480 silly tarball no local data for update-browserslist-db@http://package-firewall.replit.local/npm/update-browserslist-db/-/update-browserslist-db-1.2.3.tgz. Extracting by manifest.
+481 silly tarball no local data for ts-interface-checker@http://package-firewall.replit.local/npm/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz. Extracting by manifest.
+482 silly tarball no local data for to-regex-range@http://package-firewall.replit.local/npm/to-regex-range/-/to-regex-range-5.0.1.tgz. Extracting by manifest.
+483 silly tarball no local data for thenify@http://package-firewall.replit.local/npm/thenify/-/thenify-3.3.1.tgz. Extracting by manifest.
+484 silly tarball no local data for supports-preserve-symlinks-flag@http://package-firewall.replit.local/npm/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz. Extracting by manifest.
+485 silly tarball no local data for tinyglobby@http://package-firewall.replit.local/npm/tinyglobby/-/tinyglobby-0.2.17.tgz. Extracting by manifest.
+486 silly tarball no local data for thenify-all@http://package-firewall.replit.local/npm/thenify-all/-/thenify-all-1.6.0.tgz. Extracting by manifest.
+487 silly tarball no local data for sucrase@http://package-firewall.replit.local/npm/sucrase/-/sucrase-3.35.1.tgz. Extracting by manifest.
+488 silly tarball no local data for source-map-js@http://package-firewall.replit.local/npm/source-map-js/-/source-map-js-1.2.1.tgz. Extracting by manifest.
+489 silly tarball no local data for tailwindcss@http://package-firewall.replit.local/npm/tailwindcss/-/tailwindcss-3.4.19.tgz. Extracting by manifest.
+490 silly tarball no local data for semver@http://package-firewall.replit.local/npm/semver/-/semver-6.3.1.tgz. Extracting by manifest.
+491 silly tarball no local data for set-cookie-parser@http://package-firewall.replit.local/npm/set-cookie-parser/-/set-cookie-parser-2.7.2.tgz. Extracting by manifest.
+492 silly tarball no local data for scheduler@http://package-firewall.replit.local/npm/scheduler/-/scheduler-0.27.0.tgz. Extracting by manifest.
+493 silly tarball no local data for run-parallel@http://package-firewall.replit.local/npm/run-parallel/-/run-parallel-1.2.0.tgz. Extracting by manifest.
+494 silly tarball no local data for rollup@http://package-firewall.replit.local/npm/rollup/-/rollup-4.62.0.tgz. Extracting by manifest.
+495 silly tarball no local data for reusify@http://package-firewall.replit.local/npm/reusify/-/reusify-1.1.0.tgz. Extracting by manifest.
+496 silly tarball no local data for readdirp@http://package-firewall.replit.local/npm/readdirp/-/readdirp-3.6.0.tgz. Extracting by manifest.
+497 silly tarball no local data for resolve@http://package-firewall.replit.local/npm/resolve/-/resolve-1.22.12.tgz. Extracting by manifest.
+498 silly tarball no local data for react-router-dom@http://package-firewall.replit.local/npm/react-router-dom/-/react-router-dom-7.18.0.tgz. Extracting by manifest.
+499 silly tarball no local data for read-cache@http://package-firewall.replit.local/npm/read-cache/-/read-cache-1.0.0.tgz. Extracting by manifest.
+500 silly tarball no local data for react-router@http://package-firewall.replit.local/npm/react-router/-/react-router-7.18.0.tgz. Extracting by manifest.
+501 silly tarball no local data for react-refresh@http://package-firewall.replit.local/npm/react-refresh/-/react-refresh-0.17.0.tgz. Extracting by manifest.
+502 silly tarball no local data for postcss-selector-parser@http://package-firewall.replit.local/npm/postcss-selector-parser/-/postcss-selector-parser-6.1.4.tgz. Extracting by manifest.
+503 silly tarball no local data for react@http://package-firewall.replit.local/npm/react/-/react-19.2.7.tgz. Extracting by manifest.
+504 silly tarball no local data for react-dom@http://package-firewall.replit.local/npm/react-dom/-/react-dom-19.2.7.tgz. Extracting by manifest.
+505 silly tarball no local data for postcss-value-parser@http://package-firewall.replit.local/npm/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz. Extracting by manifest.
+506 silly tarball no local data for queue-microtask@http://package-firewall.replit.local/npm/queue-microtask/-/queue-microtask-1.2.3.tgz. Extracting by manifest.
+507 silly tarball no local data for postcss-load-config@http://package-firewall.replit.local/npm/postcss-load-config/-/postcss-load-config-6.0.1.tgz. Extracting by manifest.
+508 silly tarball no local data for postcss-js@http://package-firewall.replit.local/npm/postcss-js/-/postcss-js-4.1.0.tgz. Extracting by manifest.
+509 silly tarball no local data for postcss@http://package-firewall.replit.local/npm/postcss/-/postcss-8.5.15.tgz. Extracting by manifest.
+510 silly tarball no local data for postcss-import@http://package-firewall.replit.local/npm/postcss-import/-/postcss-import-15.1.0.tgz. Extracting by manifest.
+511 silly tarball no local data for pirates@http://package-firewall.replit.local/npm/pirates/-/pirates-4.0.7.tgz. Extracting by manifest.
+512 silly tarball no local data for picomatch@http://package-firewall.replit.local/npm/picomatch/-/picomatch-2.3.2.tgz. Extracting by manifest.
+513 silly tarball no local data for postcss-nested@http://package-firewall.replit.local/npm/postcss-nested/-/postcss-nested-6.2.0.tgz. Extracting by manifest.
+514 silly tarball no local data for picocolors@http://package-firewall.replit.local/npm/picocolors/-/picocolors-1.1.1.tgz. Extracting by manifest.
+515 silly tarball no local data for pify@http://package-firewall.replit.local/npm/pify/-/pify-2.3.0.tgz. Extracting by manifest.
+516 silly tarball no local data for object-hash@http://package-firewall.replit.local/npm/object-hash/-/object-hash-3.0.0.tgz. Extracting by manifest.
+517 silly tarball no local data for object-assign@http://package-firewall.replit.local/npm/object-assign/-/object-assign-4.1.1.tgz. Extracting by manifest.
+518 silly tarball no local data for path-parse@http://package-firewall.replit.local/npm/path-parse/-/path-parse-1.0.7.tgz. Extracting by manifest.
+519 silly tarball no local data for node-releases@http://package-firewall.replit.local/npm/node-releases/-/node-releases-2.0.48.tgz. Extracting by manifest.
+520 silly tarball no local data for normalize-path@http://package-firewall.replit.local/npm/normalize-path/-/normalize-path-3.0.0.tgz. Extracting by manifest.
+521 silly tarball no local data for nanoid@http://package-firewall.replit.local/npm/nanoid/-/nanoid-3.3.12.tgz. Extracting by manifest.
+522 silly tarball no local data for mz@http://package-firewall.replit.local/npm/mz/-/mz-2.7.0.tgz. Extracting by manifest.
+523 silly tarball no local data for ms@http://package-firewall.replit.local/npm/ms/-/ms-2.1.3.tgz. Extracting by manifest.
+524 silly tarball no local data for merge2@http://package-firewall.replit.local/npm/merge2/-/merge2-1.4.1.tgz. Extracting by manifest.
+525 silly tarball no local data for lru-cache@http://package-firewall.replit.local/npm/lru-cache/-/lru-cache-5.1.1.tgz. Extracting by manifest.
+526 silly tarball no local data for micromatch@http://package-firewall.replit.local/npm/micromatch/-/micromatch-4.0.8.tgz. Extracting by manifest.
+527 silly tarball no local data for lucide-react@http://package-firewall.replit.local/npm/lucide-react/-/lucide-react-0.474.0.tgz. Extracting by manifest.
+528 silly tarball no local data for lines-and-columns@http://package-firewall.replit.local/npm/lines-and-columns/-/lines-and-columns-1.2.4.tgz. Extracting by manifest.
+529 silly tarball no local data for lilconfig@http://package-firewall.replit.local/npm/lilconfig/-/lilconfig-3.1.3.tgz. Extracting by manifest.
+530 silly tarball no local data for jsesc@http://package-firewall.replit.local/npm/jsesc/-/jsesc-3.1.0.tgz. Extracting by manifest.
+531 silly tarball no local data for json5@http://package-firewall.replit.local/npm/json5/-/json5-2.2.3.tgz. Extracting by manifest.
+532 silly tarball no local data for jiti@http://package-firewall.replit.local/npm/jiti/-/jiti-1.21.7.tgz. Extracting by manifest.
+533 silly tarball no local data for js-tokens@http://package-firewall.replit.local/npm/js-tokens/-/js-tokens-4.0.0.tgz. Extracting by manifest.
+534 silly tarball no local data for is-number@http://package-firewall.replit.local/npm/is-number/-/is-number-7.0.0.tgz. Extracting by manifest.
+535 silly tarball no local data for is-binary-path@http://package-firewall.replit.local/npm/is-binary-path/-/is-binary-path-2.1.0.tgz. Extracting by manifest.
+536 silly tarball no local data for is-glob@http://package-firewall.replit.local/npm/is-glob/-/is-glob-4.0.3.tgz. Extracting by manifest.
+537 silly tarball no local data for is-extglob@http://package-firewall.replit.local/npm/is-extglob/-/is-extglob-2.1.1.tgz. Extracting by manifest.
+538 silly tarball no local data for function-bind@http://package-firewall.replit.local/npm/function-bind/-/function-bind-1.1.2.tgz. Extracting by manifest.
+539 silly tarball no local data for hasown@http://package-firewall.replit.local/npm/hasown/-/hasown-2.0.4.tgz. Extracting by manifest.
+540 silly tarball no local data for is-core-module@http://package-firewall.replit.local/npm/is-core-module/-/is-core-module-2.16.2.tgz. Extracting by manifest.
+541 silly tarball no local data for glob-parent@http://package-firewall.replit.local/npm/glob-parent/-/glob-parent-6.0.2.tgz. Extracting by manifest.
+542 silly tarball no local data for gensync@http://package-firewall.replit.local/npm/gensync/-/gensync-1.0.0-beta.2.tgz. Extracting by manifest.
+543 silly tarball no local data for fill-range@http://package-firewall.replit.local/npm/fill-range/-/fill-range-7.1.1.tgz. Extracting by manifest.
+544 silly tarball no local data for fraction.js@http://package-firewall.replit.local/npm/fraction.js/-/fraction.js-5.3.4.tgz. Extracting by manifest.
+545 silly tarball no local data for fastq@http://package-firewall.replit.local/npm/fastq/-/fastq-1.20.1.tgz. Extracting by manifest.
+546 silly tarball no local data for escalade@http://package-firewall.replit.local/npm/escalade/-/escalade-3.2.0.tgz. Extracting by manifest.
+547 silly tarball no local data for electron-to-chromium@http://package-firewall.replit.local/npm/electron-to-chromium/-/electron-to-chromium-1.5.375.tgz. Extracting by manifest.
+548 silly tarball no local data for fast-glob@http://package-firewall.replit.local/npm/fast-glob/-/fast-glob-3.3.3.tgz. Extracting by manifest.
+549 silly tarball no local data for es-errors@http://package-firewall.replit.local/npm/es-errors/-/es-errors-1.3.0.tgz. Extracting by manifest.
+550 silly tarball no local data for esbuild@http://package-firewall.replit.local/npm/esbuild/-/esbuild-0.25.12.tgz. Extracting by manifest.
+551 silly tarball no local data for dlv@http://package-firewall.replit.local/npm/dlv/-/dlv-1.1.3.tgz. Extracting by manifest.
+552 silly tarball no local data for didyoumean@http://package-firewall.replit.local/npm/didyoumean/-/didyoumean-1.2.2.tgz. Extracting by manifest.
+553 silly tarball no local data for cssesc@http://package-firewall.replit.local/npm/cssesc/-/cssesc-3.0.0.tgz. Extracting by manifest.
+554 silly tarball no local data for csstype@http://package-firewall.replit.local/npm/csstype/-/csstype-3.2.3.tgz. Extracting by manifest.
+555 silly tarball no local data for debug@http://package-firewall.replit.local/npm/debug/-/debug-4.4.3.tgz. Extracting by manifest.
+556 silly tarball no local data for cookie@http://package-firewall.replit.local/npm/cookie/-/cookie-1.1.1.tgz. Extracting by manifest.
+557 silly tarball no local data for convert-source-map@http://package-firewall.replit.local/npm/convert-source-map/-/convert-source-map-2.0.0.tgz. Extracting by manifest.
+558 silly tarball no local data for commander@http://package-firewall.replit.local/npm/commander/-/commander-4.1.1.tgz. Extracting by manifest.
+559 silly tarball no local data for braces@http://package-firewall.replit.local/npm/braces/-/braces-3.0.3.tgz. Extracting by manifest.
+560 silly tarball no local data for chokidar@http://package-firewall.replit.local/npm/chokidar/-/chokidar-3.6.0.tgz. Extracting by manifest.
+561 silly tarball no local data for caniuse-lite@http://package-firewall.replit.local/npm/caniuse-lite/-/caniuse-lite-1.0.30001799.tgz. Extracting by manifest.
+562 silly tarball no local data for camelcase-css@http://package-firewall.replit.local/npm/camelcase-css/-/camelcase-css-2.0.1.tgz. Extracting by manifest.
+563 silly tarball no local data for browserslist@http://package-firewall.replit.local/npm/browserslist/-/browserslist-4.28.2.tgz. Extracting by manifest.
+564 silly tarball no local data for binary-extensions@http://package-firewall.replit.local/npm/binary-extensions/-/binary-extensions-2.3.0.tgz. Extracting by manifest.
+565 silly tarball no local data for arg@http://package-firewall.replit.local/npm/arg/-/arg-5.0.2.tgz. Extracting by manifest.
+566 silly tarball no local data for baseline-browser-mapping@http://package-firewall.replit.local/npm/baseline-browser-mapping/-/baseline-browser-mapping-2.10.38.tgz. Extracting by manifest.
+567 silly tarball no local data for picomatch@http://package-firewall.replit.local/npm/picomatch/-/picomatch-4.0.4.tgz. Extracting by manifest.
+568 silly tarball no local data for fdir@http://package-firewall.replit.local/npm/fdir/-/fdir-6.5.0.tgz. Extracting by manifest.
+569 silly tarball no local data for autoprefixer@http://package-firewall.replit.local/npm/autoprefixer/-/autoprefixer-10.5.0.tgz. Extracting by manifest.
+570 silly tarball no local data for anymatch@http://package-firewall.replit.local/npm/anymatch/-/anymatch-3.1.3.tgz. Extracting by manifest.
+571 silly tarball no local data for picomatch@http://package-firewall.replit.local/npm/picomatch/-/picomatch-4.0.4.tgz. Extracting by manifest.
+572 silly tarball no local data for any-promise@http://package-firewall.replit.local/npm/any-promise/-/any-promise-1.3.0.tgz. Extracting by manifest.
+573 silly tarball no local data for fdir@http://package-firewall.replit.local/npm/fdir/-/fdir-6.5.0.tgz. Extracting by manifest.
+574 silly tarball no local data for glob-parent@http://package-firewall.replit.local/npm/glob-parent/-/glob-parent-5.1.2.tgz. Extracting by manifest.
+575 silly tarball no local data for glob-parent@http://package-firewall.replit.local/npm/glob-parent/-/glob-parent-5.1.2.tgz. Extracting by manifest.
+576 http fetch GET http://package-firewall.replit.local/npm/@types/estree/-/estree-1.0.9.tgz attempt 1 failed with ENOTFOUND
+577 http fetch GET http://package-firewall.replit.local/npm/@vitejs/plugin-react/-/plugin-react-4.7.0.tgz attempt 1 failed with ENOTFOUND
+578 http fetch GET http://package-firewall.replit.local/npm/@types/react/-/react-19.2.17.tgz attempt 1 failed with ENOTFOUND
+579 http fetch GET http://package-firewall.replit.local/npm/@types/react-dom/-/react-dom-19.2.3.tgz attempt 1 failed with ENOTFOUND
+580 http fetch GET http://package-firewall.replit.local/npm/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.62.0.tgz attempt 1 failed with ENOTFOUND
+581 http fetch GET http://package-firewall.replit.local/npm/@types/babel__traverse/-/babel__traverse-7.28.0.tgz attempt 1 failed with ENOTFOUND
+582 http fetch GET http://package-firewall.replit.local/npm/@rollup/rollup-win32-x64-gnu/-/rollup-win32-x64-gnu-4.62.0.tgz attempt 1 failed with ENOTFOUND
+583 http fetch GET http://package-firewall.replit.local/npm/@types/babel__generator/-/babel__generator-7.27.0.tgz attempt 1 failed with ENOTFOUND
+584 http fetch GET http://package-firewall.replit.local/npm/@types/babel__template/-/babel__template-7.4.4.tgz attempt 1 failed with ENOTFOUND
+585 http fetch GET http://package-firewall.replit.local/npm/@types/babel__core/-/babel__core-7.20.5.tgz attempt 1 failed with ENOTFOUND
+586 http fetch GET http://package-firewall.replit.local/npm/@jridgewell/trace-mapping/-/trace-mapping-0.3.31.tgz attempt 1 failed with ENOTFOUND
+587 http fetch GET http://package-firewall.replit.local/npm/@rolldown/pluginutils/-/pluginutils-1.0.0-beta.27.tgz attempt 1 failed with ENOTFOUND
+588 http fetch GET http://package-firewall.replit.local/npm/@nodelib/fs.stat/-/fs.stat-2.0.5.tgz attempt 1 failed with ENOTFOUND
+589 http fetch GET http://package-firewall.replit.local/npm/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.5.tgz attempt 1 failed with ENOTFOUND
+590 http fetch GET http://package-firewall.replit.local/npm/@nodelib/fs.walk/-/fs.walk-1.2.8.tgz attempt 1 failed with ENOTFOUND
+591 http fetch GET http://package-firewall.replit.local/npm/@types/estree/-/estree-1.0.9.tgz attempt 2 failed with ENOTFOUND
+592 http fetch GET http://package-firewall.replit.local/npm/@vitejs/plugin-react/-/plugin-react-4.7.0.tgz attempt 2 failed with ENOTFOUND
+593 http fetch GET http://package-firewall.replit.local/npm/@types/react/-/react-19.2.17.tgz attempt 2 failed with ENOTFOUND
+594 http fetch GET http://package-firewall.replit.local/npm/@types/react-dom/-/react-dom-19.2.3.tgz attempt 2 failed with ENOTFOUND
+595 http fetch GET http://package-firewall.replit.local/npm/@types/babel__traverse/-/babel__traverse-7.28.0.tgz attempt 2 failed with ENOTFOUND
+596 http fetch GET http://package-firewall.replit.local/npm/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.62.0.tgz attempt 2 failed with ENOTFOUND
+597 http fetch GET http://package-firewall.replit.local/npm/@types/babel__generator/-/babel__generator-7.27.0.tgz attempt 2 failed with ENOTFOUND
+598 http fetch GET http://package-firewall.replit.local/npm/@rollup/rollup-win32-x64-gnu/-/rollup-win32-x64-gnu-4.62.0.tgz attempt 2 failed with ENOTFOUND
+599 http fetch GET http://package-firewall.replit.local/npm/@types/babel__template/-/babel__template-7.4.4.tgz attempt 2 failed with ENOTFOUND
+600 http fetch GET http://package-firewall.replit.local/npm/@types/babel__core/-/babel__core-7.20.5.tgz attempt 2 failed with ENOTFOUND
+601 http fetch GET http://package-firewall.replit.local/npm/@jridgewell/trace-mapping/-/trace-mapping-0.3.31.tgz attempt 2 failed with ENOTFOUND
+602 http fetch GET http://package-firewall.replit.local/npm/@rolldown/pluginutils/-/pluginutils-1.0.0-beta.27.tgz attempt 2 failed with ENOTFOUND
+603 http fetch GET http://package-firewall.replit.local/npm/@nodelib/fs.stat/-/fs.stat-2.0.5.tgz attempt 2 failed with ENOTFOUND
+604 http fetch GET http://package-firewall.replit.local/npm/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.5.tgz attempt 2 failed with ENOTFOUND
+605 http fetch GET http://package-firewall.replit.local/npm/@nodelib/fs.walk/-/fs.walk-1.2.8.tgz attempt 2 failed with ENOTFOUND
+606 http fetch GET http://package-firewall.replit.local/npm/@types/estree/-/estree-1.0.9.tgz attempt 3 failed with ENOTFOUND
+607 http fetch GET http://package-firewall.replit.local/npm/@vitejs/plugin-react/-/plugin-react-4.7.0.tgz attempt 3 failed with ENOTFOUND
+608 http fetch GET http://package-firewall.replit.local/npm/@types/react/-/react-19.2.17.tgz attempt 3 failed with ENOTFOUND
+609 http fetch GET http://package-firewall.replit.local/npm/@types/react-dom/-/react-dom-19.2.3.tgz attempt 3 failed with ENOTFOUND
+610 http fetch GET http://package-firewall.replit.local/npm/@types/babel__traverse/-/babel__traverse-7.28.0.tgz attempt 3 failed with ENOTFOUND
+611 http fetch GET http://package-firewall.replit.local/npm/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.62.0.tgz attempt 3 failed with ENOTFOUND
+612 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-win32-x64-msvc
+613 silly reify mark deleted [
+613 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-win32-x64-msvc'
+613 silly reify ]
+614 http fetch GET http://package-firewall.replit.local/npm/@rollup/rollup-win32-x64-gnu/-/rollup-win32-x64-gnu-4.62.0.tgz attempt 3 failed with ENOTFOUND
+615 verbose reify failed optional dependency C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\node_modules\@rollup\rollup-win32-x64-gnu
+616 silly reify mark deleted [
+616 silly reify   'C:\\Users\\Admin\\OneDrive\\Desktop\\GigaFixzipzip\\frontend\\node_modules\\@rollup\\rollup-win32-x64-gnu'
+616 silly reify ]
+617 http fetch GET http://package-firewall.replit.local/npm/@types/babel__generator/-/babel__generator-7.27.0.tgz attempt 3 failed with ENOTFOUND
+618 http fetch GET http://package-firewall.replit.local/npm/@types/babel__template/-/babel__template-7.4.4.tgz attempt 3 failed with ENOTFOUND
+619 http fetch GET http://package-firewall.replit.local/npm/@types/babel__core/-/babel__core-7.20.5.tgz attempt 3 failed with ENOTFOUND
+620 http fetch GET http://package-firewall.replit.local/npm/@jridgewell/trace-mapping/-/trace-mapping-0.3.31.tgz attempt 3 failed with ENOTFOUND
+621 http fetch GET http://package-firewall.replit.local/npm/@rolldown/pluginutils/-/pluginutils-1.0.0-beta.27.tgz attempt 3 failed with ENOTFOUND
+622 http fetch GET http://package-firewall.replit.local/npm/@nodelib/fs.stat/-/fs.stat-2.0.5.tgz attempt 3 failed with ENOTFOUND
+623 http fetch GET http://package-firewall.replit.local/npm/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.5.tgz attempt 3 failed with ENOTFOUND
+624 http fetch GET http://package-firewall.replit.local/npm/@nodelib/fs.walk/-/fs.walk-1.2.8.tgz attempt 3 failed with ENOTFOUND
+625 verbose cwd C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend
+626 verbose os Windows_NT 10.0.26200
+627 verbose node v22.20.0
+628 verbose npm  v10.9.3
+629 error Exit handler never called!
+630 error This is an error with npm itself. Please report this error at:
+631 error   <https://github.com/npm/cli/issues>
+632 verbose exit 1
+633 verbose code 1
+634 error A complete log of this run can be found in: C:\Users\Admin\OneDrive\Desktop\GigaFixzipzip\frontend\.npm-cache\_logs\2026-06-18T16_33_41_110Z-debug-0.log

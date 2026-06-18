@@ -19,7 +19,7 @@ import { mockNotifications } from '../../components/notifications/mockNotificati
 import type { Notification } from '../../components/notifications/NotificationTypes';
 import MobileBottomNav from '../../components/MobileBottomNav';
 
-const API_BASE = 'http://localhost:3001';
+import { API_BASE, getToken } from '../../utils/api';
 
 interface ProfessionalDashboardProps {
   onLogout?: () => void;
@@ -37,7 +37,6 @@ const ProfessionalDashboard: React.FC<ProfessionalDashboardProps> = ({ onLogout 
   const [notifications, setNotifications] = useState<Notification[]>(mockNotifications);
   const isInitialMount = useRef(true);
 
-  const getToken = () => localStorage.getItem('token');
 
   const handleMarkAsRead = (id: string) => setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
   const handleMarkAllAsRead = () => setNotifications(prev => prev.map(n => ({ ...n, read: true })));

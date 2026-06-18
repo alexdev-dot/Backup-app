@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CalendarDays, MapPin, Clock, CircleCheck, Timer, X, Search, ChevronDown } from 'lucide-react';
 
-const API_BASE = 'http://localhost:3001';
+import { API_BASE, getToken } from '../../utils/api';
 
 const MyBookings: React.FC = () => {
   const [bookings, setBookings] = useState<any[]>([]);
@@ -10,7 +10,6 @@ const MyBookings: React.FC = () => {
   const [statusFilter, setStatusFilter] = useState('all');
   const [cancelModal, setCancelModal] = useState<any>(null);
 
-  const getToken = () => localStorage.getItem('token');
 
   useEffect(() => {
     fetchBookings();

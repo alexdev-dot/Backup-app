@@ -1,10 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Send, Search, ArrowLeft } from 'lucide-react';
 
-const API_BASE = 'http://localhost:3001';
+import { apiFetch, formatDate, getUser } from '../../utils/api';
 
-interface Message { id: number; sender_id: number; content: string; created_at: string; is_own?: boolean; }
-interface Conversation { id: number; name: string; lastMessage: string; time: string; unread: number; avatar: string; }
+interface Message { id: number; sender_id: number; receiver_id?: number; content: string; created_at: string; is_own?: boolean; }
+interface Conversation {
+  id: number;
+  customer_id: number;
+  professional_id: number;
+  name: string;
+  lastMessage: string;
+  time: string;
+  unread: number;
+  avatar: string;
+}
 
 const ProfessionalMessages: React.FC = () => {
   const [conversations, setConversations] = useState<Conversation[]>([]);
@@ -15,7 +24,6 @@ const ProfessionalMessages: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const getToken = () => localStorage.getItem('token');
 
   useEffect(() => { fetchConversations(); }, []);
   useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages]);
@@ -23,39 +31,34 @@ const ProfessionalMessages: React.FC = () => {
   const fetchConversations = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE}/api/messages/conversations`, {
-        headers: { 'Authorization': `Bearer ${getToken()}` },
-      });
-      if (response.ok) {
-        const json = await response.json();
-        const data = json.data || json;
-        setConversations(Array.isArray(data) ? data : []);
-      }
+      const data = await apiFetch('/api/conversations');
+      const conversations = Array.isArray(data?.conversations) ? data.conversations : [];
+      setConversations(conversations.map((c: any) => ({
+        ...c,
+        name: c.other_user_name || 'Conversation',
+        lastMessage: c.last_message || 'No messages yet',
+        time: formatDate(c.last_message_time || c.updated_at),
+        unread: c.unread_count || 0,
+        avatar: (c.other_user_name || 'C').charAt(0).toUpperCase(),
+      })));
     } catch {
-      setConversations([
-        { id: 1, name: 'Alice Njeri', lastMessage: 'When can you come?', time: '10:30 AM', unread: 3, avatar: 'A' },
-        { id: 2, name: 'Bob Kamau', lastMessage: 'Thank you for the quick fix!', time: 'Yesterday', unread: 0, avatar: 'B' },
-        { id: 3, name: 'Carol Otieno', lastMessage: 'I need an estimate for the work.', time: 'Dec 15', unread: 1, avatar: 'C' },
-      ]);
+      setConversations([]);
     }
     setLoading(false);
   };
 
   const fetchMessages = async (convoId: number) => {
     try {
-      const response = await fetch(`${API_BASE}/api/messages/${convoId}`, {
-        headers: { 'Authorization': `Bearer ${getToken()}` },
-      });
-      if (response.ok) {
-        const json = await response.json();
-        const data = json.data || json;
-        setMessages(Array.isArray(data) ? data : []);
-      }
+      const data = await apiFetch(`/api/conversations/${convoId}/messages`);
+      const currentUser = getUser();
+      const rows = Array.isArray(data?.messages) ? data.messages : [];
+      setMessages(rows.map((m: any) => ({
+        ...m,
+        content: m.text,
+        is_own: m.sender_id === currentUser?.id,
+      })));
     } catch {
-      setMessages([
-        { id: 1, sender_id: 999, content: 'Hi, I need help with my plumbing.', created_at: new Date().toISOString(), is_own: false },
-        { id: 2, sender_id: 0, content: 'Sure, I can help. What seems to be the problem?', created_at: new Date().toISOString(), is_own: true },
-      ]);
+      setMessages([]);
     }
   };
 
@@ -71,10 +74,13 @@ const ProfessionalMessages: React.FC = () => {
     setMessages(prev => [...prev, msg]);
     setNewMessage('');
     try {
-      await fetch(`${API_BASE}/api/messages`, {
+      await apiFetch('/api/messages', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getToken()}` },
-        body: JSON.stringify({ conversation_id: selectedConvo.id, content: newMessage }),
+        body: JSON.stringify({
+          conversation_id: selectedConvo.id,
+          receiver_id: selectedConvo.customer_id,
+          text: newMessage,
+        }),
       });
     } catch (error) { console.error('Send error:', error); }
   };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { User, Lock, Bell, Shield, ChevronRight, Save, Eye, EyeOff, Camera, CreditCard } from 'lucide-react';
 
-const API_BASE = 'http://localhost:3001';
+import { API_BASE, getToken } from '../../utils/api';
 
 const ProfessionalSettings: React.FC = () => {
   const [activeSection, setActiveSection] = useState('profile');
@@ -13,7 +13,6 @@ const ProfessionalSettings: React.FC = () => {
   const [saved, setSaved] = useState(false);
   const [notifications, setNotifications] = useState({ email: true, push: true, sms: true, newJob: true, payment: true });
 
-  const getToken = () => localStorage.getItem('token');
 
   useEffect(() => { fetchProfile(); }, []);
 

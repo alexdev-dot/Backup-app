@@ -9,14 +9,17 @@
     "dev": "node --watch src/server.js"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.108.2",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "express-rate-limit": "^7.5.0",
     "express-validator": "^7.2.1",
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.3",
-    "pg": "^8.21.0"
+    "pg": "^8.21.0",
+    "ws": "^8.21.0"
   },
   "engines": {
     "node": ">=18.0.0"

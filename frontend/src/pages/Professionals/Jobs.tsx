@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Briefcase, MapPin, Calendar, Clock, CircleCheck, Timer, ChevronRight, X } from 'lucide-react';
 
-const API_BASE = 'http://localhost:3001';
+import { API_BASE, getToken } from '../../utils/api';
 
 const Jobs: React.FC = () => {
   const [jobs, setJobs] = useState<any[]>([]);
@@ -9,7 +9,6 @@ const Jobs: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedJob, setSelectedJob] = useState<any>(null);
 
-  const getToken = () => localStorage.getItem('token');
 
   useEffect(() => { fetchJobs(); }, []);
 

@@ -1,10 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Send, Search, ArrowLeft } from 'lucide-react';
 
-const API_BASE = 'http://localhost:3001';
+import { apiFetch, formatDate, getUser } from '../../utils/api';
 
-interface Message { id: number; sender_id: number; content: string; created_at: string; is_own?: boolean; }
-interface Conversation { id: number; name: string; lastMessage: string; time: string; unread: number; avatar: string; }
+interface Message { id: number; sender_id: number; receiver_id?: number; content: string; created_at: string; is_own?: boolean; }
+interface Conversation {
+  id: number;
+  customer_id: number;
+  professional_id: number;
+  name: string;
+  lastMessage: string;
+  time: string;
+  unread: number;
+  avatar: string;
+}
 
 const CustomerMessages: React.FC = () => {
   const [conversations, setConversations] = useState<Conversation[]>([]);
@@ -15,7 +24,6 @@ const CustomerMessages: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const getToken = () => localStorage.getItem('token');
 
   useEffect(() => {
     fetchConversations();
@@ -28,40 +36,36 @@ const CustomerMessages: React.FC = () => {
   const fetchConversations = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE}/api/messages/conversations`, {
-        headers: { 'Authorization': `Bearer ${getToken()}` },
-      });
-      if (response.ok) {
-        const json = await response.json();
-        const data = json.data || json;
-        setConversations(Array.isArray(data) ? data : []);
-      }
+      const data = await apiFetch('/api/conversations');
+      const conversations = Array.isArray(data?.conversations) ? data.conversations : [];
+      setConversations(conversations.map((c: any) => ({
+        ...c,
+        name: c.other_user_name || 'Conversation',
+        lastMessage: c.last_message || 'No messages yet',
+        time: formatDate(c.last_message_time || c.updated_at),
+        unread: c.unread_count || 0,
+        avatar: (c.other_user_name || 'C').charAt(0).toUpperCase(),
+      })));
     } catch (error) {
       console.error('Error:', error);
-      setConversations([
-        { id: 1, name: 'John Mwangi', lastMessage: 'I can come over tomorrow at 9am', time: '10:30 AM', unread: 2, avatar: 'J' },
-        { id: 2, name: 'Sarah Kamau', lastMessage: 'The plumbing is fixed, thank you!', time: 'Yesterday', unread: 0, avatar: 'S' },
-      ]);
+      setConversations([]);
     }
     setLoading(false);
   };
 
   const fetchMessages = async (convoId: number) => {
     try {
-      const response = await fetch(`${API_BASE}/api/messages/${convoId}`, {
-        headers: { 'Authorization': `Bearer ${getToken()}` },
-      });
-      if (response.ok) {
-        const json = await response.json();
-        const data = json.data || json;
-        setMessages(Array.isArray(data) ? data : []);
-      }
+      const data = await apiFetch(`/api/conversations/${convoId}/messages`);
+      const currentUser = getUser();
+      const rows = Array.isArray(data?.messages) ? data.messages : [];
+      setMessages(rows.map((m: any) => ({
+        ...m,
+        content: m.text,
+        is_own: m.sender_id === currentUser?.id,
+      })));
     } catch (error) {
       console.error('Error:', error);
-      setMessages([
-        { id: 1, sender_id: 999, content: 'Hello, I can help with your request.', created_at: new Date().toISOString(), is_own: false },
-        { id: 2, sender_id: 0, content: 'Great, when are you available?', created_at: new Date().toISOString(), is_own: true },
-      ]);
+      setMessages([]);
     }
   };
 
@@ -77,10 +81,13 @@ const CustomerMessages: React.FC = () => {
     setMessages(prev => [...prev, msg]);
     setNewMessage('');
     try {
-      await fetch(`${API_BASE}/api/messages`, {
+      await apiFetch('/api/messages', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getToken()}` },
-        body: JSON.stringify({ conversation_id: selectedConvo.id, content: newMessage }),
+        body: JSON.stringify({
+          conversation_id: selectedConvo.id,
+          receiver_id: selectedConvo.professional_id,
+          text: newMessage,
+        }),
       });
     } catch (error) { console.error('Send error:', error); }
   };

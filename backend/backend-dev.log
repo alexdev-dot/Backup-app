@@ -1,0 +1,6 @@
+
+> gigafix-backend@1.0.0 dev
+> node --watch src/server.js
+
+[DB] Supabase connection ready
+[Server] Running on port 3001 in development mode

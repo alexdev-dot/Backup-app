@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Star, MapPin, Briefcase, ChevronRight, Filter, X } from 'lucide-react';
-
-const API_BASE = 'http://localhost:3001';
+import { apiFetch, API_BASE, getToken } from '../../utils/api';
 
 const FindServices: React.FC = () => {
   const [professionals, setProfessionals] = useState<any[]>([]);
@@ -10,6 +9,9 @@ const FindServices: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [showFilters, setShowFilters] = useState(false);
   const [selectedProfessional, setSelectedProfessional] = useState<any>(null);
+  const [bookingForm, setBookingForm] = useState({ date: '', time: '', location: '', details: '' });
+  const [bookingError, setBookingError] = useState('');
+  const [bookingSaving, setBookingSaving] = useState(false);
 
   const categories = ['All', 'Plumbing', 'Electrical', 'Carpentry', 'Cleaning', 'Painting', 'Landscaping', 'HVAC', 'Appliance Repair'];
 
@@ -35,11 +37,36 @@ const FindServices: React.FC = () => {
   const filtered = professionals.filter(p => {
     const matchesSearch = !searchQuery ||
       p.full_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.category?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.service_category?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       p.skills?.some((s: string) => s.toLowerCase().includes(searchQuery.toLowerCase()));
-    const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
+    const matchesCategory = selectedCategory === 'All' || p.service_category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
+
+  const handleRequestBooking = async () => {
+    if (!selectedProfessional) return;
+    setBookingSaving(true);
+    setBookingError('');
+    try {
+      await apiFetch('/api/bookings', {
+        method: 'POST',
+        body: JSON.stringify({
+          professional_id: selectedProfessional.user_id,
+          service: selectedProfessional.service_category,
+          date: bookingForm.date,
+          time: bookingForm.time,
+          location: bookingForm.location || selectedProfessional.location || selectedProfessional.user_location,
+          amount: selectedProfessional.hourly_rate || 0,
+        }),
+      });
+      setSelectedProfessional(null);
+      setBookingForm({ date: '', time: '', location: '', details: '' });
+    } catch (error: any) {
+      setBookingError(error.message || 'Could not request booking');
+    } finally {
+      setBookingSaving(false);
+    }
+  };
 
   const renderStars = (rating: number) =>
     Array.from({ length: 5 }, (_, i) => (
@@ -108,7 +135,7 @@ const FindServices: React.FC = () => {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold text-slate-900 text-sm sm:text-base truncate">{pro.full_name || pro.user?.full_name || 'Professional'}</h3>
-                    <p className="text-green-600 text-xs sm:text-sm font-medium">{pro.category}</p>
+                    <p className="text-green-600 text-xs sm:text-sm font-medium">{pro.service_category}</p>
                     <div className="flex items-center gap-1 mt-1">
                       {renderStars(pro.rating || 0)}
                       <span className="text-xs text-slate-500 ml-1">({pro.reviews_count || 0})</span>
@@ -165,17 +192,19 @@ const FindServices: React.FC = () => {
               </div>
               <div>
                 <div className="font-semibold text-slate-900">{selectedProfessional.full_name}</div>
-                <div className="text-sm text-green-600">{selectedProfessional.category}</div>
+                <div className="text-sm text-green-600">{selectedProfessional.service_category}</div>
               </div>
             </div>
+            {bookingError && <div className="mb-3 text-sm text-red-600 bg-red-50 border border-red-100 rounded-xl px-3 py-2">{bookingError}</div>}
             <div className="space-y-3 mb-6">
-              <input type="date" className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
-              <input type="time" className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
-              <textarea placeholder="Describe what you need..." rows={3} className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 resize-none" />
+              <input type="date" value={bookingForm.date} onChange={e => setBookingForm({ ...bookingForm, date: e.target.value })} className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
+              <input type="time" value={bookingForm.time} onChange={e => setBookingForm({ ...bookingForm, time: e.target.value })} className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
+              <input type="text" value={bookingForm.location} onChange={e => setBookingForm({ ...bookingForm, location: e.target.value })} placeholder="Service location" className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
+              <textarea value={bookingForm.details} onChange={e => setBookingForm({ ...bookingForm, details: e.target.value })} placeholder="Describe what you need..." rows={3} className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 resize-none" />
             </div>
             <div className="flex gap-3">
               <button onClick={() => setSelectedProfessional(null)} className="flex-1 border border-slate-200 text-slate-700 py-3 rounded-xl font-medium hover:bg-slate-50 transition-colors text-sm">Cancel</button>
-              <button className="flex-1 bg-green-600 text-white py-3 rounded-xl font-medium hover:bg-green-700 transition-colors text-sm">Request Booking</button>
+              <button onClick={handleRequestBooking} disabled={bookingSaving || !bookingForm.date || !bookingForm.time} className="flex-1 bg-green-600 text-white py-3 rounded-xl font-medium hover:bg-green-700 transition-colors text-sm disabled:opacity-50">Request Booking</button>
             </div>
           </div>
         </div>

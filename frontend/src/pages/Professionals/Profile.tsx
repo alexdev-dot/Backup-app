@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Star, MapPin, Briefcase, Plus, X, Camera, Save } from 'lucide-react';
 
-const API_BASE = 'http://localhost:3001';
+import { API_BASE, getToken } from '../../utils/api';
 
 const Profile: React.FC = () => {
   const [profile, setProfile] = useState<any>(null);
@@ -14,7 +14,6 @@ const Profile: React.FC = () => {
     skills: [] as string[],
   });
 
-  const getToken = () => localStorage.getItem('token');
 
   useEffect(() => { fetchProfile(); }, []);
 

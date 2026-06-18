@@ -22,7 +22,7 @@ interface CustomerDashboardProps {
   onLogout?: () => void;
 }
 
-const API_BASE = 'http://localhost:3001';
+import { API_BASE, getToken } from '../../utils/api';
 
 const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
   const navigate = useNavigate();
@@ -36,7 +36,6 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
   const [notifications, setNotifications] = useState<Notification[]>(mockNotifications);
   const isInitialMount = useRef(true);
 
-  const getToken = () => localStorage.getItem('token');
 
   const handleMarkAsRead = (id: string) => setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
   const handleMarkAllAsRead = () => setNotifications(prev => prev.map(n => ({ ...n, read: true })));

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FileText, Clock, CircleCheck, X, Send, ChevronRight } from 'lucide-react';
+import { apiList, formatCurrency, formatDate } from '../../utils/api';
 
 interface Quote {
   id: number;
@@ -12,19 +13,28 @@ interface Quote {
   date: string;
 }
 
-const mockQuotes: Quote[] = [
-  { id: 1, service: 'Electrical Wiring', customer: 'Alice Njeri', location: 'Westlands, Nairobi', description: 'Need to rewire 3 rooms and install new outlets.', budget: 'KSh 8,000 - 12,000', status: 'pending', date: 'Dec 18, 2024' },
-  { id: 2, service: 'Plumbing Repair', customer: 'Bob Kamau', location: 'Karen, Nairobi', description: 'Kitchen sink leaking and needs replacement.', budget: 'KSh 3,000 - 5,000', status: 'sent', date: 'Dec 17, 2024' },
-  { id: 3, service: 'HVAC Maintenance', customer: 'Carol Otieno', location: 'Kilimani, Nairobi', description: 'Annual AC service and filter replacement.', budget: 'KSh 5,000 - 7,000', status: 'accepted', date: 'Dec 15, 2024' },
-  { id: 4, service: 'House Wiring', customer: 'David Mwangi', location: 'Parklands, Nairobi', description: 'New house needs full electrical installation.', budget: 'KSh 25,000 - 40,000', status: 'declined', date: 'Dec 12, 2024' },
-];
-
 const Quotes: React.FC = () => {
-  const [quotes, setQuotes] = useState<Quote[]>(mockQuotes);
+  const [quotes, setQuotes] = useState<Quote[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedQuote, setSelectedQuote] = useState<Quote | null>(null);
   const [quoteAmount, setQuoteAmount] = useState('');
   const [quoteNote, setQuoteNote] = useState('');
+
+  useEffect(() => {
+    apiList('/api/jobs/public')
+      .then(jobs => setQuotes(jobs.map((job: any) => ({
+        id: job.id,
+        service: job.title || job.category || 'Service request',
+        customer: job.customer_name || 'Customer',
+        location: job.location || 'Location not set',
+        description: job.description || 'No description provided.',
+        budget: formatCurrency(job.budget),
+        status: job.status === 'closed' ? 'declined' : 'pending',
+        date: formatDate(job.created_at),
+      }))))
+      .finally(() => setLoading(false));
+  }, []);
 
   const filters = [
     { id: 'all', label: 'All' },
@@ -83,7 +93,9 @@ const Quotes: React.FC = () => {
         ))}
       </div>
 
-      {filtered.length === 0 ? (
+      {loading ? (
+        <div className="text-center py-16 text-slate-600">Loading quote requests...</div>
+      ) : filtered.length === 0 ? (
         <div className="text-center py-16">
           <FileText className="w-12 h-12 text-slate-300 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-slate-700 mb-2">No quotes found</h3>
