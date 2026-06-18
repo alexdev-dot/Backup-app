@@ -1,84 +1,104 @@
-import { query } from '../config/database.js';
+import { supabase } from '../config/database.js';
 
 export const findConversationsByUser = async (userId) => {
-  const { rows } = await query(
-    `SELECT c.*,
-       CASE WHEN c.customer_id = $1 THEN pu.full_name ELSE cu.full_name END AS other_user_name,
-       CASE WHEN c.customer_id = $1 THEN c.unread_customer ELSE c.unread_professional END AS unread_count,
-       (SELECT text       FROM messages WHERE conversation_id = c.id ORDER BY created_at DESC LIMIT 1) AS last_message,
-       (SELECT created_at FROM messages WHERE conversation_id = c.id ORDER BY created_at DESC LIMIT 1) AS last_message_time
-     FROM conversations c
-     JOIN users cu ON c.customer_id      = cu.id
-     JOIN users pu ON c.professional_id  = pu.id
-     WHERE c.customer_id = $1 OR c.professional_id = $1
-     ORDER BY last_message_time DESC NULLS LAST`,
-    [userId]
-  );
-  return rows;
+  const { data, error } = await supabase
+    .from('conversations')
+    .select(`
+      *,
+      customer:users!conversations_customer_id_fkey(full_name),
+      professional:users!conversations_professional_id_fkey(full_name)
+    `)
+    .or(`customer_id.eq.${userId},professional_id.eq.${userId}`)
+    .order('updated_at', { ascending: false });
+  if (error) throw error;
+
+  const convIds = (data || []).map(c => c.id);
+  let lastMsgs = {};
+  if (convIds.length > 0) {
+    const { data: msgs } = await supabase
+      .from('messages').select('conversation_id, text, created_at')
+      .in('conversation_id', convIds)
+      .order('created_at', { ascending: false });
+    for (const m of msgs || []) {
+      if (!lastMsgs[m.conversation_id]) lastMsgs[m.conversation_id] = m;
+    }
+  }
+
+  return (data || []).map(c => ({
+    ...c,
+    other_user_name: c.customer_id === userId
+      ? c.professional?.full_name
+      : c.customer?.full_name,
+    unread_count: c.customer_id === userId ? c.unread_customer : c.unread_professional,
+    last_message:      lastMsgs[c.id]?.text       || null,
+    last_message_time: lastMsgs[c.id]?.created_at || null,
+    customer: undefined,
+    professional: undefined,
+  }));
 };
 
 export const findConversationById = async (id) => {
-  const { rows } = await query(
-    'SELECT * FROM conversations WHERE id = $1 LIMIT 1',
-    [id]
-  );
-  return rows[0] || null;
+  const { data, error } = await supabase
+    .from('conversations').select('*').eq('id', id).maybeSingle();
+  if (error) throw error;
+  return data || null;
 };
 
 export const findOrCreateConversation = async (customerId, professionalId, service) => {
-  const { rows: existing } = await query(
-    'SELECT * FROM conversations WHERE customer_id = $1 AND professional_id = $2 LIMIT 1',
-    [customerId, professionalId]
-  );
-  if (existing[0]) return existing[0];
-  const { rows } = await query(
-    `INSERT INTO conversations (customer_id, professional_id, service)
-     VALUES ($1, $2, $3) RETURNING *`,
-    [customerId, professionalId, service]
-  );
-  return rows[0];
+  const { data: existing } = await supabase
+    .from('conversations')
+    .select('*').eq('customer_id', customerId).eq('professional_id', professionalId).maybeSingle();
+  if (existing) return existing;
+  const { data, error } = await supabase
+    .from('conversations')
+    .insert({ customer_id: customerId, professional_id: professionalId, service })
+    .select('*').single();
+  if (error) throw error;
+  return data;
 };
 
 export const getMessages = async (conversationId) => {
-  const { rows } = await query(
-    `SELECT m.*, u.full_name AS sender_name
-     FROM messages m
-     JOIN users u ON m.sender_id = u.id
-     WHERE m.conversation_id = $1
-     ORDER BY m.created_at ASC`,
-    [conversationId]
-  );
-  return rows;
+  const { data, error } = await supabase
+    .from('messages')
+    .select('*, sender:users!messages_sender_id_fkey(full_name)')
+    .eq('conversation_id', conversationId)
+    .order('created_at', { ascending: true });
+  if (error) throw error;
+  return (data || []).map(m => ({ ...m, sender_name: m.sender?.full_name, sender: undefined }));
 };
 
 export const sendMessage = async ({ conversation_id, sender_id, receiver_id, text }) => {
-  const { rows } = await query(
-    `INSERT INTO messages (conversation_id, sender_id, receiver_id, text)
-     VALUES ($1, $2, $3, $4) RETURNING *`,
-    [conversation_id, sender_id, receiver_id, text]
-  );
-  return rows[0];
+  const { data, error } = await supabase
+    .from('messages')
+    .insert({ conversation_id, sender_id, receiver_id, text })
+    .select('*').single();
+  if (error) throw error;
+  return data;
 };
 
 export const incrementUnread = async (conversationId, isCustomerSender) => {
   const col = isCustomerSender ? 'unread_professional' : 'unread_customer';
-  await query(
-    `UPDATE conversations SET ${col} = ${col} + 1 WHERE id = $1`,
-    [conversationId]
-  );
+  const { data } = await supabase
+    .from('conversations').select(col).eq('id', conversationId).single();
+  if (data) {
+    await supabase.from('conversations')
+      .update({ [col]: (data[col] || 0) + 1 })
+      .eq('id', conversationId);
+  }
 };
 
 export const markAsRead = async (conversationId, userId) => {
   const conv = await findConversationById(conversationId);
   if (!conv) return;
   const col = conv.customer_id === userId ? 'unread_customer' : 'unread_professional';
-  await query(`UPDATE conversations SET ${col} = 0 WHERE id = $1`, [conversationId]);
+  await supabase.from('conversations').update({ [col]: 0 }).eq('id', conversationId);
 };
 
 export const userBelongsToConversation = async (conversationId, userId) => {
-  const { rows } = await query(
-    'SELECT id FROM conversations WHERE id = $1 AND (customer_id = $2 OR professional_id = $2) LIMIT 1',
-    [conversationId, userId]
-  );
-  return rows.length > 0;
+  const { data, error } = await supabase
+    .from('conversations').select('id').eq('id', conversationId)
+    .or(`customer_id.eq.${userId},professional_id.eq.${userId}`)
+    .maybeSingle();
+  if (error) throw error;
+  return !!data;
 };

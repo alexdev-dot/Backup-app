@@ -1,44 +1,22 @@
-import pg from 'pg';
+import { createClient } from '@supabase/supabase-js';
+import ws from 'ws';
 
-const { Pool } = pg;
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-const pool = process.env.DATABASE_URL
-  ? new Pool({
-      connectionString: process.env.DATABASE_URL,
-      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
-      max: 20,
-      idleTimeoutMillis: 30_000,
-      connectionTimeoutMillis: 5_000,
-    })
-  : new Pool({
-      host:     process.env.DB_HOST     || 'localhost',
-      port:     parseInt(process.env.DB_PORT || '5432', 10),
-      database: process.env.DB_NAME     || 'gigafix',
-      user:     process.env.DB_USER     || 'postgres',
-      password: process.env.DB_PASSWORD || '',
-      ssl:      process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
-      max: 20,
-      idleTimeoutMillis: 30_000,
-      connectionTimeoutMillis: 5_000,
-    });
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error('Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY environment variables');
+}
 
-pool.on('error', (err) => {
-  console.error('[DB] Unexpected pool error:', err.message);
-  process.exit(1);
+export const supabase = createClient(supabaseUrl, supabaseKey, {
+  auth: { persistSession: false },
+  realtime: { transport: ws },
 });
 
-export const query = (text, params) => pool.query(text, params);
-
-export const getClient = () => pool.connect();
-
 export const testConnection = async () => {
-  const client = await pool.connect();
-  try {
-    await client.query('SELECT 1');
-    console.log('[DB] PostgreSQL connection pool ready');
-  } finally {
-    client.release();
-  }
+  const { error } = await supabase.from('users').select('id').limit(1);
+  if (error) throw new Error(`[DB] Supabase connection failed: ${error.message}`);
+  console.log('[DB] Supabase connection ready');
 };
 
-export default pool;
+export default supabase;

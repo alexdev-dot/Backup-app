@@ -1,76 +1,72 @@
-import { query } from '../config/database.js';
+import { supabase } from '../config/database.js';
 
 export const findAllPublic = async ({ category, status = 'active' } = {}) => {
-  let sql = `SELECT j.*, u.full_name AS customer_name
-             FROM jobs j JOIN users u ON j.customer_id = u.id
-             WHERE j.status = $1`;
-  const params = [status];
-  if (category) { params.push(category); sql += ` AND j.category = $${params.length}`; }
-  sql += ' ORDER BY j.created_at DESC';
-  const { rows } = await query(sql, params);
-  return rows;
+  let q = supabase
+    .from('jobs')
+    .select('*, customer:users!jobs_customer_id_fkey(full_name)')
+    .eq('status', status)
+    .order('created_at', { ascending: false });
+  if (category) q = q.eq('category', category);
+  const { data, error } = await q;
+  if (error) throw error;
+  return (data || []).map(r => ({ ...r, customer_name: r.customer?.full_name, customer: undefined }));
 };
 
 export const findByCustomerId = async (customerId) => {
-  const { rows } = await query(
-    `SELECT * FROM jobs WHERE customer_id = $1 ORDER BY created_at DESC`,
-    [customerId]
-  );
-  return rows;
-};
-
-export const findByIdAndCustomer = async (id, customerId) => {
-  const { rows } = await query(
-    'SELECT * FROM jobs WHERE id = $1 AND customer_id = $2 LIMIT 1',
-    [id, customerId]
-  );
-  return rows[0] || null;
+  const { data, error } = await supabase
+    .from('jobs').select('*').eq('customer_id', customerId)
+    .order('created_at', { ascending: false });
+  if (error) throw error;
+  return data || [];
 };
 
 export const findById = async (id) => {
-  const { rows } = await query(
-    `SELECT j.*, u.full_name AS customer_name
-     FROM jobs j JOIN users u ON j.customer_id = u.id
-     WHERE j.id = $1 LIMIT 1`,
-    [id]
-  );
-  return rows[0] || null;
+  const { data, error } = await supabase
+    .from('jobs')
+    .select('*, customer:users!jobs_customer_id_fkey(full_name)')
+    .eq('id', id).maybeSingle();
+  if (error) throw error;
+  if (!data) return null;
+  return { ...data, customer_name: data.customer?.full_name, customer: undefined };
 };
 
 export const create = async (customerId, { title, description, category, budget, location }) => {
-  const { rows } = await query(
-    `INSERT INTO jobs (customer_id, title, description, category, budget, location)
-     VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
-    [customerId, title, description, category, budget, location]
-  );
-  return rows[0];
+  const { data, error } = await supabase
+    .from('jobs')
+    .insert({ customer_id: customerId, title, description, category, budget, location })
+    .select('*').single();
+  if (error) throw error;
+  return data;
 };
 
 export const update = async (id, customerId, fields) => {
   const { title, description, category, budget, location, status } = fields;
-  const { rows } = await query(
-    `UPDATE jobs
-     SET title       = COALESCE($1, title),
-         description = COALESCE($2, description),
-         category    = COALESCE($3, category),
-         budget      = COALESCE($4, budget),
-         location    = COALESCE($5, location),
-         status      = COALESCE($6, status)
-     WHERE id = $7 AND customer_id = $8
-     RETURNING *`,
-    [title, description, category, budget, location, status, id, customerId]
-  );
-  return rows[0] || null;
+  const updates = {};
+  if (title       !== undefined) updates.title       = title;
+  if (description !== undefined) updates.description = description;
+  if (category    !== undefined) updates.category    = category;
+  if (budget      !== undefined) updates.budget      = budget;
+  if (location    !== undefined) updates.location    = location;
+  if (status      !== undefined) updates.status      = status;
+  const { data: existing } = await supabase
+    .from('jobs').select('id').eq('id', id).eq('customer_id', customerId).maybeSingle();
+  if (!existing) return null;
+  const { data, error } = await supabase
+    .from('jobs').update(updates).eq('id', id).select('*').single();
+  if (error) throw error;
+  return data;
 };
 
 export const remove = async (id, customerId) => {
-  const { rowCount } = await query(
-    'DELETE FROM jobs WHERE id = $1 AND customer_id = $2',
-    [id, customerId]
-  );
-  return rowCount > 0;
+  const { data, error } = await supabase
+    .from('jobs').delete().eq('id', id).eq('customer_id', customerId).select('id');
+  if (error) throw error;
+  return (data || []).length > 0;
 };
 
 export const incrementViews = async (id) => {
-  await query('UPDATE jobs SET views_count = views_count + 1 WHERE id = $1', [id]);
+  const { data } = await supabase.from('jobs').select('views_count').eq('id', id).single();
+  if (data) {
+    await supabase.from('jobs').update({ views_count: (data.views_count || 0) + 1 }).eq('id', id);
+  }
 };

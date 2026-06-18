@@ -1,49 +1,48 @@
-import { query } from '../config/database.js';
+import { supabase } from '../config/database.js';
 
 export const findByEmail = async (email) => {
-  const { rows } = await query(
-    'SELECT * FROM users WHERE email = $1 LIMIT 1',
-    [email]
-  );
-  return rows[0] || null;
+  const { data, error } = await supabase
+    .from('users').select('*').eq('email', email).maybeSingle();
+  if (error) throw error;
+  return data || null;
 };
 
 export const findById = async (id) => {
-  const { rows } = await query(
-    'SELECT id, full_name, email, phone, role, location, created_at, updated_at FROM users WHERE id = $1 LIMIT 1',
-    [id]
-  );
-  return rows[0] || null;
+  const { data, error } = await supabase
+    .from('users')
+    .select('id, full_name, email, phone, role, location, created_at, updated_at')
+    .eq('id', id).maybeSingle();
+  if (error) throw error;
+  return data || null;
 };
 
 export const create = async ({ fullName, email, phone, password, role }) => {
-  const { rows } = await query(
-    `INSERT INTO users (full_name, email, phone, password, role)
-     VALUES ($1, $2, $3, $4, $5)
-     RETURNING id, full_name, email, phone, role, created_at`,
-    [fullName, email, phone, password, role]
-  );
-  return rows[0];
+  const { data, error } = await supabase
+    .from('users')
+    .insert({ full_name: fullName, email, phone, password, role })
+    .select('id, full_name, email, phone, role, created_at')
+    .single();
+  if (error) throw error;
+  return data;
 };
 
 export const updateById = async (id, { full_name, email, phone, location }) => {
-  const { rows } = await query(
-    `UPDATE users
-     SET full_name = COALESCE($1, full_name),
-         email     = COALESCE($2, email),
-         phone     = COALESCE($3, phone),
-         location  = COALESCE($4, location)
-     WHERE id = $5
-     RETURNING id, full_name, email, phone, role, location, updated_at`,
-    [full_name, email, phone, location, id]
-  );
-  return rows[0] || null;
+  const updates = {};
+  if (full_name !== undefined) updates.full_name = full_name;
+  if (email     !== undefined) updates.email     = email;
+  if (phone     !== undefined) updates.phone     = phone;
+  if (location  !== undefined) updates.location  = location;
+  const { data, error } = await supabase
+    .from('users').update(updates).eq('id', id)
+    .select('id, full_name, email, phone, role, location, updated_at').maybeSingle();
+  if (error) throw error;
+  return data || null;
 };
 
 export const emailExists = async (email, excludeId = null) => {
-  const { rows } = await query(
-    'SELECT id FROM users WHERE email = $1 AND id != $2',
-    [email, excludeId || 0]
-  );
-  return rows.length > 0;
+  let q = supabase.from('users').select('id').eq('email', email);
+  if (excludeId) q = q.neq('id', excludeId);
+  const { data, error } = await q;
+  if (error) throw error;
+  return (data || []).length > 0;
 };

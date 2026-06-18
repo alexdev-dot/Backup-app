@@ -1,78 +1,80 @@
-import { query } from '../config/database.js';
+import { supabase } from '../config/database.js';
 
 export const getMethodsByUser = async (userId) => {
-  const { rows } = await query(
-    'SELECT id, user_id, type, number, is_default, expiry, created_at FROM payment_methods WHERE user_id = $1 ORDER BY is_default DESC, created_at DESC',
-    [userId]
-  );
-  return rows;
+  const { data, error } = await supabase
+    .from('payment_methods')
+    .select('id, user_id, type, number, is_default, expiry, created_at')
+    .eq('user_id', userId)
+    .order('is_default', { ascending: false })
+    .order('created_at', { ascending: false });
+  if (error) throw error;
+  return data || [];
 };
 
 export const addMethod = async (userId, { type, number, expiry }) => {
-  const { rows } = await query(
-    `INSERT INTO payment_methods (user_id, type, number, expiry)
-     VALUES ($1, $2, $3, $4)
-     RETURNING id, user_id, type, number, is_default, expiry, created_at`,
-    [userId, type, number, expiry]
-  );
-  return rows[0];
+  const { data, error } = await supabase
+    .from('payment_methods')
+    .insert({ user_id: userId, type, number, expiry })
+    .select('id, user_id, type, number, is_default, expiry, created_at')
+    .single();
+  if (error) throw error;
+  return data;
 };
 
 export const setDefault = async (id, userId) => {
-  await query('UPDATE payment_methods SET is_default = FALSE WHERE user_id = $1', [userId]);
-  const { rows } = await query(
-    'UPDATE payment_methods SET is_default = TRUE WHERE id = $1 AND user_id = $2 RETURNING *',
-    [id, userId]
-  );
-  return rows[0] || null;
+  await supabase.from('payment_methods').update({ is_default: false }).eq('user_id', userId);
+  const { data, error } = await supabase
+    .from('payment_methods').update({ is_default: true })
+    .eq('id', id).eq('user_id', userId).select('*').maybeSingle();
+  if (error) throw error;
+  return data || null;
 };
 
 export const removeMethod = async (id, userId) => {
-  const { rowCount } = await query(
-    'DELETE FROM payment_methods WHERE id = $1 AND user_id = $2',
-    [id, userId]
-  );
-  return rowCount > 0;
+  const { data, error } = await supabase
+    .from('payment_methods').delete().eq('id', id).eq('user_id', userId).select('id');
+  if (error) throw error;
+  return (data || []).length > 0;
 };
 
 export const getTransactionsByUser = async (userId) => {
-  const { rows } = await query(
-    'SELECT * FROM transactions WHERE user_id = $1 ORDER BY created_at DESC',
-    [userId]
-  );
-  return rows;
+  const { data, error } = await supabase
+    .from('transactions').select('*').eq('user_id', userId)
+    .order('created_at', { ascending: false });
+  if (error) throw error;
+  return data || [];
 };
 
 export const createTransaction = async (userId, { description, amount, date, status, method }) => {
-  const { rows } = await query(
-    `INSERT INTO transactions (user_id, description, amount, date, status, method)
-     VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
-    [userId, description, amount, date, status, method]
-  );
-  return rows[0];
+  const { data, error } = await supabase
+    .from('transactions')
+    .insert({ user_id: userId, description, amount, date, status, method })
+    .select('*').single();
+  if (error) throw error;
+  return data;
 };
 
 export const getInvoicesByUser = async (userId) => {
-  const { rows } = await query(
-    'SELECT * FROM invoices WHERE user_id = $1 ORDER BY created_at DESC',
-    [userId]
-  );
-  return rows;
+  const { data, error } = await supabase
+    .from('invoices').select('*').eq('user_id', userId)
+    .order('created_at', { ascending: false });
+  if (error) throw error;
+  return data || [];
 };
 
 export const createInvoice = async (userId, { number, description, amount, date, due_date }) => {
-  const { rows } = await query(
-    `INSERT INTO invoices (user_id, number, description, amount, date, due_date)
-     VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
-    [userId, number, description, amount, date, due_date]
-  );
-  return rows[0];
+  const { data, error } = await supabase
+    .from('invoices')
+    .insert({ user_id: userId, number, description, amount, date, due_date })
+    .select('*').single();
+  if (error) throw error;
+  return data;
 };
 
 export const updateInvoiceStatus = async (id, userId, status) => {
-  const { rows } = await query(
-    'UPDATE invoices SET status = $1 WHERE id = $2 AND user_id = $3 RETURNING *',
-    [status, id, userId]
-  );
-  return rows[0] || null;
+  const { data, error } = await supabase
+    .from('invoices').update({ status }).eq('id', id).eq('user_id', userId)
+    .select('*').maybeSingle();
+  if (error) throw error;
+  return data || null;
 };

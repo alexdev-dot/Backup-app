@@ -1,57 +1,55 @@
-import { query } from '../config/database.js';
+import { supabase } from '../config/database.js';
 
 export const findByCustomerId = async (customerId) => {
-  const { rows } = await query(
-    `SELECT b.*, u.full_name AS professional_name
-     FROM bookings b
-     JOIN users u ON b.professional_id = u.id
-     WHERE b.customer_id = $1
-     ORDER BY b.created_at DESC`,
-    [customerId]
-  );
-  return rows;
+  const { data, error } = await supabase
+    .from('bookings')
+    .select('*, professional:users!bookings_professional_id_fkey(full_name)')
+    .eq('customer_id', customerId)
+    .order('created_at', { ascending: false });
+  if (error) throw error;
+  return (data || []).map(r => ({ ...r, professional_name: r.professional?.full_name, professional: undefined }));
 };
 
 export const findByProfessionalId = async (professionalId) => {
-  const { rows } = await query(
-    `SELECT b.*, u.full_name AS customer_name
-     FROM bookings b
-     JOIN users u ON b.customer_id = u.id
-     WHERE b.professional_id = $1
-     ORDER BY b.created_at DESC`,
-    [professionalId]
-  );
-  return rows;
+  const { data, error } = await supabase
+    .from('bookings')
+    .select('*, customer:users!bookings_customer_id_fkey(full_name)')
+    .eq('professional_id', professionalId)
+    .order('created_at', { ascending: false });
+  if (error) throw error;
+  return (data || []).map(r => ({ ...r, customer_name: r.customer?.full_name, customer: undefined }));
 };
 
 export const findByIdAndOwner = async (id, userId) => {
-  const { rows } = await query(
-    `SELECT b.*, u.full_name AS professional_name
-     FROM bookings b
-     JOIN users u ON b.professional_id = u.id
-     WHERE b.id = $1 AND (b.customer_id = $2 OR b.professional_id = $2)
-     LIMIT 1`,
-    [id, userId]
-  );
-  return rows[0] || null;
+  const { data, error } = await supabase
+    .from('bookings')
+    .select('*, professional:users!bookings_professional_id_fkey(full_name)')
+    .eq('id', id)
+    .or(`customer_id.eq.${userId},professional_id.eq.${userId}`)
+    .maybeSingle();
+  if (error) throw error;
+  if (!data) return null;
+  return { ...data, professional_name: data.professional?.full_name, professional: undefined };
 };
 
 export const create = async (customerId, { professional_id, service, date, time, location, amount }) => {
-  const { rows } = await query(
-    `INSERT INTO bookings (customer_id, professional_id, service, date, time, location, amount)
-     VALUES ($1, $2, $3, $4, $5, $6, $7)
-     RETURNING *`,
-    [customerId, professional_id, service, date, time, location, amount]
-  );
-  return rows[0];
+  const { data, error } = await supabase
+    .from('bookings')
+    .insert({ customer_id: customerId, professional_id, service, date, time, location, amount })
+    .select('*').single();
+  if (error) throw error;
+  return data;
 };
 
 export const updateStatus = async (id, status, userId) => {
-  const { rows } = await query(
-    `UPDATE bookings SET status = $1
-     WHERE id = $2 AND (customer_id = $3 OR professional_id = $3)
-     RETURNING *`,
-    [status, id, userId]
-  );
-  return rows[0] || null;
+  const { data: existing } = await supabase
+    .from('bookings').select('id')
+    .eq('id', id)
+    .or(`customer_id.eq.${userId},professional_id.eq.${userId}`)
+    .maybeSingle();
+  if (!existing) return null;
+  const { data, error } = await supabase
+    .from('bookings').update({ status }).eq('id', id).select('*').single();
+  if (error) throw error;
+  return data;
 };
