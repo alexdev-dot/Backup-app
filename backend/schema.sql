@@ -8,11 +8,25 @@
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 -- ─── ENUM types ──────────────────────────────────────────────
-CREATE TYPE user_role        AS ENUM ('customer', 'professional');
-CREATE TYPE booking_status   AS ENUM ('pending', 'scheduled', 'completed', 'cancelled');
-CREATE TYPE job_status       AS ENUM ('active', 'completed', 'draft');
-CREATE TYPE tx_status        AS ENUM ('completed', 'pending', 'failed');
-CREATE TYPE invoice_status   AS ENUM ('paid', 'pending', 'overdue');
+DO $$ BEGIN
+  CREATE TYPE user_role AS ENUM ('customer', 'professional');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+
+DO $$ BEGIN
+  CREATE TYPE booking_status AS ENUM ('pending', 'scheduled', 'completed', 'cancelled');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+
+DO $$ BEGIN
+  CREATE TYPE job_status AS ENUM ('active', 'completed', 'draft');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+
+DO $$ BEGIN
+  CREATE TYPE tx_status AS ENUM ('completed', 'pending', 'failed');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+
+DO $$ BEGIN
+  CREATE TYPE invoice_status AS ENUM ('paid', 'pending', 'overdue');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
 -- ─── users ───────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS users (
