@@ -4,3 +4,6 @@
 
 [DB] Supabase connection ready
 [Server] Running on port 3001 in development mode
+Restarting 'src/server.js'
+[Server] Running on port 3001 in development mode
+Completed running 'src/server.js'. Waiting for file changes before restarting...
