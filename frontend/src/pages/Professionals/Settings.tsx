@@ -44,7 +44,6 @@ const ProfessionalSettings: React.FC = () => {
   };
 
   const sections = [
-    { id: 'profile', label: 'Profile', icon: <User className="w-5 h-5" /> },
     { id: 'security', label: 'Security', icon: <Lock className="w-5 h-5" /> },
     { id: 'notifications', label: 'Notifications', icon: <Bell className="w-5 h-5" /> },
     { id: 'payout', label: 'Payout', icon: <CreditCard className="w-5 h-5" /> },
@@ -81,50 +80,6 @@ const ProfessionalSettings: React.FC = () => {
         {/* Content */}
         <div className="lg:col-span-3">
           <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 p-4 sm:p-6">
-            {activeSection === 'profile' && (
-              <>
-                <h3 className="text-lg font-bold text-slate-900 mb-4 sm:mb-6">Profile Information</h3>
-                <div className="flex items-center gap-4 mb-6 pb-6 border-b border-slate-100">
-                  <div className="relative">
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white text-xl sm:text-2xl font-bold">
-                      {formData.full_name.charAt(0).toUpperCase() || 'P'}
-                    </div>
-                    <button className="absolute -bottom-1 -right-1 w-7 h-7 bg-green-600 text-white rounded-full flex items-center justify-center hover:bg-green-700 shadow">
-                      <Camera className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-slate-900">{formData.full_name || 'Your Name'}</div>
-                    <div className="text-sm text-slate-500">Professional Account</div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                  {[
-                    { key: 'full_name', label: 'Full Name', type: 'text' },
-                    { key: 'email', label: 'Email', type: 'email' },
-                    { key: 'phone', label: 'Phone', type: 'tel' },
-                    { key: 'location', label: 'Location', type: 'text' },
-                  ].map(field => (
-                    <div key={field.key}>
-                      <label className="block text-sm font-medium text-slate-700 mb-1.5">{field.label}</label>
-                      <input
-                        type={field.type}
-                        value={(formData as any)[field.key]}
-                        onChange={e => setFormData(prev => ({ ...prev, [field.key]: e.target.value }))}
-                        className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div className="flex items-center gap-3">
-                  <button onClick={handleSaveProfile} disabled={saving} className="flex items-center gap-2 bg-green-600 text-white px-5 py-2.5 rounded-xl font-medium hover:bg-green-700 text-sm disabled:opacity-60">
-                    <Save className="w-4 h-4" />{saving ? 'Saving...' : 'Save Changes'}
-                  </button>
-                  {saved && <span className="text-green-600 text-sm font-medium">✓ Saved</span>}
-                </div>
-              </>
-            )}
-
             {activeSection === 'security' && (
               <>
                 <h3 className="text-lg font-bold text-slate-900 mb-4 sm:mb-6">Security</h3>

@@ -14,7 +14,7 @@ const Jobs: React.FC = () => {
 
   const fetchJobs = async () => {
     try {
-      const response = await fetch(`${API_BASE}/api/bookings`, {
+      const response = await fetch(`${API_BASE}/api/jobs/public`, {
         headers: { 'Authorization': `Bearer ${getToken()}` },
       });
       if (response.ok) {
@@ -30,10 +30,8 @@ const Jobs: React.FC = () => {
   };
 
   const filters = [
-    { id: 'all', label: 'All' },
-    { id: 'pending', label: 'Pending' },
-    { id: 'scheduled', label: 'Scheduled' },
-    { id: 'in_progress', label: 'In Progress' },
+    { id: 'all', label: 'All Jobs' },
+    { id: 'active', label: 'Active' },
     { id: 'completed', label: 'Completed' },
   ];
 
@@ -41,30 +39,35 @@ const Jobs: React.FC = () => {
 
   const statusConfig: Record<string, { color: string; icon: React.ReactNode }> = {
     completed: { color: 'bg-green-100 text-green-700', icon: <CircleCheck className="w-3.5 h-3.5" /> },
-    pending: { color: 'bg-yellow-100 text-yellow-700', icon: <Timer className="w-3.5 h-3.5" /> },
-    scheduled: { color: 'bg-blue-100 text-blue-700', icon: <Calendar className="w-3.5 h-3.5" /> },
-    in_progress: { color: 'bg-purple-100 text-purple-700', icon: <Clock className="w-3.5 h-3.5" /> },
+    active: { color: 'bg-blue-100 text-blue-700', icon: <Timer className="w-3.5 h-3.5" /> },
   };
 
   const getStatusConfig = (status: string) => statusConfig[status] || { color: 'bg-slate-100 text-slate-700', icon: null };
 
-  const handleStatusUpdate = async (jobId: number, newStatus: string) => {
+  const handleApplyToJob = async (jobId: number) => {
     try {
-      await fetch(`${API_BASE}/api/bookings/${jobId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getToken()}` },
-        body: JSON.stringify({ status: newStatus }),
+      const response = await fetch(`${API_BASE}/api/jobs/${jobId}/apply`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${getToken()}` },
       });
-      setJobs(prev => prev.map(j => j.id === jobId ? { ...j, status: newStatus } : j));
-      setSelectedJob(null);
-    } catch (error) { console.error('Error updating job:', error); }
+      if (response.ok) {
+        alert('Application submitted successfully!');
+        setSelectedJob(null);
+      } else {
+        const json = await response.json();
+        alert(json.message || json.error || 'Failed to apply');
+      }
+    } catch (error) {
+      console.error('Error applying to job:', error);
+      alert('Network error. Please try again.');
+    }
   };
 
   return (
     <div>
       <div className="mb-6 sm:mb-8">
-        <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Jobs</h2>
-        <p className="text-slate-600 text-sm sm:text-base">View and manage all your assigned jobs</p>
+        <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Available Jobs</h2>
+        <p className="text-slate-600 text-sm sm:text-base">Browse and apply to jobs posted by customers</p>
       </div>
 
       {/* Stats */}
@@ -106,26 +109,27 @@ const Jobs: React.FC = () => {
               <div key={job.id} className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 hover:shadow-md transition-all">
                 <div className="flex items-start gap-3 sm:gap-4">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
-                    {(job.customer_name || job.service || 'J').charAt(0).toUpperCase()}
+                    <Briefcase className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2 mb-1">
-                      <h3 className="font-bold text-slate-900 text-sm sm:text-base">{job.service}</h3>
+                      <h3 className="font-bold text-slate-900 text-sm sm:text-base">{job.title}</h3>
                       <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap ${sc.color}`}>
                         {sc.icon}{job.status?.charAt(0).toUpperCase() + job.status?.slice(1)}
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-600 mb-2">{job.customer_name || 'Customer'}</p>
+                    <p className="text-xs sm:text-sm text-slate-600 mb-2 line-clamp-2">{job.description}</p>
                     <div className="flex flex-wrap gap-3 text-xs text-slate-500">
-                      {job.location && <div className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /><span>{job.location}</span></div>}
-                      {job.date && <div className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /><span>{job.date}{job.time && ` at ${job.time}`}</span></div>}
+                      <div className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /><span>{job.location}</span></div>
+                      <div className="flex items-center gap-1"><span className="font-semibold text-slate-900">{job.budget}</span><span>Budget</span></div>
+                      <div className="flex items-center gap-1"><span className="font-semibold text-slate-900">{job.proposals_count || 0}</span><span>Proposals</span></div>
                     </div>
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-100">
-                  <div className="font-bold text-slate-900 text-sm sm:text-base">{job.amount || 'TBD'}</div>
+                  <div className="text-xs text-slate-500">Posted {new Date(job.created_at).toLocaleDateString()}</div>
                   <button onClick={() => setSelectedJob(job)} className="flex items-center gap-1 text-green-600 hover:text-green-700 text-xs sm:text-sm font-medium">
-                    Manage <ChevronRight className="w-4 h-4" />
+                    View Details <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
               </div>
@@ -139,28 +143,32 @@ const Jobs: React.FC = () => {
         <div className="fixed inset-0 bg-black/50 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
           <div className="bg-white rounded-t-2xl sm:rounded-2xl p-6 w-full sm:max-w-md shadow-xl">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-slate-900">Manage Job</h3>
+              <h3 className="text-lg font-bold text-slate-900">Job Details</h3>
               <button onClick={() => setSelectedJob(null)} className="p-2 hover:bg-slate-100 rounded-lg"><X className="w-5 h-5" /></button>
             </div>
-            <div className="mb-4 p-3 bg-slate-50 rounded-xl">
-              <div className="font-semibold text-slate-900">{selectedJob.service}</div>
-              <div className="text-sm text-slate-500">{selectedJob.customer_name || 'Customer'}</div>
-              <div className="text-sm text-slate-500 mt-1">{selectedJob.date}{selectedJob.time && ` at ${selectedJob.time}`}</div>
+            <div className="mb-4 p-4 bg-slate-50 rounded-xl">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white">
+                  <Briefcase className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="font-semibold text-slate-900">{selectedJob.title}</div>
+                  <div className="text-sm text-slate-500">{selectedJob.category}</div>
+                </div>
+              </div>
+              <p className="text-sm text-slate-700 mb-3">{selectedJob.description}</p>
+              <div className="grid grid-cols-2 gap-2 text-sm">
+                <div><span className="text-slate-500">Budget:</span> <span className="font-semibold text-slate-900">{selectedJob.budget}</span></div>
+                <div><span className="text-slate-500">Location:</span> <span className="font-semibold text-slate-900">{selectedJob.location}</span></div>
+              </div>
             </div>
-            <div className="space-y-2 mb-4">
-              <div className="text-sm font-medium text-slate-700 mb-2">Update Status</div>
-              {['scheduled', 'in_progress', 'completed'].map(status => (
-                <button
-                  key={status}
-                  onClick={() => handleStatusUpdate(selectedJob.id, status)}
-                  disabled={selectedJob.status === status}
-                  className={`w-full py-2.5 rounded-xl text-sm font-medium transition-colors ${selectedJob.status === status ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-green-600 text-white hover:bg-green-700'}`}
-                >
-                  Mark as {status.replace('_', ' ').charAt(0).toUpperCase() + status.replace('_', ' ').slice(1)}
-                </button>
-              ))}
-            </div>
-            <button onClick={() => setSelectedJob(null)} className="w-full border border-slate-200 text-slate-700 py-2.5 rounded-xl text-sm font-medium hover:bg-slate-50">
+            <button
+              onClick={() => handleApplyToJob(selectedJob.id)}
+              className="w-full bg-green-600 text-white py-2.5 rounded-xl text-sm font-medium hover:bg-green-700 transition-colors"
+            >
+              Apply for this Job
+            </button>
+            <button onClick={() => setSelectedJob(null)} className="w-full border border-slate-200 text-slate-700 py-2.5 rounded-xl text-sm font-medium hover:bg-slate-50 mt-2">
               Close
             </button>
           </div>

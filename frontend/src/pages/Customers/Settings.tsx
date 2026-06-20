@@ -25,7 +25,8 @@ const CustomerSettings: React.FC = () => {
       });
       if (response.ok) {
         const json = await response.json();
-        const data = json.data || json;
+        console.log('Customer settings profile response:', json);
+        const data = json.data?.user || json.user || json.data || json;
         setUser(data);
         setFormData({ full_name: data.full_name || '', email: data.email || '', phone: data.phone || '', location: data.location || '' });
       }
@@ -62,20 +63,34 @@ const CustomerSettings: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6">
         {/* Sidebar Nav */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 p-2">
-            {sections.map(s => (
-              <button
-                key={s.id}
-                onClick={() => setActiveSection(s.id)}
-                className={`w-full flex items-center justify-between gap-3 px-3 py-3 rounded-xl text-sm transition-colors ${activeSection === s.id ? 'bg-green-600 text-white' : 'text-slate-600 hover:bg-slate-50'}`}
-              >
-                <div className="flex items-center gap-3">
+          <div className="lg:bg-white lg:rounded-xl sm:lg:rounded-2xl lg:border lg:border-slate-200 lg:p-2">
+            <div className="lg:hidden flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+              {sections.map(s => (
+                <button
+                  key={s.id}
+                  onClick={() => setActiveSection(s.id)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm whitespace-nowrap transition-colors ${activeSection === s.id ? 'bg-green-600 text-white' : 'bg-white text-slate-600 border border-slate-200'}`}
+                >
                   {s.icon}
                   <span className="font-medium">{s.label}</span>
-                </div>
-                <ChevronRight className={`w-4 h-4 ${activeSection === s.id ? 'text-white' : 'text-slate-400'}`} />
-              </button>
-            ))}
+                </button>
+              ))}
+            </div>
+            <div className="hidden lg:block">
+              {sections.map(s => (
+                <button
+                  key={s.id}
+                  onClick={() => setActiveSection(s.id)}
+                  className={`w-full flex items-center justify-between gap-3 px-3 py-3 rounded-xl text-sm transition-colors ${activeSection === s.id ? 'bg-green-600 text-white' : 'text-slate-600 hover:bg-slate-50'}`}
+                >
+                  <div className="flex items-center gap-3">
+                    {s.icon}
+                    <span className="font-medium">{s.label}</span>
+                  </div>
+                  <ChevronRight className={`w-4 h-4 ${activeSection === s.id ? 'text-white' : 'text-slate-400'}`} />
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

@@ -1,12 +1,21 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Wallet, CreditCard, Phone, ArrowUpRight, ArrowDownLeft, Clock, CircleCheck, ChevronRight } from 'lucide-react';
-import { apiList, formatCurrency, formatDate } from '../../utils/api';
+import { Wallet, CreditCard, Phone, ArrowUpRight, ArrowDownLeft, Clock, CircleCheck, ChevronRight, X, Plus } from 'lucide-react';
+import { apiList, formatCurrency, formatDate, getToken } from '../../utils/api';
 
 const Payment: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'history' | 'methods'>('overview');
   const [transactions, setTransactions] = useState<any[]>([]);
   const [paymentMethods, setPaymentMethods] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [addMoneyModal, setAddMoneyModal] = useState(false);
+  const [withdrawModal, setWithdrawModal] = useState(false);
+  const [addMethodModal, setAddMethodModal] = useState(false);
+  const [amount, setAmount] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [methodType, setMethodType] = useState('mpesa');
+  const [cardNumber, setCardNumber] = useState('');
+  const [cardName, setCardName] = useState('');
+  const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
     const loadPayments = async () => {
@@ -38,6 +47,93 @@ const Payment: React.FC = () => {
     { id: 'methods', label: 'Methods' },
   ];
 
+  const handleAddMoney = async () => {
+    if (!amount || !phoneNumber) return;
+    setProcessing(true);
+    try {
+      const response = await fetch(`${apiList('', '')}/api/payments/add-money`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${getToken()}`,
+        },
+        body: JSON.stringify({ amount: Number(amount), phone_number: phoneNumber, method: 'mpesa' }),
+      });
+      if (response.ok) {
+        setAddMoneyModal(false);
+        setAmount('');
+        setPhoneNumber('');
+        // Reload transactions
+        const txs = await apiList('/api/payments/transactions', 'transactions');
+        setTransactions(txs);
+      }
+    } catch (error) {
+      console.error('Error adding money:', error);
+    } finally {
+      setProcessing(false);
+    }
+  };
+
+  const handleWithdraw = async () => {
+    if (!amount || !phoneNumber) return;
+    setProcessing(true);
+    try {
+      const response = await fetch(`${apiList('', '')}/api/payments/withdraw`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${getToken()}`,
+        },
+        body: JSON.stringify({ amount: Number(amount), phone_number: phoneNumber, method: 'mpesa' }),
+      });
+      if (response.ok) {
+        setWithdrawModal(false);
+        setAmount('');
+        setPhoneNumber('');
+        // Reload transactions
+        const txs = await apiList('/api/payments/transactions', 'transactions');
+        setTransactions(txs);
+      }
+    } catch (error) {
+      console.error('Error withdrawing:', error);
+    } finally {
+      setProcessing(false);
+    }
+  };
+
+  const handleAddPaymentMethod = async () => {
+    if (methodType === 'card' && (!cardNumber || !cardName)) return;
+    if (methodType === 'mpesa' && !phoneNumber) return;
+    setProcessing(true);
+    try {
+      const response = await fetch(`${apiList('', '')}/api/payments/methods`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${getToken()}`,
+        },
+        body: JSON.stringify({
+          type: methodType,
+          number: methodType === 'card' ? cardNumber : phoneNumber,
+          name: cardName,
+        }),
+      });
+      if (response.ok) {
+        setAddMethodModal(false);
+        setCardNumber('');
+        setCardName('');
+        setPhoneNumber('');
+        // Reload payment methods
+        const methods = await apiList('/api/payments/methods', 'methods');
+        setPaymentMethods(methods);
+      }
+    } catch (error) {
+      console.error('Error adding payment method:', error);
+    } finally {
+      setProcessing(false);
+    }
+  };
+
   return (
     <div>
       <div className="mb-6 sm:mb-8">
@@ -57,10 +153,10 @@ const Payment: React.FC = () => {
           </div>
         </div>
         <div className="flex gap-3">
-          <button className="flex-1 bg-white text-green-600 py-2.5 rounded-xl font-semibold text-sm hover:bg-green-50 transition-colors">
+          <button onClick={() => setAddMoneyModal(true)} className="flex-1 bg-white text-green-600 py-2.5 rounded-xl font-semibold text-sm hover:bg-green-50 transition-colors">
             Add Money
           </button>
-          <button className="flex-1 bg-white/20 text-white py-2.5 rounded-xl font-semibold text-sm hover:bg-white/30 transition-colors">
+          <button onClick={() => setWithdrawModal(true)} className="flex-1 bg-white/20 text-white py-2.5 rounded-xl font-semibold text-sm hover:bg-white/30 transition-colors">
             Withdraw
           </button>
         </div>
@@ -137,9 +233,162 @@ const Payment: React.FC = () => {
               <ChevronRight className="w-4 h-4 text-slate-400" />
             </div>
           ))}
-          <button className="w-full flex items-center justify-center gap-2 py-3 border-2 border-dashed border-slate-200 rounded-xl text-sm text-slate-500 hover:border-green-400 hover:text-green-600 transition-colors">
+          <button
+            onClick={() => setAddMethodModal(true)}
+            className="w-full flex items-center justify-center gap-2 py-3 border-2 border-dashed border-slate-200 rounded-xl text-sm text-slate-500 hover:border-green-400 hover:text-green-600 transition-colors"
+          >
             + Add Payment Method
           </button>
+        </div>
+      )}
+
+      {/* Add Money Modal */}
+      {addMoneyModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-sm shadow-xl">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-slate-900">Add Money</h3>
+              <button onClick={() => setAddMoneyModal(false)} className="p-2 hover:bg-slate-100 rounded-lg"><X className="w-5 h-5" /></button>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Amount (KSh)</label>
+                <input
+                  type="number"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                  placeholder="e.g. 1000"
+                  className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">M-Pesa Phone Number</label>
+                <input
+                  type="tel"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  placeholder="e.g. 0712345678"
+                  className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+              </div>
+              <button
+                onClick={handleAddMoney}
+                disabled={processing || !amount || !phoneNumber}
+                className="w-full bg-green-600 text-white py-3 rounded-xl font-semibold text-sm hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {processing ? 'Processing...' : 'Add Money'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Withdraw Modal */}
+      {withdrawModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-sm shadow-xl">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-slate-900">Withdraw</h3>
+              <button onClick={() => setWithdrawModal(false)} className="p-2 hover:bg-slate-100 rounded-lg"><X className="w-5 h-5" /></button>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Amount (KSh)</label>
+                <input
+                  type="number"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                  placeholder="e.g. 1000"
+                  className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">M-Pesa Phone Number</label>
+                <input
+                  type="tel"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  placeholder="e.g. 0712345678"
+                  className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+              </div>
+              <button
+                onClick={handleWithdraw}
+                disabled={processing || !amount || !phoneNumber}
+                className="w-full bg-green-600 text-white py-3 rounded-xl font-semibold text-sm hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {processing ? 'Processing...' : 'Withdraw'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add Payment Method Modal */}
+      {addMethodModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-sm shadow-xl">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-slate-900">Add Payment Method</h3>
+              <button onClick={() => setAddMethodModal(false)} className="p-2 hover:bg-slate-100 rounded-lg"><X className="w-5 h-5" /></button>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Payment Type</label>
+                <select
+                  value={methodType}
+                  onChange={(e) => setMethodType(e.target.value)}
+                  className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                >
+                  <option value="mpesa">M-Pesa</option>
+                  <option value="card">Credit/Debit Card</option>
+                </select>
+              </div>
+              {methodType === 'mpesa' && (
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Phone Number</label>
+                  <input
+                    type="tel"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    placeholder="e.g. 0712345678"
+                    className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                  />
+                </div>
+              )}
+              {methodType === 'card' && (
+                <>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Card Number</label>
+                    <input
+                      type="text"
+                      value={cardNumber}
+                      onChange={(e) => setCardNumber(e.target.value)}
+                      placeholder="e.g. **** **** **** 1234"
+                      className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Cardholder Name</label>
+                    <input
+                      type="text"
+                      value={cardName}
+                      onChange={(e) => setCardName(e.target.value)}
+                      placeholder="e.g. John Doe"
+                      className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                    />
+                  </div>
+                </>
+              )}
+              <button
+                onClick={handleAddPaymentMethod}
+                disabled={processing}
+                className="w-full bg-green-600 text-white py-3 rounded-xl font-semibold text-sm hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {processing ? 'Adding...' : 'Add Method'}
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

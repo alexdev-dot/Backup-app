@@ -14,6 +14,7 @@ import Reviews from './Reviews';
 import Profile from './Profile';
 import SettingsPage from './Settings';
 import Messages from './Messages';
+import Bookings from './Bookings';
 import Notifications from '../../components/notifications/Notifications';
 import { mockNotifications } from '../../components/notifications/mockNotifications';
 import type { Notification } from '../../components/notifications/NotificationTypes';
@@ -60,9 +61,11 @@ const ProfessionalDashboard: React.FC<ProfessionalDashboardProps> = ({ onLogout 
   const fetchUserData = async () => {
     try {
       const response = await fetch(`${API_BASE}/api/user/profile`, { headers: { 'Authorization': `Bearer ${getToken()}` } });
+      console.log('Professional user profile response status:', response.status);
       if (response.ok) {
         const json = await response.json();
-        const userData = json.data || json;
+        console.log('Professional user profile response:', json);
+        const userData = json.data?.user || json.user || json.data || json;
         setUser(userData);
 
         const profResponse = await fetch(`${API_BASE}/api/professionals`, { headers: { 'Authorization': `Bearer ${getToken()}` } });
@@ -74,6 +77,8 @@ const ProfessionalDashboard: React.FC<ProfessionalDashboardProps> = ({ onLogout 
             setStats(prev => ({ ...prev, rating: myProfile.rating || 0 }));
           }
         }
+      } else {
+        console.error('Professional user profile fetch failed:', response.status, response.statusText);
       }
     } catch (error) { console.error('Error fetching user data:', error); }
   };
@@ -101,6 +106,7 @@ const ProfessionalDashboard: React.FC<ProfessionalDashboardProps> = ({ onLogout 
   const sidebarItems = [
     { section: 'Main', items: [
       { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard className="w-5 h-5" /> },
+      { id: 'bookings', label: 'Bookings', icon: <File className="w-5 h-5" /> },
       { id: 'jobs', label: 'Jobs', icon: <Briefcase className="w-5 h-5" /> },
       { id: 'quotes', label: 'Quotes', icon: <File className="w-5 h-5" /> },
     ]},
@@ -118,6 +124,7 @@ const ProfessionalDashboard: React.FC<ProfessionalDashboardProps> = ({ onLogout 
 
   const mobileNavItems = [
     { id: 'dashboard', label: 'Home', icon: LayoutDashboard },
+    { id: 'bookings', label: 'Bookings', icon: File },
     { id: 'jobs', label: 'Jobs', icon: Briefcase },
     { id: 'messages', label: 'Messages', icon: MessageCircle },
     { id: 'earnings', label: 'Earnings', icon: Coins },
@@ -146,8 +153,8 @@ const ProfessionalDashboard: React.FC<ProfessionalDashboardProps> = ({ onLogout 
           <div className="flex items-center gap-4">
             <Notifications notifications={notifications} onNotificationClick={handleNotificationClick} onMarkAsRead={handleMarkAsRead} onMarkAllAsRead={handleMarkAllAsRead} />
             <div className="flex items-center gap-3 pl-4 border-l border-slate-200">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center">
-                <User className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold">
+                {user?.full_name?.charAt(0).toUpperCase() || 'P'}
               </div>
               <div className="hidden md:block">
                 <div className="font-semibold text-slate-900">{user?.full_name || 'Loading...'}</div>
@@ -289,6 +296,7 @@ const ProfessionalDashboard: React.FC<ProfessionalDashboardProps> = ({ onLogout 
           )}
 
           {activeTab === 'jobs' && <Jobs />}
+          {activeTab === 'bookings' && <Bookings />}
           {activeTab === 'quotes' && <Quotes />}
           {activeTab === 'messages' && <Messages />}
           {activeTab === 'earnings' && <Earnings />}

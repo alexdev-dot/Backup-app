@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CalendarDays, MapPin, Clock, CircleCheck, Timer, X, Search, ChevronDown } from 'lucide-react';
+import { CalendarDays, MapPin, Clock, CircleCheck, Timer, X, Search, ChevronDown, Star } from 'lucide-react';
 
 import { API_BASE, getToken } from '../../utils/api';
 
@@ -9,6 +9,10 @@ const MyBookings: React.FC = () => {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [cancelModal, setCancelModal] = useState<any>(null);
+  const [reviewModal, setReviewModal] = useState<any>(null);
+  const [reviewRating, setReviewRating] = useState(0);
+  const [reviewComment, setReviewComment] = useState('');
+  const [submittingReview, setSubmittingReview] = useState(false);
 
 
   useEffect(() => {
@@ -64,6 +68,46 @@ const MyBookings: React.FC = () => {
       default: return <Clock className="w-3.5 h-3.5" />;
     }
   };
+
+  const handleSubmitReview = async () => {
+    if (!reviewModal || reviewRating === 0) return;
+    setSubmittingReview(true);
+    try {
+      const response = await fetch(`${API_BASE}/api/reviews`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${getToken()}`,
+        },
+        body: JSON.stringify({
+          booking_id: reviewModal.id,
+          professional_id: reviewModal.professional_id,
+          rating: reviewRating,
+          comment: reviewComment,
+        }),
+      });
+      if (response.ok) {
+        setReviewModal(null);
+        setReviewRating(0);
+        setReviewComment('');
+      }
+    } catch (error) {
+      console.error('Error submitting review:', error);
+    } finally {
+      setSubmittingReview(false);
+    }
+  };
+
+  const renderStars = (rating: number, interactive = false) =>
+    Array.from({ length: 5 }, (_, i) => (
+      <Star
+        key={i}
+        className={`w-5 h-5 cursor-pointer transition-colors ${
+          i < rating ? 'text-amber-500 fill-amber-500' : 'text-slate-300 fill-slate-300'
+        } ${interactive ? 'hover:text-amber-400 hover:fill-amber-400' : ''}`}
+        onClick={interactive ? () => setReviewRating(i + 1) : undefined}
+      />
+    ));
 
   const stats = {
     total: bookings.length,
@@ -173,6 +217,14 @@ const MyBookings: React.FC = () => {
                       Cancel
                     </button>
                   )}
+                  {booking.status === 'completed' && (
+                    <button
+                      onClick={() => setReviewModal(booking)}
+                      className="px-3 py-1.5 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors text-xs sm:text-sm font-medium"
+                    >
+                      Leave Review
+                    </button>
+                  )}
                   <button className="px-3 py-1.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-xs sm:text-sm font-medium">
                     View
                   </button>
@@ -199,6 +251,46 @@ const MyBookings: React.FC = () => {
                 className="flex-1 bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 text-sm"
               >
                 Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Review Modal */}
+      {reviewModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-slate-900">Leave a Review</h3>
+              <button onClick={() => setReviewModal(null)} className="p-2 hover:bg-slate-100 rounded-lg"><X className="w-5 h-5" /></button>
+            </div>
+            <div className="mb-4 p-3 bg-slate-50 rounded-xl">
+              <div className="font-semibold text-slate-900 text-sm">{reviewModal.service}</div>
+              <div className="text-xs text-slate-500">{reviewModal.professional_name}</div>
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-slate-700 mb-2">Rating</label>
+              <div className="flex gap-1">{renderStars(reviewRating, true)}</div>
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-slate-700 mb-2">Your Review</label>
+              <textarea
+                value={reviewComment}
+                onChange={(e) => setReviewComment(e.target.value)}
+                placeholder="Share your experience..."
+                rows={4}
+                className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
+              />
+            </div>
+            <div className="flex gap-3">
+              <button onClick={() => setReviewModal(null)} className="flex-1 border border-slate-200 text-slate-700 py-2.5 rounded-xl font-medium hover:bg-slate-50 text-sm">Cancel</button>
+              <button
+                onClick={handleSubmitReview}
+                disabled={submittingReview || reviewRating === 0}
+                className="flex-1 bg-green-600 text-white py-2.5 rounded-xl font-medium hover:bg-green-700 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {submittingReview ? 'Submitting...' : 'Submit Review'}
               </button>
             </div>
           </div>

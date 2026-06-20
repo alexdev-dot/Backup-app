@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bell } from 'lucide-react';
 import type { Notification } from './NotificationTypes';
 import NotificationPanel from './NotificationPanel';
+import { getToken, API_BASE } from '../../utils/api';
 
 interface NotificationsProps {
   notifications: Notification[];
   onNotificationClick?: (notification: Notification) => void;
   onMarkAsRead?: (notificationId: string) => void;
   onMarkAllAsRead?: () => void;
+  onNotificationsUpdate?: (notifications: Notification[]) => void;
 }
 
 const Notifications: React.FC<NotificationsProps> = ({
@@ -15,9 +17,39 @@ const Notifications: React.FC<NotificationsProps> = ({
   onNotificationClick,
   onMarkAsRead,
   onMarkAllAsRead,
+  onNotificationsUpdate,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const unreadCount = notifications.filter(n => !n.read).length;
+
+  // Real-time polling for notifications
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const response = await fetch(`${API_BASE}/api/notifications`, {
+          headers: { 'Authorization': `Bearer ${getToken()}` },
+        });
+        if (response.ok) {
+          const json = await response.json();
+          const data = json.data || json;
+          const notificationsArray = Array.isArray(data) ? data : data.notifications || [];
+          if (onNotificationsUpdate) {
+            onNotificationsUpdate(notificationsArray);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching notifications:', error);
+      }
+    };
+
+    // Initial fetch
+    fetchNotifications();
+
+    // Poll every 30 seconds
+    const interval = setInterval(fetchNotifications, 30000);
+
+    return () => clearInterval(interval);
+  }, [onNotificationsUpdate]);
 
   return (
     <div className="relative">

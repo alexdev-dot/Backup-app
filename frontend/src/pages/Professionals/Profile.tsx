@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Star, MapPin, Briefcase, Plus, X, Camera, Save } from 'lucide-react';
+import { Star, MapPin, Briefcase, Plus, X, Camera, Save, Upload, CheckCircle, Clock, Shield } from 'lucide-react';
 
 import { API_BASE, getToken } from '../../utils/api';
 
@@ -9,8 +9,16 @@ const Profile: React.FC = () => {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [newSkill, setNewSkill] = useState('');
+  const [showVerification, setShowVerification] = useState(false);
+  const [verificationDocs, setVerificationDocs] = useState({
+    idDocument: null as File | null,
+    certificate: null as File | null,
+    additional: null as File | null,
+  });
+  const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState({
-    bio: '', hourly_rate: '', location: '', category: '', years_experience: '',
+    full_name: '', email: '', phone: '', location: '',
+    bio: '', hourly_rate: '', category: '', years_experience: '',
     skills: [] as string[],
   });
 
@@ -22,7 +30,8 @@ const Profile: React.FC = () => {
       const userRes = await fetch(`${API_BASE}/api/user/profile`, { headers: { 'Authorization': `Bearer ${getToken()}` } });
       if (userRes.ok) {
         const userJson = await userRes.json();
-        const userData = userJson.data || userJson;
+        console.log('Professional profile user response:', userJson);
+        const userData = userJson.data?.user || userJson.user || userJson.data || userJson;
         const profRes = await fetch(`${API_BASE}/api/professionals`, { headers: { 'Authorization': `Bearer ${getToken()}` } });
         if (profRes.ok) {
           const profJson = await profRes.json();
@@ -31,9 +40,12 @@ const Profile: React.FC = () => {
           const merged = { ...userData, ...myProf };
           setProfile(merged);
           setFormData({
+            full_name: merged.full_name || '',
+            email: merged.email || '',
+            phone: merged.phone || '',
+            location: merged.location || '',
             bio: merged.bio || '',
             hourly_rate: merged.hourly_rate || '',
-            location: merged.location || '',
             category: merged.category || '',
             years_experience: merged.years_experience || '',
             skills: merged.skills || [],
@@ -49,9 +61,14 @@ const Profile: React.FC = () => {
       await fetch(`${API_BASE}/api/user/profile`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getToken()}` },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          full_name: formData.full_name,
+          email: formData.email,
+          phone: formData.phone,
+          location: formData.location,
+        }),
       });
-      setProfile((prev: any) => ({ ...prev, ...formData }));
+      setProfile((prev: any) => ({ ...prev, full_name: formData.full_name, email: formData.email, phone: formData.phone, location: formData.location }));
       setSaved(true);
       setEditing(false);
       setTimeout(() => setSaved(false), 3000);
@@ -68,6 +85,32 @@ const Profile: React.FC = () => {
 
   const removeSkill = (skill: string) => {
     setFormData(prev => ({ ...prev, skills: prev.skills.filter(s => s !== skill) }));
+  };
+
+  const handleVerificationUpload = async () => {
+    if (!verificationDocs.idDocument) return;
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('id_document', verificationDocs.idDocument);
+      if (verificationDocs.certificate) formData.append('certificate', verificationDocs.certificate);
+      if (verificationDocs.additional) formData.append('additional', verificationDocs.additional);
+
+      const response = await fetch(`${API_BASE}/api/professionals/verify`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${getToken()}` },
+        body: formData,
+      });
+      if (response.ok) {
+        setShowVerification(false);
+        setVerificationDocs({ idDocument: null, certificate: null, additional: null });
+        fetchProfile();
+      }
+    } catch (error) {
+      console.error('Error uploading verification docs:', error);
+    } finally {
+      setUploading(false);
+    }
   };
 
   const categories = ['Plumbing', 'Electrical', 'Carpentry', 'Cleaning', 'Painting', 'Landscaping', 'HVAC', 'Appliance Repair', 'Masonry', 'Other'];
@@ -137,11 +180,67 @@ const Profile: React.FC = () => {
                 <div className="text-xs text-slate-500">Experience</div>
               </div>
             </div>
+
+            {/* Verification Status */}
+            <div className="mt-4 pt-4 border-t border-slate-100">
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Shield className="w-4 h-4 text-slate-400" />
+                <span className="text-sm font-medium text-slate-700">Verification Status</span>
+              </div>
+              {profile?.verification_status === 'verified' ? (
+                <div className="flex items-center justify-center gap-1 text-green-600 text-sm">
+                  <CheckCircle className="w-4 h-4" />
+                  <span>Verified</span>
+                </div>
+              ) : profile?.verification_status === 'pending' ? (
+                <div className="flex items-center justify-center gap-1 text-amber-600 text-sm">
+                  <Clock className="w-4 h-4" />
+                  <span>Pending Review</span>
+                </div>
+              ) : (
+                <button
+                  onClick={() => setShowVerification(true)}
+                  className="flex items-center justify-center gap-1 text-green-600 text-sm font-medium hover:text-green-700"
+                >
+                  <Upload className="w-4 h-4" />
+                  <span>Get Verified</span>
+                </button>
+              )}
+            </div>
           </div>
         </div>
 
         {/* Details */}
         <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+          {/* Basic Information */}
+          <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
+            <h4 className="font-bold text-slate-900 mb-4">Basic Information</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { key: 'full_name', label: 'Full Name', type: 'text' },
+                { key: 'email', label: 'Email', type: 'email' },
+                { key: 'phone', label: 'Phone', type: 'tel' },
+                { key: 'location', label: 'Location', type: 'text' },
+              ].map(field => (
+                <div key={field.key}>
+                  <label className="block text-sm font-medium text-slate-700 mb-1.5">{field.label}</label>
+                  {!editing ? (
+                    <div className="text-sm text-slate-600 py-2.5 px-4 bg-slate-50 rounded-xl">
+                      {(formData as any)[field.key] || 'Not set'}
+                    </div>
+                  ) : (
+                    <input
+                      type={field.type}
+                      value={(formData as any)[field.key]}
+                      onChange={e => setFormData(prev => ({ ...prev, [field.key]: e.target.value }))}
+                      className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* About */}
           <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
             <h4 className="font-bold text-slate-900 mb-3">About</h4>
@@ -233,6 +332,57 @@ const Profile: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Verification Modal */}
+      {showVerification && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-slate-900">Get Verified</h3>
+              <button onClick={() => setShowVerification(false)} className="p-2 hover:bg-slate-100 rounded-lg"><X className="w-5 h-5" /></button>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">ID Document (Required)</label>
+                <input
+                  type="file"
+                  onChange={(e) => setVerificationDocs(prev => ({ ...prev, idDocument: e.target.files?.[0] || null }))}
+                  accept="image/*,.pdf"
+                  className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">Certificate (Optional)</label>
+                <input
+                  type="file"
+                  onChange={(e) => setVerificationDocs(prev => ({ ...prev, certificate: e.target.files?.[0] || null }))}
+                  accept="image/*,.pdf"
+                  className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">Additional Documents (Optional)</label>
+                <input
+                  type="file"
+                  onChange={(e) => setVerificationDocs(prev => ({ ...prev, additional: e.target.files?.[0] || null }))}
+                  accept="image/*,.pdf"
+                  className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button onClick={() => setShowVerification(false)} className="flex-1 border border-slate-200 text-slate-700 py-2.5 rounded-xl font-medium hover:bg-slate-50 text-sm">Cancel</button>
+                <button
+                  onClick={handleVerificationUpload}
+                  disabled={uploading || !verificationDocs.idDocument}
+                  className="flex-1 bg-green-600 text-white py-2.5 rounded-xl font-medium hover:bg-green-700 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {uploading ? 'Uploading...' : 'Submit for Verification'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

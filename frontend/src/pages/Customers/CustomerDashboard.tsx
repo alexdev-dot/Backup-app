@@ -34,12 +34,46 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
   const [stats, setStats] = useState({ totalBookings: 0, pendingJobs: 0, completed: 0, messages: 0 });
   const [loading, setLoading] = useState(true);
   const [notifications, setNotifications] = useState<Notification[]>(mockNotifications);
+  const [refreshing, setRefreshing] = useState(false);
+  const [pullDistance, setPullDistance] = useState(0);
   const isInitialMount = useRef(true);
+  const startY = useRef(0);
+  const currentY = useRef(0);
 
 
   const handleMarkAsRead = (id: string) => setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
   const handleMarkAllAsRead = () => setNotifications(prev => prev.map(n => ({ ...n, read: true })));
   const handleNotificationClick = (notification: Notification) => { if (notification.actionUrl) navigate(notification.actionUrl); };
+
+  // Pull-to-refresh handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    startY.current = e.touches[0].clientY;
+    currentY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    currentY.current = e.touches[0].clientY;
+    const distance = currentY.current - startY.current;
+    if (distance > 0 && window.scrollY === 0) {
+      setPullDistance(Math.min(distance, 100));
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (pullDistance > 60) {
+      setRefreshing(true);
+      // Simulate refresh
+      setTimeout(() => {
+        setRefreshing(false);
+        setPullDistance(0);
+        // Refresh data
+        fetchUserData();
+        fetchBookings();
+      }, 1000);
+    } else {
+      setPullDistance(0);
+    }
+  };
 
   useEffect(() => {
     if (isInitialMount.current) {
@@ -59,9 +93,14 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
   const fetchUserData = async () => {
     try {
       const response = await fetch(`${API_BASE}/api/user/profile`, { headers: { 'Authorization': `Bearer ${getToken()}` } });
+      console.log('User profile response status:', response.status);
       if (response.ok) {
         const json = await response.json();
-        setUser(json.data || json);
+        console.log('User profile response:', json);
+        const userData = json.data?.user || json.user || json.data || json;
+        setUser(userData);
+      } else {
+        console.error('User profile fetch failed:', response.status, response.statusText);
       }
     } catch (error) { console.error('Error fetching user data:', error); }
   };
@@ -107,7 +146,8 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
     { id: 'services', label: 'Search', icon: Search },
     { id: 'bookings', label: 'Bookings', icon: CalendarDays },
     { id: 'messages', label: 'Messages', icon: MessageCircle },
-    { id: 'settings', label: 'Settings', icon: Settings2 },
+    { id: 'my_job', label: 'My Job', icon: Briefcase },
+    { id: 'payment', label: 'Payment', icon: Wallet },
   ];
 
   const getStatusColor = (status: string) => {
@@ -136,6 +176,9 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
           <img src={dashboardLogo} alt="GigaFix" className="h-8 w-auto" />
           <div className="flex items-center gap-2">
             <Notifications notifications={notifications} onNotificationClick={handleNotificationClick} onMarkAsRead={handleMarkAsRead} onMarkAllAsRead={handleMarkAllAsRead} />
+            <button onClick={() => { setActiveTab('settings'); navigate('/customer/settings'); }} className="p-2 hover:bg-slate-100 rounded-xl transition-colors">
+              <Settings2 className="w-5 h-5 text-slate-600" />
+            </button>
             <button onClick={onLogout} className="p-2 hover:bg-slate-100 rounded-xl transition-colors">
               <LogOut className="w-5 h-5 text-slate-600" />
             </button>
@@ -150,12 +193,12 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
           <div className="flex items-center gap-4">
             <Notifications notifications={notifications} onNotificationClick={handleNotificationClick} onMarkAsRead={handleMarkAsRead} onMarkAllAsRead={handleMarkAllAsRead} />
             <div className="flex items-center gap-3 pl-4 border-l border-slate-200">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center">
-                <UserCircle className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold">
+                {user?.full_name?.charAt(0).toUpperCase() || 'U'}
               </div>
               <div className="hidden md:block">
                 <div className="font-semibold text-slate-900">{user?.full_name || 'Loading...'}</div>
-                <div className="text-sm text-slate-500">Customer</div>
+                <div className="text-sm text-slate-500 capitalize">{user?.role || 'Customer'}</div>
               </div>
             </div>
           </div>
@@ -197,7 +240,30 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
         </aside>
 
         {/* Main Content */}
-        <main className={`flex-1 p-4 sm:p-6 lg:p-8 transition-all duration-300 overflow-x-hidden ${isSidebarCollapsed ? 'lg:ml-20' : 'lg:ml-72'}`}>
+        <main 
+          className={`flex-1 p-4 sm:p-6 lg:p-8 transition-all duration-300 overflow-x-hidden ${isSidebarCollapsed ? 'lg:ml-20' : 'lg:ml-72'}`}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Pull-to-refresh indicator */}
+          <div 
+            className="flex items-center justify-center transition-all duration-300"
+            style={{ 
+              height: pullDistance > 0 ? `${pullDistance}px` : '0px',
+              opacity: pullDistance / 100
+            }}
+          >
+            <div className="flex items-center gap-2 text-green-600">
+              {refreshing ? (
+                <div className="w-6 h-6 border-2 border-green-600 border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <CirclePlus className="w-6 h-6" />
+              )}
+              <span className="text-sm font-medium">{refreshing ? 'Refreshing...' : 'Pull to refresh'}</span>
+            </div>
+          </div>
+
           {activeTab === 'dashboard' && (
             <>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 sm:mb-8 gap-4">
@@ -208,21 +274,35 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
-                {[
-                  { label: 'Total Bookings', value: stats.totalBookings, icon: <CalendarDays className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />, bg: 'bg-green-100', badge: 'Total', badgeColor: 'text-green-600' },
-                  { label: 'Pending Jobs', value: stats.pendingJobs, icon: <Timer className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />, bg: 'bg-blue-100', badge: 'Active', badgeColor: 'text-blue-600' },
-                  { label: 'Completed', value: stats.completed, icon: <CircleCheck className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />, bg: 'bg-purple-100', badge: 'Done', badgeColor: 'text-purple-600' },
-                  { label: 'Messages', value: stats.messages, icon: <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-600" />, bg: 'bg-yellow-100', badge: 'New', badgeColor: 'text-yellow-600' },
-                ].map((card, i) => (
-                  <div key={i} className="bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-slate-200 shadow-sm">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className={`w-10 h-10 sm:w-12 sm:h-12 ${card.bg} rounded-xl flex items-center justify-center`}>{card.icon}</div>
-                      <span className={`${card.badgeColor} text-xs sm:text-sm font-medium`}>{card.badge}</span>
+                {loading ? (
+                  // Skeleton loading for stats cards
+                  [1, 2, 3, 4].map((i) => (
+                    <div key={i} className="bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-slate-200 shadow-sm">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-slate-200 rounded-xl animate-pulse" />
+                        <div className="w-12 h-6 bg-slate-200 rounded-full animate-pulse" />
+                      </div>
+                      <div className="w-16 h-8 bg-slate-200 rounded animate-pulse mb-2" />
+                      <div className="w-20 h-4 bg-slate-200 rounded animate-pulse" />
                     </div>
-                    <div className="text-2xl sm:text-3xl font-bold text-slate-900">{loading ? '...' : card.value}</div>
-                    <div className="text-slate-600 text-xs sm:text-sm">{card.label}</div>
-                  </div>
-                ))}
+                  ))
+                ) : (
+                  [
+                    { label: 'Total Bookings', value: stats.totalBookings, icon: <CalendarDays className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />, bg: 'bg-green-100', badge: 'Total', badgeColor: 'text-green-600' },
+                    { label: 'Pending Jobs', value: stats.pendingJobs, icon: <Timer className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />, bg: 'bg-blue-100', badge: 'Active', badgeColor: 'text-blue-600' },
+                    { label: 'Completed', value: stats.completed, icon: <CircleCheck className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />, bg: 'bg-purple-100', badge: 'Done', badgeColor: 'text-purple-600' },
+                    { label: 'Messages', value: stats.messages, icon: <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-600" />, bg: 'bg-yellow-100', badge: 'New', badgeColor: 'text-yellow-600' },
+                  ].map((card, i) => (
+                    <div key={i} className="bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-slate-200 shadow-sm">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className={`w-10 h-10 sm:w-12 sm:h-12 ${card.bg} rounded-xl flex items-center justify-center`}>{card.icon}</div>
+                        <span className={`${card.badgeColor} text-xs sm:text-sm font-medium`}>{card.badge}</span>
+                      </div>
+                      <div className="text-2xl sm:text-3xl font-bold text-slate-900">{card.value}</div>
+                      <div className="text-slate-600 text-xs sm:text-sm">{card.label}</div>
+                    </div>
+                  ))
+                )}
               </div>
 
               <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 shadow-sm">
@@ -234,7 +314,24 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
                 </div>
                 <div className="p-4 sm:p-6 overflow-x-auto">
                   {loading ? (
-                    <div className="text-center py-8 text-slate-600">Loading bookings...</div>
+                    // Skeleton loading for bookings
+                    <div className="lg:hidden space-y-4">
+                      {[1, 2, 3].map((i) => (
+                        <div key={i} className="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                          <div className="flex items-start justify-between mb-3">
+                            <div className="flex-1">
+                              <div className="w-32 h-4 bg-slate-200 rounded animate-pulse mb-2" />
+                              <div className="w-24 h-3 bg-slate-200 rounded animate-pulse" />
+                            </div>
+                            <div className="w-16 h-6 bg-slate-200 rounded-full animate-pulse" />
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <div className="w-20 h-3 bg-slate-200 rounded animate-pulse" />
+                            <div className="w-16 h-3 bg-slate-200 rounded animate-pulse" />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   ) : bookings.length === 0 ? (
                     <div className="text-center py-8 text-slate-600">No bookings yet</div>
                   ) : (
@@ -270,20 +367,33 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
                           </tr>
                         </thead>
                         <tbody>
-                          {bookings.slice(0, 5).map((booking) => (
-                            <tr key={booking.id} className="border-t border-slate-100">
-                              <td className="py-3 sm:py-4"><div className="font-medium text-slate-900 text-sm sm:text-base">{booking.service}</div></td>
-                              <td className="py-3 sm:py-4 text-slate-600 text-sm sm:text-base">{booking.professional_name}</td>
-                              <td className="py-3 sm:py-4 text-slate-600 text-xs sm:text-sm">{booking.date} at {booking.time}</td>
-                              <td className="py-3 sm:py-4">
-                                <span className={`inline-flex items-center gap-1 px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status)}`}>
-                                  {getStatusIcon(booking.status)}
-                                  {booking.status?.charAt(0).toUpperCase() + booking.status?.slice(1)}
-                                </span>
-                              </td>
-                              <td className="py-3 sm:py-4 font-medium text-slate-900 text-sm sm:text-base">{booking.amount}</td>
-                            </tr>
-                          ))}
+                          {loading ? (
+                            // Skeleton loading for table rows
+                            [1, 2, 3, 4, 5].map((i) => (
+                              <tr key={i} className="border-t border-slate-100">
+                                <td className="py-3 sm:py-4"><div className="w-24 h-4 bg-slate-200 rounded animate-pulse" /></td>
+                                <td className="py-3 sm:py-4"><div className="w-20 h-4 bg-slate-200 rounded animate-pulse" /></td>
+                                <td className="py-3 sm:py-4"><div className="w-28 h-4 bg-slate-200 rounded animate-pulse" /></td>
+                                <td className="py-3 sm:py-4"><div className="w-16 h-6 bg-slate-200 rounded-full animate-pulse" /></td>
+                                <td className="py-3 sm:py-4"><div className="w-16 h-4 bg-slate-200 rounded animate-pulse" /></td>
+                              </tr>
+                            ))
+                          ) : (
+                            bookings.slice(0, 5).map((booking) => (
+                              <tr key={booking.id} className="border-t border-slate-100">
+                                <td className="py-3 sm:py-4"><div className="font-medium text-slate-900 text-sm sm:text-base">{booking.service}</div></td>
+                                <td className="py-3 sm:py-4 text-slate-600 text-sm sm:text-base">{booking.professional_name}</td>
+                                <td className="py-3 sm:py-4 text-slate-600 text-xs sm:text-sm">{booking.date} at {booking.time}</td>
+                                <td className="py-3 sm:py-4">
+                                  <span className={`inline-flex items-center gap-1 px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status)}`}>
+                                    {getStatusIcon(booking.status)}
+                                    {booking.status?.charAt(0).toUpperCase() + booking.status?.slice(1)}
+                                  </span>
+                                </td>
+                                <td className="py-3 sm:py-4 font-medium text-slate-900 text-sm sm:text-base">{booking.amount}</td>
+                              </tr>
+                            ))
+                          )}
                         </tbody>
                       </table>
                     </>
