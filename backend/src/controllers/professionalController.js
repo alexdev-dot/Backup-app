@@ -25,10 +25,6 @@ export const getMyProfile = asyncHandler(async (req, res) => {
 });
 
 export const create = asyncHandler(async (req, res) => {
-  if (req.user.role !== ROLES.PROFESSIONAL) {
-    return res.status(HTTP.FORBIDDEN).json({ success: false, error: 'Only professionals can create a professional profile' });
-  }
-
   const existing = await professionalModel.findByUserId(req.user.userId);
   if (existing) {
     return res.status(HTTP.CONFLICT).json({ success: false, error: 'Professional profile already exists' });

@@ -20,7 +20,7 @@ import { mockNotifications } from '../../components/notifications/mockNotificati
 import type { Notification } from '../../components/notifications/NotificationTypes';
 import MobileBottomNav from '../../components/MobileBottomNav';
 
-import { API_BASE, getToken } from '../../utils/api';
+import { API_BASE, getToken, getUser } from '../../utils/api';
 
 interface ProfessionalDashboardProps {
   onLogout?: () => void;
@@ -31,7 +31,7 @@ const ProfessionalDashboard: React.FC<ProfessionalDashboardProps> = ({ onLogout 
   const location = useLocation();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<any>(getUser() || null);
   const [jobs, setJobs] = useState<any[]>([]);
   const [stats, setStats] = useState({ totalJobs: 0, completedJobs: 0, totalEarnings: 0, rating: 0 });
   const [loading, setLoading] = useState(true);
@@ -65,7 +65,10 @@ const ProfessionalDashboard: React.FC<ProfessionalDashboardProps> = ({ onLogout 
       if (response.ok) {
         const json = await response.json();
         console.log('Professional user profile response:', json);
+        console.log('Professional user profile full response structure:', JSON.stringify(json, null, 2));
         const userData = json.data?.user || json.user || json.data || json;
+        console.log('Extracted userData:', userData);
+        console.log('userData.full_name:', userData?.full_name);
         setUser(userData);
 
         const profResponse = await fetch(`${API_BASE}/api/professionals`, { headers: { 'Authorization': `Bearer ${getToken()}` } });
@@ -79,6 +82,8 @@ const ProfessionalDashboard: React.FC<ProfessionalDashboardProps> = ({ onLogout 
         }
       } else {
         console.error('Professional user profile fetch failed:', response.status, response.statusText);
+        const errorText = await response.text();
+        console.error('Error response:', errorText);
       }
     } catch (error) { console.error('Error fetching user data:', error); }
   };
@@ -106,12 +111,12 @@ const ProfessionalDashboard: React.FC<ProfessionalDashboardProps> = ({ onLogout 
   const sidebarItems = [
     { section: 'Main', items: [
       { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard className="w-5 h-5" /> },
-      { id: 'bookings', label: 'Bookings', icon: <File className="w-5 h-5" /> },
-      { id: 'jobs', label: 'Jobs', icon: <Briefcase className="w-5 h-5" /> },
+      { id: 'bookings', label: 'My Schedule', icon: <File className="w-5 h-5" /> },
+      { id: 'jobs', label: 'Job Feed', icon: <Briefcase className="w-5 h-5" /> },
       { id: 'quotes', label: 'Quotes', icon: <File className="w-5 h-5" /> },
     ]},
     { section: 'Management', items: [
-      { id: 'messages', label: 'Messages', icon: <MessageCircle className="w-5 h-5" /> },
+      { id: 'messages', label: 'Chats', icon: <MessageCircle className="w-5 h-5" /> },
       { id: 'earnings', label: 'Earnings', icon: <Coins className="w-5 h-5" /> },
       { id: 'reviews', label: 'Reviews', icon: <Star className="w-5 h-5" /> },
     ]},
@@ -124,9 +129,9 @@ const ProfessionalDashboard: React.FC<ProfessionalDashboardProps> = ({ onLogout 
 
   const mobileNavItems = [
     { id: 'dashboard', label: 'Home', icon: LayoutDashboard },
-    { id: 'bookings', label: 'Bookings', icon: File },
-    { id: 'jobs', label: 'Jobs', icon: Briefcase },
-    { id: 'messages', label: 'Messages', icon: MessageCircle },
+    { id: 'bookings', label: 'My Schedule', icon: File },
+    { id: 'jobs', label: 'Job Feed', icon: Briefcase },
+    { id: 'messages', label: 'Chats', icon: MessageCircle },
     { id: 'earnings', label: 'Earnings', icon: Coins },
     { id: 'profile', label: 'Profile', icon: User },
   ];
@@ -136,7 +141,13 @@ const ProfessionalDashboard: React.FC<ProfessionalDashboardProps> = ({ onLogout 
       {/* Mobile Header */}
       <header className="lg:hidden bg-white border-b border-slate-200 fixed top-0 left-0 right-0 z-50">
         <div className="flex items-center justify-between px-4 py-3">
-          <img src={dashboardLogo} alt="GigaFix" className="h-8 w-auto" />
+          <div className="flex items-center gap-3">
+            <img src={dashboardLogo} alt="GigaFix" className="h-8 w-auto" />
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-slate-900">{user?.full_name || 'Loading...'}</span>
+              <span className="text-xs text-slate-500 capitalize">{user?.role || 'Professional'}</span>
+            </div>
+          </div>
           <div className="flex items-center gap-2">
             <Notifications notifications={notifications} onNotificationClick={handleNotificationClick} onMarkAsRead={handleMarkAsRead} onMarkAllAsRead={handleMarkAllAsRead} />
             <button onClick={onLogout} className="p-2 hover:bg-slate-100 rounded-xl transition-colors">

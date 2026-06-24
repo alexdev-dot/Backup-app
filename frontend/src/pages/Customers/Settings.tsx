@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { User, Lock, Bell, Shield, ChevronRight, Save, Eye, EyeOff, Camera } from 'lucide-react';
 
-import { API_BASE, getToken } from '../../utils/api';
+import { API_BASE, getToken, getUser } from '../../utils/api';
 
 const CustomerSettings: React.FC = () => {
   const [activeSection, setActiveSection] = useState('profile');
-  const [user, setUser] = useState<any>(null);
-  const [formData, setFormData] = useState({ full_name: '', email: '', phone: '', location: '' });
+  const storedUser = getUser();
+  const [user, setUser] = useState<any>(storedUser || null);
+  const [formData, setFormData] = useState({
+    full_name: storedUser?.full_name || '',
+    email: storedUser?.email || '',
+    phone: storedUser?.phone || '',
+    location: storedUser?.location || ''
+  });
   const [passwords, setPasswords] = useState({ current: '', new: '', confirm: '' });
   const [showPasswords, setShowPasswords] = useState({ current: false, new: false, confirm: false });
   const [saving, setSaving] = useState(false);

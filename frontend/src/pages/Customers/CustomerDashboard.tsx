@@ -3,7 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard as Home, CalendarDays, MessageCircle, Wallet,
   Briefcase, Settings2, LogOut, Search, CirclePlus, Timer, CircleCheck,
-  UserCircle, ChevronLeft, ChevronRight
+  UserCircle, ChevronLeft, ChevronRight, Star, MapPin, Filter, X,
+  Map, List, ChevronDown, Droplets, Zap, Hammer, Sparkles, HardHat, Wrench, CheckCircle
 } from 'lucide-react';
 import logo from '../../assets/logo/Primary-logo-light.png';
 import dashboardLogo from '../../assets/dashboard-logo.png';
@@ -22,20 +23,25 @@ interface CustomerDashboardProps {
   onLogout?: () => void;
 }
 
-import { API_BASE, getToken } from '../../utils/api';
+import { API_BASE, getToken, getUser } from '../../utils/api';
 
 const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const routerLocation = useLocation();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<any>(getUser() || null);
   const [bookings, setBookings] = useState<any[]>([]);
-  const [stats, setStats] = useState({ totalBookings: 0, pendingJobs: 0, completed: 0, messages: 0 });
+  const [jobs, setJobs] = useState<any[]>([]);
+  const [professionals, setProfessionals] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState({ totalBookings: 0, pendingJobs: 0, completed: 0, messages: 0 });
   const [notifications, setNotifications] = useState<Notification[]>(mockNotifications);
   const [refreshing, setRefreshing] = useState(false);
   const [pullDistance, setPullDistance] = useState(0);
+  const [userLocation, setUserLocation] = useState('Ruiru, Kiambu County');
+  const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const isInitialMount = useRef(true);
   const startY = useRef(0);
   const currentY = useRef(0);
@@ -77,7 +83,7 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
 
   useEffect(() => {
     if (isInitialMount.current) {
-      const currentPath = location.pathname.split('/').pop();
+      const currentPath = routerLocation.pathname.split('/').pop();
       if (currentPath && ['dashboard', 'services', 'my_job', 'bookings', 'messages', 'payment', 'settings'].includes(currentPath)) {
         setActiveTab(currentPath);
       }
@@ -88,6 +94,8 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
   useEffect(() => {
     fetchUserData();
     fetchBookings();
+    fetchJobs();
+    fetchProfessionals();
   }, []);
 
   const fetchUserData = async () => {
@@ -97,10 +105,17 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
       if (response.ok) {
         const json = await response.json();
         console.log('User profile response:', json);
+        console.log('User profile full response structure:', JSON.stringify(json, null, 2));
         const userData = json.data?.user || json.user || json.data || json;
+        console.log('Extracted userData:', userData);
+        console.log('userData.full_name:', userData?.full_name);
+        console.log('userData.full_name type:', typeof userData?.full_name);
+        console.log('userData.full_name length:', userData?.full_name?.length);
         setUser(userData);
       } else {
         console.error('User profile fetch failed:', response.status, response.statusText);
+        const errorText = await response.text();
+        console.error('Error response:', errorText);
       }
     } catch (error) { console.error('Error fetching user data:', error); }
   };
@@ -120,8 +135,33 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
           messages: 0,
         });
       }
-      setLoading(false);
-    } catch (error) { console.error('Error:', error); setLoading(false); }
+    } catch (error) { console.error('Error:', error); }
+  };
+
+  const fetchJobs = async () => {
+    try {
+      const response = await fetch(`${API_BASE}/api/jobs`, { headers: { 'Authorization': `Bearer ${getToken()}` } });
+      if (response.ok) {
+        const json = await response.json();
+        const data = json.data || json;
+        const arr = Array.isArray(data) ? data : [];
+        setJobs(arr);
+      }
+    } catch (error) { console.error('Error:', error); }
+  };
+
+  const fetchProfessionals = async () => {
+    try {
+      const response = await fetch(`${API_BASE}/api/professionals`);
+      if (response.ok) {
+        const json = await response.json();
+        const data = json.data || json;
+        setProfessionals(Array.isArray(data) ? data : []);
+      }
+    } catch (error) {
+      console.error('Error fetching professionals:', error);
+    }
+    setLoading(false);
   };
 
   const sidebarItems = [
@@ -132,7 +172,7 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
     ]},
     { section: 'Management', items: [
       { id: 'bookings', label: 'My Bookings', icon: <CalendarDays className="w-5 h-5" /> },
-      { id: 'messages', label: 'Messages', icon: <MessageCircle className="w-5 h-5" /> },
+      { id: 'messages', label: 'Chats', icon: <MessageCircle className="w-5 h-5" /> },
       { id: 'payment', label: 'Payment', icon: <Wallet className="w-5 h-5" /> },
     ]},
     { section: 'Account', items: [
@@ -145,7 +185,7 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
     { id: 'dashboard', label: 'Home', icon: Home },
     { id: 'services', label: 'Search', icon: Search },
     { id: 'bookings', label: 'Bookings', icon: CalendarDays },
-    { id: 'messages', label: 'Messages', icon: MessageCircle },
+    { id: 'messages', label: 'Chats', icon: MessageCircle },
     { id: 'my_job', label: 'My Job', icon: Briefcase },
     { id: 'payment', label: 'Payment', icon: Wallet },
   ];
@@ -173,12 +213,15 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
       {/* Mobile Header */}
       <header className="lg:hidden bg-white border-b border-slate-200 fixed top-0 left-0 right-0 z-50">
         <div className="flex items-center justify-between px-4 py-3">
-          <img src={dashboardLogo} alt="GigaFix" className="h-8 w-auto" />
+          <div className="flex items-center gap-3">
+            <img src={dashboardLogo} alt="GigaFix" className="h-8 w-auto" />
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-slate-900">{user?.full_name || 'Loading...'}</span>
+              <span className="text-xs text-slate-500 capitalize">{user?.role || 'Customer'}</span>
+            </div>
+          </div>
           <div className="flex items-center gap-2">
             <Notifications notifications={notifications} onNotificationClick={handleNotificationClick} onMarkAsRead={handleMarkAsRead} onMarkAllAsRead={handleMarkAllAsRead} />
-            <button onClick={() => { setActiveTab('settings'); navigate('/customer/settings'); }} className="p-2 hover:bg-slate-100 rounded-xl transition-colors">
-              <Settings2 className="w-5 h-5 text-slate-600" />
-            </button>
             <button onClick={onLogout} className="p-2 hover:bg-slate-100 rounded-xl transition-colors">
               <LogOut className="w-5 h-5 text-slate-600" />
             </button>
@@ -266,138 +309,129 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ onLogout }) => {
 
           {activeTab === 'dashboard' && (
             <>
+              {/* Header with Greeting & Location */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 sm:mb-8 gap-4">
                 <div>
-                  <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Welcome back, {user?.full_name?.split(' ')[0] || 'User'}!</h1>
-                  <p className="text-slate-600 mt-1 text-sm sm:text-base">Here's what's happening with your bookings</p>
+                  <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Hello, {user?.full_name?.split(' ')[0] || 'User'} 👋</h1>
+                  <p className="text-slate-600 mt-1 text-sm sm:text-base">Find trusted professionals near you</p>
                 </div>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
-                {loading ? (
-                  // Skeleton loading for stats cards
-                  [1, 2, 3, 4].map((i) => (
-                    <div key={i} className="bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-slate-200 rounded-xl animate-pulse" />
-                        <div className="w-12 h-6 bg-slate-200 rounded-full animate-pulse" />
-                      </div>
-                      <div className="w-16 h-8 bg-slate-200 rounded animate-pulse mb-2" />
-                      <div className="w-20 h-4 bg-slate-200 rounded animate-pulse" />
-                    </div>
-                  ))
-                ) : (
-                  [
-                    { label: 'Total Bookings', value: stats.totalBookings, icon: <CalendarDays className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />, bg: 'bg-green-100', badge: 'Total', badgeColor: 'text-green-600' },
-                    { label: 'Pending Jobs', value: stats.pendingJobs, icon: <Timer className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />, bg: 'bg-blue-100', badge: 'Active', badgeColor: 'text-blue-600' },
-                    { label: 'Completed', value: stats.completed, icon: <CircleCheck className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />, bg: 'bg-purple-100', badge: 'Done', badgeColor: 'text-purple-600' },
-                    { label: 'Messages', value: stats.messages, icon: <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-600" />, bg: 'bg-yellow-100', badge: 'New', badgeColor: 'text-yellow-600' },
-                  ].map((card, i) => (
-                    <div key={i} className="bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-slate-200 shadow-sm">
-                      <div className="flex items-center justify-between mb-4">
-                        <div className={`w-10 h-10 sm:w-12 sm:h-12 ${card.bg} rounded-xl flex items-center justify-center`}>{card.icon}</div>
-                        <span className={`${card.badgeColor} text-xs sm:text-sm font-medium`}>{card.badge}</span>
-                      </div>
-                      <div className="text-2xl sm:text-3xl font-bold text-slate-900">{card.value}</div>
-                      <div className="text-slate-600 text-xs sm:text-sm">{card.label}</div>
-                    </div>
-                  ))
-                )}
-              </div>
-
-              <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 shadow-sm">
-                <div className="p-4 sm:p-6 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <h2 className="text-lg sm:text-xl font-bold text-slate-900">Recent Bookings</h2>
-                  <button className="flex items-center justify-center gap-2 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition-colors text-sm sm:text-base">
-                    <CirclePlus className="w-4 sm:w-5 h-4 sm:h-5" /><span>New Booking</span>
+                <div className="relative">
+                  <button
+                    onClick={() => setShowLocationDropdown(!showLocationDropdown)}
+                    className="flex items-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-2.5 hover:bg-slate-50 transition-colors"
+                  >
+                    <MapPin className="w-4 h-4 text-green-600" />
+                    <span className="text-sm font-medium text-slate-700">{userLocation}</span>
+                    <ChevronDown className="w-4 h-4 text-slate-400" />
                   </button>
-                </div>
-                <div className="p-4 sm:p-6 overflow-x-auto">
-                  {loading ? (
-                    // Skeleton loading for bookings
-                    <div className="lg:hidden space-y-4">
-                      {[1, 2, 3].map((i) => (
-                        <div key={i} className="bg-slate-50 rounded-xl p-4 border border-slate-200">
-                          <div className="flex items-start justify-between mb-3">
-                            <div className="flex-1">
-                              <div className="w-32 h-4 bg-slate-200 rounded animate-pulse mb-2" />
-                              <div className="w-24 h-3 bg-slate-200 rounded animate-pulse" />
-                            </div>
-                            <div className="w-16 h-6 bg-slate-200 rounded-full animate-pulse" />
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <div className="w-20 h-3 bg-slate-200 rounded animate-pulse" />
-                            <div className="w-16 h-3 bg-slate-200 rounded animate-pulse" />
-                          </div>
-                        </div>
+                  {showLocationDropdown && (
+                    <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl border border-slate-200 shadow-lg z-10 p-2">
+                      {['Ruiru, Kiambu County', 'Westlands, Nairobi', 'Nairobi CBD', 'Mombasa Road'].map(loc => (
+                        <button
+                          key={loc}
+                          onClick={() => { setUserLocation(loc); setShowLocationDropdown(false); }}
+                          className="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-50 text-sm text-slate-700"
+                        >
+                          {loc}
+                        </button>
                       ))}
                     </div>
-                  ) : bookings.length === 0 ? (
-                    <div className="text-center py-8 text-slate-600">No bookings yet</div>
-                  ) : (
-                    <>
-                      <div className="lg:hidden space-y-4">
-                        {bookings.slice(0, 5).map((booking) => (
-                          <div key={booking.id} className="bg-slate-50 rounded-xl p-4 border border-slate-200">
-                            <div className="flex items-start justify-between mb-3">
-                              <div>
-                                <div className="font-semibold text-slate-900 text-sm">{booking.service}</div>
-                                <div className="text-slate-600 text-xs mt-1">{booking.professional_name}</div>
-                              </div>
-                              <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status)}`}>
-                                {getStatusIcon(booking.status)}
-                                {booking.status?.charAt(0).toUpperCase() + booking.status?.slice(1)}
-                              </span>
-                            </div>
-                            <div className="flex items-center justify-between text-xs text-slate-600">
-                              <div>{booking.date} at {booking.time}</div>
-                              <div className="font-semibold text-slate-900">{booking.amount}</div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                      <table className="hidden lg:table w-full min-w-[600px]">
-                        <thead>
-                          <tr className="text-left text-slate-600 text-xs sm:text-sm">
-                            <th className="pb-4 font-medium">Service</th>
-                            <th className="pb-4 font-medium">Professional</th>
-                            <th className="pb-4 font-medium">Date & Time</th>
-                            <th className="pb-4 font-medium">Status</th>
-                            <th className="pb-4 font-medium">Amount</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {loading ? (
-                            // Skeleton loading for table rows
-                            [1, 2, 3, 4, 5].map((i) => (
-                              <tr key={i} className="border-t border-slate-100">
-                                <td className="py-3 sm:py-4"><div className="w-24 h-4 bg-slate-200 rounded animate-pulse" /></td>
-                                <td className="py-3 sm:py-4"><div className="w-20 h-4 bg-slate-200 rounded animate-pulse" /></td>
-                                <td className="py-3 sm:py-4"><div className="w-28 h-4 bg-slate-200 rounded animate-pulse" /></td>
-                                <td className="py-3 sm:py-4"><div className="w-16 h-6 bg-slate-200 rounded-full animate-pulse" /></td>
-                                <td className="py-3 sm:py-4"><div className="w-16 h-4 bg-slate-200 rounded animate-pulse" /></td>
-                              </tr>
-                            ))
-                          ) : (
-                            bookings.slice(0, 5).map((booking) => (
-                              <tr key={booking.id} className="border-t border-slate-100">
-                                <td className="py-3 sm:py-4"><div className="font-medium text-slate-900 text-sm sm:text-base">{booking.service}</div></td>
-                                <td className="py-3 sm:py-4 text-slate-600 text-sm sm:text-base">{booking.professional_name}</td>
-                                <td className="py-3 sm:py-4 text-slate-600 text-xs sm:text-sm">{booking.date} at {booking.time}</td>
-                                <td className="py-3 sm:py-4">
-                                  <span className={`inline-flex items-center gap-1 px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status)}`}>
-                                    {getStatusIcon(booking.status)}
-                                    {booking.status?.charAt(0).toUpperCase() + booking.status?.slice(1)}
-                                  </span>
-                                </td>
-                                <td className="py-3 sm:py-4 font-medium text-slate-900 text-sm sm:text-base">{booking.amount}</td>
-                              </tr>
-                            ))
-                          )}
-                        </tbody>
-                      </table>
-                    </>
                   )}
+                </div>
+              </div>
+
+              {/* Hero Search Bar */}
+              <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8">
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-4">What do you need help with today?</h2>
+                <div className="flex gap-3">
+                  <div className="flex-1 relative">
+                    <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      placeholder="Search for services or professionals..."
+                      value={searchQuery}
+                      onChange={e => setSearchQuery(e.target.value)}
+                      className="w-full pl-12 pr-4 py-3 sm:py-4 rounded-xl text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-300"
+                    />
+                  </div>
+                  <button
+                    onClick={() => { setActiveTab('services'); navigate('/customer/services'); }}
+                    className="bg-white text-green-600 px-6 py-3 sm:py-4 rounded-xl font-semibold hover:bg-green-50 transition-colors text-sm sm:text-base whitespace-nowrap"
+                  >
+                    Post a Job
+                  </button>
+                </div>
+              </div>
+
+              {/* Categories Grid */}
+              <div className="mb-6 sm:mb-8">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900">Popular Services</h3>
+                  <button
+                    onClick={() => { setActiveTab('services'); navigate('/customer/services'); }}
+                    className="text-green-600 text-sm font-medium hover:text-green-700"
+                  >
+                    View All
+                  </button>
+                </div>
+                <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
+                  {[
+                    { icon: Droplets, label: 'Plumbing', color: 'bg-blue-100 text-blue-600' },
+                    { icon: Zap, label: 'Electrical', color: 'bg-yellow-100 text-yellow-600' },
+                    { icon: Hammer, label: 'Carpentry', color: 'bg-orange-100 text-orange-600' },
+                    { icon: Sparkles, label: 'Cleaning', color: 'bg-purple-100 text-purple-600' },
+                    { icon: HardHat, label: 'Construction', color: 'bg-slate-100 text-slate-600' },
+                    { icon: Wrench, label: 'Mechanics', color: 'bg-red-100 text-red-600' },
+                  ].map((cat, i) => (
+                    <button
+                      key={i}
+                      onClick={() => { setSearchQuery(cat.label); setActiveTab('services'); navigate('/customer/services'); }}
+                      className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl border border-slate-200 hover:border-green-300 hover:shadow-md transition-all"
+                    >
+                      <div className={`w-10 h-10 sm:w-12 sm:h-12 ${cat.color} rounded-xl flex items-center justify-center`}>
+                        <cat.icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                      </div>
+                      <span className="text-xs sm:text-sm font-medium text-slate-700">{cat.label}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Top Rated Near You */}
+              <div className="mb-6 sm:mb-8">
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-4">Top Rated Near You</h3>
+                <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+                  {professionals.slice(0, 5).map((pro: any) => (
+                    <div key={pro.id} className="flex-shrink-0 w-64 bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-shadow">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold">
+                          {(pro.full_name || pro.user?.full_name || 'P').charAt(0).toUpperCase()}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-1">
+                            <h4 className="font-semibold text-slate-900 text-sm truncate">{pro.full_name || pro.user?.full_name || 'Professional'}</h4>
+                            {pro.verified && <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0" />}
+                          </div>
+                          <p className="text-xs text-slate-500">{pro.service_category || 'Service'}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1 mb-2">
+                        <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+                        <span className="text-sm font-medium text-slate-900">{pro.rating || '4.8'}</span>
+                        <span className="text-xs text-slate-500">({pro.reviews_count || '124'} reviews)</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-xs text-slate-500 mb-3">
+                        <MapPin className="w-3 h-3" />
+                        <span>{pro.distance || '2.5 km away'}</span>
+                      </div>
+                      <button
+                        onClick={() => { setActiveTab('services'); navigate('/customer/services'); }}
+                        className="w-full bg-green-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
+                      >
+                        View Profile
+                      </button>
+                    </div>
+                  ))}
                 </div>
               </div>
             </>

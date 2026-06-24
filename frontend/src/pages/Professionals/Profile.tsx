@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Star, MapPin, Briefcase, Plus, X, Camera, Save, Upload, CheckCircle, Clock, Shield } from 'lucide-react';
 
-import { API_BASE, getToken } from '../../utils/api';
+import { API_BASE, getToken, getUser } from '../../utils/api';
 
 const Profile: React.FC = () => {
-  const [profile, setProfile] = useState<any>(null);
+  const storedUser = getUser();
+  const [profile, setProfile] = useState<any>(storedUser || null);
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -17,7 +18,10 @@ const Profile: React.FC = () => {
   });
   const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState({
-    full_name: '', email: '', phone: '', location: '',
+    full_name: storedUser?.full_name || '',
+    email: storedUser?.email || '',
+    phone: storedUser?.phone || '',
+    location: storedUser?.location || '',
     bio: '', hourly_rate: '', category: '', years_experience: '',
     skills: [] as string[],
   });
@@ -148,7 +152,7 @@ const Profile: React.FC = () => {
           <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 shadow-sm p-6 text-center">
             <div className="relative inline-block mb-4">
               <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white text-2xl sm:text-3xl font-bold mx-auto">
-                {(profile?.full_name || 'P').charAt(0).toUpperCase()}
+                {(formData.full_name || profile?.full_name || 'P').charAt(0).toUpperCase()}
               </div>
               {editing && (
                 <button className="absolute -bottom-1 -right-1 w-7 h-7 bg-green-600 text-white rounded-full flex items-center justify-center hover:bg-green-700 shadow">
@@ -156,18 +160,18 @@ const Profile: React.FC = () => {
                 </button>
               )}
             </div>
-            <h3 className="text-lg font-bold text-slate-900 mb-1">{profile?.full_name || 'Professional'}</h3>
-            <p className="text-green-600 text-sm font-medium mb-2">{profile?.category || formData.category || 'Your Category'}</p>
+            <h3 className="text-lg font-bold text-slate-900 mb-1">{formData.full_name || profile?.full_name || 'Professional'}</h3>
+            <p className="text-green-600 text-sm font-medium mb-2">{formData.category || profile?.category || 'Your Category'}</p>
             <div className="flex items-center justify-center gap-1 mb-2">
               {Array.from({ length: 5 }, (_, i) => (
                 <Star key={i} className={`w-4 h-4 ${i < Math.floor(profile?.rating || 0) ? 'text-amber-500 fill-amber-500' : 'text-slate-200'}`} />
               ))}
               <span className="text-sm text-slate-500 ml-1">({profile?.reviews_count || 0})</span>
             </div>
-            {profile?.location && (
+            {(formData.location || profile?.location) && (
               <div className="flex items-center justify-center gap-1 text-slate-500 text-sm">
                 <MapPin className="w-3.5 h-3.5" />
-                <span>{profile.location}</span>
+                <span>{formData.location || profile.location}</span>
               </div>
             )}
             <div className="mt-4 pt-4 border-t border-slate-100 grid grid-cols-2 gap-3 text-center">

@@ -1,5 +1,5 @@
 import { body, param, validationResult } from 'express-validator';
-import { ROLES, BOOKING_STATUS, JOB_STATUS, TX_STATUS, INVOICE_STATUS } from '../config/constants.js';
+import { ROLES, BOOKING_STATUS, JOB_STATUS, TX_STATUS } from '../config/constants.js';
 
 export const validate = (req, res, next) => {
   const errors = validationResult(req);
@@ -15,14 +15,26 @@ export const validate = (req, res, next) => {
 
 export const registerRules = [
   body('fullName').trim().notEmpty().withMessage('Full name is required').isLength({ min: 2, max: 120 }),
-  body('email').trim().isEmail().withMessage('Valid email is required').normalizeEmail(),
+  body('email')
+    .trim()
+    .isEmail()
+    .withMessage('Valid email is required')
+    .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+    .withMessage('Email must be a valid email address')
+    .normalizeEmail(),
   body('phone').trim().notEmpty().withMessage('Phone number is required').isLength({ max: 30 }),
   body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters'),
   body('role').isIn(Object.values(ROLES)).withMessage(`Role must be one of: ${Object.values(ROLES).join(', ')}`),
 ];
 
 export const loginRules = [
-  body('email').trim().isEmail().withMessage('Valid email is required').normalizeEmail(),
+  body('email')
+    .trim()
+    .isEmail()
+    .withMessage('Valid email is required')
+    .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+    .withMessage('Email must be a valid email address')
+    .normalizeEmail(),
   body('password').notEmpty().withMessage('Password is required'),
 ];
 
@@ -80,14 +92,6 @@ export const createTransactionRules = [
   body('date').isDate(),
   body('status').isIn(Object.values(TX_STATUS)),
   body('method').trim().notEmpty(),
-];
-
-export const createInvoiceRules = [
-  body('number').trim().notEmpty(),
-  body('description').trim().notEmpty(),
-  body('amount').isDecimal({ decimal_digits: '0,2' }),
-  body('date').isDate(),
-  body('due_date').isDate(),
 ];
 
 export const idParamRule = [

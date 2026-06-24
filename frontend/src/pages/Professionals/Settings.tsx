@@ -1,47 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { User, Lock, Bell, Shield, ChevronRight, Save, Eye, EyeOff, Camera, CreditCard } from 'lucide-react';
+import React, { useState } from 'react';
+import { Lock, Bell, Shield, ChevronRight, Eye, EyeOff, CreditCard } from 'lucide-react';
 
 import { API_BASE, getToken } from '../../utils/api';
 
 const ProfessionalSettings: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('profile');
-  const [user, setUser] = useState<any>(null);
-  const [formData, setFormData] = useState({ full_name: '', email: '', phone: '', location: '' });
+  const [activeSection, setActiveSection] = useState('security');
   const [passwords, setPasswords] = useState({ current: '', new: '', confirm: '' });
   const [showPasswords, setShowPasswords] = useState({ current: false, new: false, confirm: false });
-  const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
   const [notifications, setNotifications] = useState({ email: true, push: true, sms: true, newJob: true, payment: true });
-
-
-  useEffect(() => { fetchProfile(); }, []);
-
-  const fetchProfile = async () => {
-    try {
-      const response = await fetch(`${API_BASE}/api/user/profile`, {
-        headers: { 'Authorization': `Bearer ${getToken()}` },
-      });
-      if (response.ok) {
-        const json = await response.json();
-        const data = json.data || json;
-        setUser(data);
-        setFormData({ full_name: data.full_name || '', email: data.email || '', phone: data.phone || '', location: data.location || '' });
-      }
-    } catch (error) { console.error('Error:', error); }
-  };
-
-  const handleSaveProfile = async () => {
-    setSaving(true);
-    try {
-      const response = await fetch(`${API_BASE}/api/user/profile`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getToken()}` },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) { setSaved(true); setTimeout(() => setSaved(false), 3000); }
-    } catch (error) { console.error('Error:', error); }
-    setSaving(false);
-  };
 
   const sections = [
     { id: 'security', label: 'Security', icon: <Lock className="w-5 h-5" /> },

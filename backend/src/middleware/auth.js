@@ -1,8 +1,9 @@
 import jwt from 'jsonwebtoken';
 import { jwtConfig } from '../config/index.js';
 import { HTTP } from '../config/constants.js';
+import { setCurrentUser } from '../config/database.js';
 
-export const authenticate = (req, res, next) => {
+export const authenticate = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -17,6 +18,10 @@ export const authenticate = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, jwtConfig.secret);
     req.user = decoded;
+
+    // Set current user context for RLS policies
+    await setCurrentUser(decoded.userId);
+
     next();
   } catch (err) {
     const message =

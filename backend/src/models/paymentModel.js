@@ -54,27 +54,3 @@ export const createTransaction = async (userId, { description, amount, date, sta
   return data;
 };
 
-export const getInvoicesByUser = async (userId) => {
-  const { data, error } = await supabase
-    .from('invoices').select('*').eq('user_id', userId)
-    .order('created_at', { ascending: false });
-  if (error) throw error;
-  return data || [];
-};
-
-export const createInvoice = async (userId, { number, description, amount, date, due_date }) => {
-  const { data, error } = await supabase
-    .from('invoices')
-    .insert({ user_id: userId, number, description, amount, date, due_date })
-    .select('*').single();
-  if (error) throw error;
-  return data;
-};
-
-export const updateInvoiceStatus = async (id, userId, status) => {
-  const { data, error } = await supabase
-    .from('invoices').update({ status }).eq('id', id).eq('user_id', userId)
-    .select('*').maybeSingle();
-  if (error) throw error;
-  return data || null;
-};

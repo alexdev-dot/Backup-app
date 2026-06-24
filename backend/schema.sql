@@ -24,10 +24,6 @@ DO $$ BEGIN
   CREATE TYPE tx_status AS ENUM ('completed', 'pending', 'failed');
 EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
-DO $$ BEGIN
-  CREATE TYPE invoice_status AS ENUM ('paid', 'pending', 'overdue');
-EXCEPTION WHEN duplicate_object THEN NULL; END $$;
-
 -- ─── users ───────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS users (
   id          SERIAL PRIMARY KEY,
@@ -170,21 +166,6 @@ CREATE TABLE IF NOT EXISTS transactions (
 
 CREATE INDEX IF NOT EXISTS idx_transactions_user_id ON transactions (user_id);
 
--- ─── invoices ────────────────────────────────────────────────
-CREATE TABLE IF NOT EXISTS invoices (
-  id           SERIAL PRIMARY KEY,
-  user_id      INTEGER          NOT NULL REFERENCES users (id) ON DELETE CASCADE,
-  number       VARCHAR(50)      NOT NULL UNIQUE,
-  description  TEXT             NOT NULL,
-  amount       NUMERIC(12,2)    NOT NULL,
-  date         DATE             NOT NULL,
-  due_date     DATE             NOT NULL,
-  status       invoice_status   NOT NULL DEFAULT 'pending',
-  created_at   TIMESTAMPTZ      NOT NULL DEFAULT NOW(),
-  updated_at   TIMESTAMPTZ      NOT NULL DEFAULT NOW()
-);
-
-CREATE INDEX IF NOT EXISTS idx_invoices_user_id ON invoices (user_id);
 
 -- ─── reviews ─────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS reviews (
@@ -214,7 +195,7 @@ DO $$ DECLARE t TEXT;
 BEGIN
   FOREACH t IN ARRAY ARRAY[
     'users','professionals','bookings','jobs',
-    'conversations','invoices'
+    'conversations'
   ] LOOP
     EXECUTE format(
       'CREATE OR REPLACE TRIGGER trg_%s_updated_at
@@ -222,3 +203,226 @@ BEGIN
        FOR EACH ROW EXECUTE FUNCTION set_updated_at();', t, t);
   END LOOP;
 END $$;
+
+-- ─── Row Level Security (RLS) ─────────────────────────────────
+-- Enable RLS on all tables
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+ALTER TABLE professionals ENABLE ROW LEVEL SECURITY;
+ALTER TABLE bookings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE jobs ENABLE ROW LEVEL SECURITY;
+ALTER TABLE conversations ENABLE ROW LEVEL SECURITY;
+ALTER TABLE messages ENABLE ROW LEVEL SECURITY;
+ALTER TABLE payment_methods ENABLE ROW LEVEL SECURITY;
+ALTER TABLE transactions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
+
+-- services table is public read-only, no RLS needed
+
+-- ─── Helper function to get current user ID from context ───────
+CREATE OR REPLACE FUNCTION get_current_user_id()
+RETURNS INTEGER AS $$
+BEGIN
+  RETURN NULLIF(current_setting('app.current_user_id', true), '')::INTEGER;
+END;
+$$ LANGUAGE plpgsql STABLE;
+
+-- ─── RPC function to set current user ID for RLS ───────────────
+CREATE OR REPLACE FUNCTION set_current_user_id(user_id INTEGER)
+RETURNS VOID AS $$
+BEGIN
+  PERFORM set_config('app.current_user_id', user_id::TEXT, true);
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- ─── RPC function to reset current user ID for RLS ─────────────
+CREATE OR REPLACE FUNCTION reset_current_user_id()
+RETURNS VOID AS $$
+BEGIN
+  PERFORM set_config('app.current_user_id', '', true);
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- ─── RLS Policies for users ────────────────────────────────────
+-- Users can view their own profile
+DROP POLICY IF EXISTS users_select_own ON users;
+CREATE POLICY users_select_own ON users
+  FOR SELECT
+  USING (id = get_current_user_id());
+
+-- Users can update their own profile
+DROP POLICY IF EXISTS users_update_own ON users;
+CREATE POLICY users_update_own ON users
+  FOR UPDATE
+  USING (id = get_current_user_id());
+
+-- ─── RLS Policies for professionals ────────────────────────────
+-- Public can view professional profiles
+DROP POLICY IF EXISTS professionals_select_public ON professionals;
+CREATE POLICY professionals_select_public ON professionals
+  FOR SELECT
+  USING (true);
+
+-- Professionals can view their own profile
+DROP POLICY IF EXISTS professionals_select_own ON professionals;
+CREATE POLICY professionals_select_own ON professionals
+  FOR SELECT
+  USING (user_id = get_current_user_id());
+
+-- Professionals can update their own profile
+DROP POLICY IF EXISTS professionals_update_own ON professionals;
+CREATE POLICY professionals_update_own ON professionals
+  FOR UPDATE
+  USING (user_id = get_current_user_id());
+
+-- ─── RLS Policies for bookings ──────────────────────────────────
+-- Customers can view their own bookings
+DROP POLICY IF EXISTS bookings_select_customer ON bookings;
+CREATE POLICY bookings_select_customer ON bookings
+  FOR SELECT
+  USING (customer_id = get_current_user_id());
+
+-- Professionals can view bookings where they are the professional
+DROP POLICY IF EXISTS bookings_select_professional ON bookings;
+CREATE POLICY bookings_select_professional ON bookings
+  FOR SELECT
+  USING (professional_id = get_current_user_id());
+
+-- Customers can create bookings for themselves
+DROP POLICY IF EXISTS bookings_insert_customer ON bookings;
+CREATE POLICY bookings_insert_customer ON bookings
+  FOR INSERT
+  WITH CHECK (customer_id = get_current_user_id());
+
+-- Customers can update their own bookings
+DROP POLICY IF EXISTS bookings_update_customer ON bookings;
+CREATE POLICY bookings_update_customer ON bookings
+  FOR UPDATE
+  USING (customer_id = get_current_user_id());
+
+-- Professionals can update their own bookings
+DROP POLICY IF EXISTS bookings_update_professional ON bookings;
+CREATE POLICY bookings_update_professional ON bookings
+  FOR UPDATE
+  USING (professional_id = get_current_user_id());
+
+-- ─── RLS Policies for jobs ─────────────────────────────────────
+-- Public can view active jobs
+DROP POLICY IF EXISTS jobs_select_public ON jobs;
+CREATE POLICY jobs_select_public ON jobs
+  FOR SELECT
+  USING (true);
+
+-- Customers can view their own jobs
+DROP POLICY IF EXISTS jobs_select_own ON jobs;
+CREATE POLICY jobs_select_own ON jobs
+  FOR SELECT
+  USING (customer_id = get_current_user_id());
+
+-- Customers can create jobs for themselves
+DROP POLICY IF EXISTS jobs_insert_own ON jobs;
+CREATE POLICY jobs_insert_own ON jobs
+  FOR INSERT
+  WITH CHECK (customer_id = get_current_user_id());
+
+-- Customers can update their own jobs
+DROP POLICY IF EXISTS jobs_update_own ON jobs;
+CREATE POLICY jobs_update_own ON jobs
+  FOR UPDATE
+  USING (customer_id = get_current_user_id());
+
+-- ─── RLS Policies for conversations ────────────────────────────
+-- Users can view conversations they are part of
+DROP POLICY IF EXISTS conversations_select_participant ON conversations;
+CREATE POLICY conversations_select_participant ON conversations
+  FOR SELECT
+  USING (customer_id = get_current_user_id() OR professional_id = get_current_user_id());
+
+-- Users can create conversations where they are the customer
+DROP POLICY IF EXISTS conversations_insert_customer ON conversations;
+CREATE POLICY conversations_insert_customer ON conversations
+  FOR INSERT
+  WITH CHECK (customer_id = get_current_user_id());
+
+-- Users can update conversations they are part of
+DROP POLICY IF EXISTS conversations_update_participant ON conversations;
+CREATE POLICY conversations_update_participant ON conversations
+  FOR UPDATE
+  USING (customer_id = get_current_user_id() OR professional_id = get_current_user_id());
+
+-- ─── RLS Policies for messages ─────────────────────────────────
+-- Users can view messages in conversations they are part of
+DROP POLICY IF EXISTS messages_select_participant ON messages;
+CREATE POLICY messages_select_participant ON messages
+  FOR SELECT
+  USING (
+    sender_id = get_current_user_id() OR
+    receiver_id = get_current_user_id() OR
+    EXISTS (
+      SELECT 1 FROM conversations c
+      WHERE c.id = messages.conversation_id
+      AND (c.customer_id = get_current_user_id() OR c.professional_id = get_current_user_id())
+    )
+  );
+
+-- Users can send messages
+DROP POLICY IF EXISTS messages_insert_own ON messages;
+CREATE POLICY messages_insert_own ON messages
+  FOR INSERT
+  WITH CHECK (sender_id = get_current_user_id());
+
+-- ─── RLS Policies for payment_methods ─────────────────────────
+-- Users can view their own payment methods
+DROP POLICY IF EXISTS payment_methods_select_own ON payment_methods;
+CREATE POLICY payment_methods_select_own ON payment_methods
+  FOR SELECT
+  USING (user_id = get_current_user_id());
+
+-- Users can create payment methods for themselves
+DROP POLICY IF EXISTS payment_methods_insert_own ON payment_methods;
+CREATE POLICY payment_methods_insert_own ON payment_methods
+  FOR INSERT
+  WITH CHECK (user_id = get_current_user_id());
+
+-- Users can update their own payment methods
+DROP POLICY IF EXISTS payment_methods_update_own ON payment_methods;
+CREATE POLICY payment_methods_update_own ON payment_methods
+  FOR UPDATE
+  USING (user_id = get_current_user_id());
+
+-- Users can delete their own payment methods
+DROP POLICY IF EXISTS payment_methods_delete_own ON payment_methods;
+CREATE POLICY payment_methods_delete_own ON payment_methods
+  FOR DELETE
+  USING (user_id = get_current_user_id());
+
+-- ─── RLS Policies for transactions ─────────────────────────────
+-- Users can view their own transactions
+DROP POLICY IF EXISTS transactions_select_own ON transactions;
+CREATE POLICY transactions_select_own ON transactions
+  FOR SELECT
+  USING (user_id = get_current_user_id());
+
+-- Users can create transactions for themselves
+DROP POLICY IF EXISTS transactions_insert_own ON transactions;
+CREATE POLICY transactions_insert_own ON transactions
+  FOR INSERT
+  WITH CHECK (user_id = get_current_user_id());
+
+-- ─── RLS Policies for reviews ──────────────────────────────────
+-- Users can view reviews for professionals (public read)
+DROP POLICY IF EXISTS reviews_select_public ON reviews;
+CREATE POLICY reviews_select_public ON reviews
+  FOR SELECT
+  USING (true);
+
+-- Customers can create reviews for bookings they made
+DROP POLICY IF EXISTS reviews_insert_own ON reviews;
+CREATE POLICY reviews_insert_own ON reviews
+  FOR INSERT
+  WITH CHECK (customer_id = get_current_user_id());
+
+-- Customers can update their own reviews
+DROP POLICY IF EXISTS reviews_update_own ON reviews;
+CREATE POLICY reviews_update_own ON reviews
+  FOR UPDATE
+  USING (customer_id = get_current_user_id());

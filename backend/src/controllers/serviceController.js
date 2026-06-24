@@ -15,8 +15,3 @@ export const getById = asyncHandler(async (req, res) => {
   }
   sendSuccess(res, { service });
 });
-
-export const create = asyncHandler(async (req, res) => {
-  const service = await serviceModel.create(req.body);
-  sendCreated(res, { service });
-});

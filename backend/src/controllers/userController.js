@@ -3,7 +3,9 @@ import { asyncHandler, sendSuccess } from '../utils/helpers.js';
 import { HTTP } from '../config/constants.js';
 
 export const getProfile = asyncHandler(async (req, res) => {
+  console.log('Fetching profile for userId:', req.user.userId);
   const user = await userModel.findById(req.user.userId);
+  console.log('User data from DB:', user);
   if (!user) {
     return res.status(HTTP.NOT_FOUND).json({ success: false, error: 'User not found' });
   }

@@ -51,6 +51,16 @@ export const markRead = asyncHandler(async (req, res) => {
 
 export const startConversation = asyncHandler(async (req, res) => {
   const { professional_id, service } = req.body;
+
+  // Verify the professional_id is actually a professional user
+  const { findByEmail } = await import('../models/userModel.js');
+  const { findByUserId } = await import('../models/professionalModel.js');
+  
+  const professional = await findByUserId(professional_id);
+  if (!professional) {
+    return res.status(HTTP.BAD_REQUEST).json({ success: false, error: 'Professional not found' });
+  }
+
   const conversation = await messageModel.findOrCreateConversation(
     req.user.userId,
     professional_id,

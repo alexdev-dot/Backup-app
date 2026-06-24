@@ -19,9 +19,6 @@ export const getById = asyncHandler(async (req, res) => {
 });
 
 export const create = asyncHandler(async (req, res) => {
-  if (req.user.role !== ROLES.CUSTOMER) {
-    return res.status(HTTP.FORBIDDEN).json({ success: false, error: 'Only customers can create bookings' });
-  }
   const booking = await bookingModel.create(req.user.userId, req.body);
   sendCreated(res, { booking });
 });

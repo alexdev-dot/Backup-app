@@ -1,5 +1,4 @@
 import { createClient } from '@supabase/supabase-js';
-import ws from 'ws';
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -10,7 +9,6 @@ if (!supabaseUrl || !supabaseKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseKey, {
   auth: { persistSession: false },
-  realtime: { transport: ws },
 });
 
 export const testConnection = async () => {
@@ -21,6 +19,30 @@ export const testConnection = async () => {
     console.warn('[DB] Schema file: backend/schema.sql');
   } else {
     console.log('[DB] Supabase connection ready');
+  }
+};
+
+/**
+ * Set the current user ID in the PostgreSQL session for RLS policies
+ * This is called after authentication to enable row-level security
+ */
+export const setCurrentUser = async (userId) => {
+  if (!userId) return;
+  try {
+    await supabase.rpc('set_current_user_id', { user_id: userId });
+  } catch (error) {
+    console.warn('[DB] Failed to set current user for RLS:', error.message);
+  }
+};
+
+/**
+ * Clear the current user ID from the PostgreSQL session
+ */
+export const clearCurrentUser = async () => {
+  try {
+    await supabase.rpc('reset_current_user_id');
+  } catch (error) {
+    console.warn('[DB] Failed to clear current user for RLS:', error.message);
   }
 };
 

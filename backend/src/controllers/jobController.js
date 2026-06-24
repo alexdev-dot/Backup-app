@@ -9,9 +9,6 @@ export const getPublic = asyncHandler(async (req, res) => {
 });
 
 export const getMyJobs = asyncHandler(async (req, res) => {
-  if (req.user.role !== ROLES.CUSTOMER) {
-    return res.status(HTTP.FORBIDDEN).json({ success: false, error: 'Only customers can view their jobs' });
-  }
   const jobs = await jobModel.findByCustomerId(req.user.userId);
   sendSuccess(res, { jobs });
 });
@@ -26,9 +23,6 @@ export const getById = asyncHandler(async (req, res) => {
 });
 
 export const create = asyncHandler(async (req, res) => {
-  if (req.user.role !== ROLES.CUSTOMER) {
-    return res.status(HTTP.FORBIDDEN).json({ success: false, error: 'Only customers can post jobs' });
-  }
   const job = await jobModel.create(req.user.userId, req.body);
   sendCreated(res, { job });
 });

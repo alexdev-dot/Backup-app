@@ -65,8 +65,7 @@ GigaFixzipzip/
 │   │   ├── models/          # Database models
 │   │   ├── routes/          # API route definitions
 │   │   ├── utils/           # Utility functions
-│   │   ├── server.js        # Application entry point
-│   │   └── setup-db.js      # Database setup script
+│   │   └── server.js        # Application entry point
 │   ├── .env                 # Environment variables (not committed)
 │   ├── .env.example         # Environment variable template
 │   ├── package.json         # Backend dependencies
@@ -152,7 +151,7 @@ GigaFixzipzip/
    ```bash
    cd backend
    # Run the schema setup script
-   node src/setup-db.js
+   node setup-db.mjs
    # Or manually execute schema.sql in your PostgreSQL database
    ```
 

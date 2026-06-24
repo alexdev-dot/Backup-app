@@ -22,12 +22,6 @@ export const TX_STATUS = Object.freeze({
   FAILED:    'failed',
 });
 
-export const INVOICE_STATUS = Object.freeze({
-  PAID:    'paid',
-  PENDING: 'pending',
-  OVERDUE: 'overdue',
-});
-
 export const HTTP = Object.freeze({
   OK:                    200,
   CREATED:               201,

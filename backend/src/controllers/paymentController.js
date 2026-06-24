@@ -38,24 +38,3 @@ export const createTransaction = asyncHandler(async (req, res) => {
   sendCreated(res, { transaction });
 });
 
-export const getInvoices = asyncHandler(async (req, res) => {
-  const invoices = await paymentModel.getInvoicesByUser(req.user.userId);
-  sendSuccess(res, { invoices });
-});
-
-export const createInvoice = asyncHandler(async (req, res) => {
-  const invoice = await paymentModel.createInvoice(req.user.userId, req.body);
-  sendCreated(res, { invoice });
-});
-
-export const updateInvoiceStatus = asyncHandler(async (req, res) => {
-  const invoice = await paymentModel.updateInvoiceStatus(
-    Number(req.params.id),
-    req.user.userId,
-    req.body.status
-  );
-  if (!invoice) {
-    return res.status(HTTP.NOT_FOUND).json({ success: false, error: 'Invoice not found' });
-  }
-  sendSuccess(res, { invoice });
-});
